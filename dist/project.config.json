@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.6.6",
 	"appid": "wx9b3e3e6a27893786",
-	"projectname": "moxiezhou",
+	"projectname": "moxiezhou-online",
 	"condition": {
 		"search": {
 			"current": -1,

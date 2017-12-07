@@ -109,16 +109,16 @@
     
       
       
-  <view class="list">
-  <view>
-    <button bindtap="$list$add" size="mini">添加列表</button>
-  </view>
-    <block  wx:for-items="{{$list$list}}" wx:for-index="index" wx:for-item="item" wx:key="id">
-      <view bindtap="$list$tap" class="mylist">
-        <text>{{item.id}}</text>: {{item.title}}
-      </view>
-    </block>
-  </view>
+    <view class="list">
+        <view>
+            <button bindtap="$list$add" size="mini">添加列表</button>
+        </view>
+        <block  wx:for-items="{{$list$list}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+        <view bindtap="$list$tap" class="mylist">
+            <text>{{item.id}}</text>: {{item.title}}
+        </view>
+        </block>
+    </view>
 
     
   </view>
