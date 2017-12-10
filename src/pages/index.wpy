@@ -1,23 +1,51 @@
 <style lang="less">
-  .userinfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .userinfo-avatar {
-    width: 80rpx;
-    height: 80rpx;
-    border-radius: 50%;
-  }
-
-  .userinfo-nickname {
-    color: #aaa;
-  }
+    .container > view{
+        width : 100%;
+    }
+    image{
+        width:100%;
+    }
+    .ad-wrap{
+        width:100%;
+    }
+    .icon-30X30{
+        width:30px;
+        height:30px;
+    }
 </style>
 <template>
     <view class="container">
-        <text>coding</text>
+        <view class="ad-wrap">
+            <image src="../images/ad1.jpg" />
+        </view>
+        <view>
+            <image class="icon-30X30" src="../images/icon-coordinate.png" />
+            <text>{{locationInfo.long}},{{locationInfo.lat}}广州市珠江东路4号</text>
+            <image @tap="updateLoaction('a')" class="icon-30X30" src="../images/icon-refresh.png" />
+        </view>
+        <view>
+            <text>最近使用</text>
+            <view>
+                <view>暂无最近使用信息</view>
+                <view>item 1</view>
+            </view>
+        </view>
+        <view>
+            <text>附近</text>
+            <view>
+                <view>
+                    <view>
+                        <text>椰林海鲜码头2号</text>
+                        <text>广州近郊花都区雅瑶镇雅瑶中路1号(近广花路)</text>
+                    </view>
+                    <view>
+                        <image src="../images/icon-go-here.png" />
+                        <text>0.22km</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <button>扫码享椅</button>
     </view>
 </template>
 
@@ -31,33 +59,72 @@
     }
 
     data = {
-      userInfo: {
-        nickName: '加载中...'
-      }
+        userInfo: {
+            nickName: '加载中...'
+        },
+        locationInfo :{
+            lat:'',
+            long:''
+        },
+        vicinityList :[]
     }
 
     computed = {
     }
 
     methods = {
+        updateLoaction (){
+            console.log('updateLoaction');
+        }
     }
 
     events = {
     }
 
     onLoad() {
-      let self = this
-        wepy.login({
-            success (res) {
-                console.log(res);
+        wepy.getLocation({
+            type : "wgs84",
+            success :(data)=>{
+                console.log(data);
+                this.locationInfo = {
+                    lat:data.latitude,
+                    long:data.longitude
+                }
+                this.$apply()
+            },
+            fail : function(){
+                console.log(arguments);
             }
         })
-      this.$parent.getUserInfo(function (userInfo) {
-        if (userInfo) {
-            self.userInfo = userInfo
-            self.$apply()
-        }
-      })
+        let self = this
+            wepy.login({
+                success (res) {
+                    console.log(res);
+                }
+            })
+        this.$parent.getUserInfo(function (userInfo) {
+            if (userInfo) {
+                self.userInfo = userInfo
+                self.$apply()
+            }
+        })
     }
   }
 </script>
+
+/*
+花都半岛豪苑酒家
+广州近郊花都区迎宾大道113号(马鞍山公园对面)
+ 
+ 
+金满福酒家
+广州市花都区松园路26号
+ 
+ 
+點都德
+建设北路72号星光汇5楼5A1号铺
+ 
+ 
+湖景鱼翅海鲜城
+滨湖路36号
+*/
