@@ -1,0 +1,26 @@
+<view class="container">
+    <view class="ad-wrap">
+        <image src="../../images/ad1.jpg"/>
+    </view>
+    <view class="location-info">
+        <image class="icon-30X30 icon-coordinate" src="../../images/icon-coordinate.png"/>
+        <text>{{wxMarkerData ? wxMarkerData.address: '定位中'}}</text>
+        <image bindtap="updateLoaction" class="icon-30X30 icon-refresh" src="../../images/icon-refresh.png" data-wpyupdateloaction-a="a"/>
+    </view>
+    <view>
+        <text class="vicinity-title">附近</text>
+        <view>
+            <view class="vicinity-item"  wx:for="{{vicinityList}}" wx:key="id">
+                <view class="vicinity-item-left">
+                    <view>{{item.name}}</view>
+                    <view class="f12 address">{{item.address}}</view>
+                </view>
+                <view class="vicinity-item-right">
+                    <image class="icon-30X30" src="../../images/icon-go-here.png"/>
+                    <view class="f12">{{item.distance}}km</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="qrcode-btn" bindtap="scanCode" data-wpyscancode-a="">扫码享椅</view>
+</view>

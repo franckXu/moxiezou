@@ -16,7 +16,7 @@
     export default class extends wepy.app {
         config = {
             pages: [
-                'pages/index',
+                'pages/vicinity/index',
                 'pages/recharge',
                 'pages/my'
             ],
@@ -32,7 +32,7 @@
                 backgroundColor	:'#ffffff',
                 list : [
                     {
-                        pagePath	:'pages/index',
+                        pagePath	:'pages/vicinity/index',
                         text	:'周边网点',
                         iconPath	: './images/tabbar-icon-1.png',
                         selectedIconPath :'./images/tabbar-icon-1-select.png'
