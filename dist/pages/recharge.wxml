@@ -1,5 +1,0 @@
-
-    <view class="container">
-        <image src="../images/building.png" style="width: 200px; height: 200px;"/>
-        <text>充值,正在建设中</text>
-    </view>
