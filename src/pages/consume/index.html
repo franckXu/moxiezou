@@ -1,0 +1,22 @@
+<view>
+    <view class="logo-wrap">
+        <image src="{{productInfo.logoPic}}" />
+    </view>
+    <image class="product-pic" src="{{productInfo.productPic}}" />
+
+    <view class="consume-list">
+        <view
+              wx:for="{{consumeList}}" wx:for-index="idx" wx:key="idx"
+                class="consume-item"
+                @tap="handlerConsumeItem({{item.idx}})">
+            <view class="left-col">
+                <view>￥{{item.price}}</view>
+                <view>{{item.text}}</view>
+            </view>
+            <view class="right-col">
+            <text>{{item.time}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="contact">电话:400000000</view>
+</view>

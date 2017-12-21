@@ -1,0 +1,79 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+
+.text-center{
+    text-align: center;
+}
+.p10(){
+    padding: 10px;
+}
+.header{
+    background-color : #1aad16;
+    color:#fff;
+    padding:10px;
+    .header-top{
+        .display(flex);
+        .justify-content(space-between);
+    }
+    .balance-info{
+        .display(flex);
+        .flex-direction(column);
+        text{
+            text-align:center;
+        }
+        .money{
+            font-size:58px;
+        }
+        .desc{
+            font-size:14px;
+        }
+    }
+}
+.charge-money-list{
+    .display(flex);
+    .flex-wrap(wrap);
+    .charge-money-item{
+        padding:10px;
+        width:50%;
+        box-sizing:border-box;
+        .charge-money-item-inter-box {
+            color:@col-gray;
+            border-radius:5px;
+            border:1px solid @col-gray;
+            padding:5px;
+            view{
+                text-align: center;
+                &:nth-child(1){
+                    padding-bottom: 5px;
+                    margin-bottom: 5px;
+                    border-bottom:1px solid @col-gray;
+                }
+            }
+        }
+        &.cur {
+            .charge-money-item-inter-box {
+                color: @col-green;
+                border-color: @col-green;
+                view:nth-child(1){
+                    border-bottom:1px solid @col-green;
+                }
+            }
+        }
+    }
+}
+
+.empty-data{
+    text-align: center;
+}
+
+.footer{
+    .p10();
+    .protocol-txt{
+        font-size: 12px;
+        color:@col-gray;
+    }
+    .charge-btn{
+        .green-gradient();
+        margin-bottom: 8px;
+    }
+}

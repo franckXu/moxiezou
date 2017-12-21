@@ -1,0 +1,57 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+
+.logo-wrap {
+    text-align: center;
+    .logo {
+        border-radius: 100%;
+        width: 100px;
+        height: 100px;
+        box-shadow: 0px 0px 15px #000;
+        margin: 30px auto;
+    }
+}
+
+.form-login {
+    margin: 10px;
+    .display(flex)
+}
+
+.field {
+    .display(flex);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid @col-ccc;
+    &.valid-code-field{
+        border:none;
+    }
+}
+
+.label {
+    .flex(0,0,auto);
+    width: 90px;
+    color:@col-gray;
+}
+
+.right-col {
+    .flex(0,0,auto);
+    width: 120px;
+}
+
+.image-valid-code {
+    height: 32px;
+    display: none;
+}
+.btn-image-valid-code{
+    color:@col-green;
+}
+.btn-get-valid-code{
+    color:@col-green;
+}
+.btn-bind{
+    .green-gradient();
+    &[disabled]{
+        opacity:.5;
+        color:white !important;
+    }
+}

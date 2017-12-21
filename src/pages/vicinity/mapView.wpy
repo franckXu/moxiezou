@@ -1,0 +1,3 @@
+<style lang="less" src="./mapView.less" ></style>
+<template lang="wxml" src="./mapView.html"></template>
+<script src='./mapView.js'></script>

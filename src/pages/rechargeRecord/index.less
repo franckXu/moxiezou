@@ -1,0 +1,49 @@
+@import "../../libs/flex-less/flex.less";
+
+.empty{
+    display: none;
+    text-align: center;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+.empty-image{
+    width: 120px;
+    height:120px;
+}
+
+.charge-record-item {
+    border-bottom:1px solid #dddddd;
+    height: 38px;;
+    line-height: 38px;;
+    text-indent: 10px;
+    font-size: 16px;
+    padding: 10px;
+    .display('flex');
+    .justify-content(space-between);
+    &:nth-child(even){
+        background:#eeeeee;
+    }
+}
+.charge-word{
+    display: inline-block;
+    background-color: #009D00;
+    border-radius:100%;
+    color:#fff;
+    width:38px;
+    height:38px;
+    .flex(0,0,auto);
+}
+.date{
+    .flex();
+}
+.num{
+    .flex(0,0,auto);
+    .prefix{
+        font-size: 14px;
+        color:gray;
+    }
+}
+
