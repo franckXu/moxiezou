@@ -33,17 +33,27 @@ image{
 .location-info{
     height:@tit-h;
     line-height:@tit-h;
+    display:flex;
+    display:-wekit-flex;
+    justify-content: space-between;
     .icon-coordinate{
-        float:left;
+        --wekit-flex: none;
+        flex:none;
+        width: 30px;
     }
     text{
-        float:left;
-        display:inline-block;
+        flex:1;
+        --wekit-flex:1;
         height : @tit-h;
         line-height : @tit-h;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
     }
     .icon-refresh{
-        float:right;
+        --wekit-flex: none;
+        flex:none;
+        width:30px;
     }
 }
 
@@ -89,4 +99,11 @@ image{
     bottom:10px;
     left:50%;
     margin-left:-50px;
+}
+.map-view-btn{
+    position:fixed;
+    bottom:50px;
+    right:0px;
+    height:38px;
+    width:38px;
 }

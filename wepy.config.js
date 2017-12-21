@@ -13,6 +13,8 @@ module.exports = {
     resolve: {
         alias: {
             counter: path.join(__dirname, 'src/components/counter'),
+            log: path.join(__dirname, 'src/utils/log'),
+            config: path.join(__dirname, 'src/config'),
             '@': path.join(__dirname, 'src')
         },
         modules: ['node_modules']
@@ -36,15 +38,6 @@ module.exports = {
                 'transform-object-rest-spread',
                 'transform-export-extensions',
             ]
-        },
-        typescript : {
-            "compilerOptions": {
-                "module": "commonjs",
-                "noImplicitAny": true,
-                "removeComments": true,
-                "preserveConstEnums": true,
-                "sourceMap": true
-            }
         }
     },
     plugins: {},

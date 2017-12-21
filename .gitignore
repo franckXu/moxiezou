@@ -1,4 +1,5 @@
 .git
+.svn
 node_modules
 npm-debug.log
 

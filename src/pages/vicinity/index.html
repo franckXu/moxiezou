@@ -4,23 +4,25 @@
     </view>
     <view class="location-info">
         <image class="icon-30X30 icon-coordinate" src="../../images/icon-coordinate.png" />
-        <text>{{wxMarkerData ? wxMarkerData.address: '定位中'}}</text>
+        <text>{{wxMarkerData ? wxMarkerData.address : '定位中'}}</text>
         <image @tap="updateLoaction('a')" class="icon-30X30 icon-refresh" src="../../images/icon-refresh.png" />
     </view>
     <view>
         <text class="vicinity-title">附近</text>
         <view>
-            <view class="vicinity-item" wx:for="{{vicinityList}}" wx:key="id">
+            <view class="vicinity-item" wx:for="{{vicinityList}}"
+                    wx:for-index="idx" wx:for-item="vicinity" wx:key="pk">
                 <view class="vicinity-item-left">
-                    <view>{{item.name}}</view>
-                    <view class="f12 address">{{item.address}}</view>
+                    <view>{{vicinity.name}}</view>
+                    <view class="f12 address">{{vicinity.address}}</view>
                 </view>
-                <view class="vicinity-item-right">
+                <view class="vicinity-item-right" @tap="openLocation({{idx}})">
                     <image class="icon-30X30" src="../../images/icon-go-here.png" />
-                    <view class="f12">{{item.distance}}km</view>
+                    <view class="f12">{{vicinity.distance}}km</view>
                 </view>
             </view>
         </view>
     </view>
+    <image src="../../images/icon-maps.png" class="map-view-btn" @tap="toMapView()" />
     <view class="qrcode-btn" @tap="scanCode()">扫码享椅</view>
 </view>
