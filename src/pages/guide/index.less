@@ -1,0 +1,36 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+.title {
+    height: 28px;
+    line-height: 28px;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+    position: realtive;
+    &:after {
+        content: '>';
+        display: inline-block;
+        height: 28px;
+        line-height: 28px;
+        position: absolute;
+        right: 10px;
+        transition: all .1s;
+    }
+    &.open {
+        &:after {
+            transform: rotate(90deg);
+        }
+    }
+}
+
+.content {
+    background-color: #eee;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    max-height:0px;
+    overflow: hidden;
+    transition : all .2s;
+    &.open {
+        max-height: 500px;
+        padding: 8px;
+    }
+}

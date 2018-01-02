@@ -1,0 +1,45 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+
+.header{
+    background-color: @col-green;
+    color:#fff;
+    text-align: center;
+    padding: 10px 0;
+    .jf_num{
+        font-size:58px;
+    }
+
+    .menu-item{
+        border:1px solid #fff;
+        height: 32px;
+        line-height: 32px;
+        width: 100px;
+        margin: 10px auto;
+    }
+}
+
+.jf-record-list{
+    .item{
+        .display(flex);
+        padding: 5px 10px 5px;
+        &:nth-child(even){
+            background-color: #eee;
+        }
+        .col-left{
+            .flex(1);
+            font-size: 14px;
+            .time{
+                color:@col-gray;
+            }
+        }
+        .col-right{
+            .flex(none);
+            .display(flex);
+            .align-items(center);
+            .justify-content(flex-end);
+            text-align: right;
+            width: 80px;
+        }
+    }
+}

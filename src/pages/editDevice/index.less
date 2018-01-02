@@ -1,0 +1,41 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+
+.field{
+    .field();
+}
+.label{
+    .label();
+}
+
+.field.col-3 {
+    .justify-content(space-between);
+}
+
+.col-l{
+    .display(flex);
+    .justify-content(flex-start);
+}
+
+.address{
+    .flex-flow(column, nowrap);
+    > view {
+        .display(flex);
+        .flex-flow();
+        margin-top: 5px;
+        input{
+            .flex(1);
+        }
+    }
+}
+
+.scanBtn,.chooseLocationBtn {
+    flex: none;
+    width: 24px;
+    height: 24px;
+}
+
+.submitBtn{
+    .green-gradient();
+    margin: 0 5px;
+}

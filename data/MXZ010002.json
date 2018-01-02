@@ -1,0 +1,18 @@
+﻿{
+    "currentPage": 1,
+    "data": {
+        "role": "普通用户",
+        "integral": "100",
+        "telephone": "18627565223",
+        "pic": "http:\/\/39.108.103.238:8088\/\/\/upfile\/img\/icon\/empty.png",
+        "userId": "8"
+    },
+    "exception": "",
+    "funcId": "MXZ010002",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
+}

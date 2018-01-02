@@ -1,14 +1,16 @@
 import wepy from 'wepy';
 
 import log from 'log';
-import {
-    toast
-} from '@/utils/index';
-import {
-    REQUEST_FAIL
-} from 'config';
+import { toast } from '@/utils/index';
+import { REQUEST_FAIL } from 'config';
 
-import consumeListService from "./consumeList.service"
+import serviceFactory from '@/utils/base.service'
+const MXZ030004Service = serviceFactory({
+    funcId: 'MXZ030004'
+});
+const MXZ050001Service = serviceFactory({
+    funcId: 'MXZ050001'
+});
 
 export default class Index extends wepy.page {
     config = {}
@@ -16,90 +18,83 @@ export default class Index extends wepy.page {
 
     data = {
         productInfo: {},
-        consumeList: [],
+        code: ''
     }
 
     computed = {}
 
     methods = {
-        handlerConsumeItem(productId) {
-            // TODO 调用支持接口
-            log(productId, '调用支持接口，等待返回上一页还是停留在当前页面')
-            wepy.navigateBack()
+        handlerConsumeItem({code,title,amounts,money}) {
+            MXZ050001Service({
+                title, amounts, money,
+                codeId	: code,
+                pay_way : '2'//1	String		支付方式	1支付宝 2微信 3银联 4余额
+            })
+            .then(({ data: { data, resultCode, resultMsg } }) => {
+                if (resultCode === '0000') {
+                    // TODO 返回的appid有用吗？
+                    // appid	1	String		小程序appidID
+                    const {timestamp,noncestr,prepayid,signType,paySign} = data;
+                    wepy.requestPayment({
+                        "timeStamp": timestamp,
+                        "nonceStr": noncestr,
+                        "package": `prepay_id=${prepayid}`, // String	是	统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=*
+                        "signType": signType,
+                        "paySign": paySign,
+                        "success": function(res) {
+                            console.log(res);
+                            toast({title:'支付成功'})
+                        },
+                        "fail": function({ errMsg }) {
+                            toast({ title: errMsg })
+                            log(errMsg)
+                        },
+                        // 6.5.2 及之前版本中，用户取消支付不会触发 fail 回调，只会触发 complete 回调，回调 errMsg 为 'requestPayment:cancel'
+                        "complete": function() {
+                            log('complete')
+                        }
+                    })
+
+                }else{
+                    toast({title:resultMsg})
+                }
+            }, err => {
+                toast({title:'操作失败'})
+            })
         }
     }
 
     events = {}
 
-    onLoad() {
-
+    onLoad(option) {
+        this.data.code = option.code;
     }
 
     onReady() {
-        this.reqConsumeList()
+        this.reqMXZ030004()
     }
-
-    reqConsumeList() {
-        consumeListService({
-            funcId: 'TODO',
-            idx: '123'
+    reqMXZ030004() {
+        MXZ030004Service({
+            code: this.data.code
         }).then(({
-            resultCode,
-            resultMsg,
-            data
+            data: {
+                resultCode,
+                resultMsg,
+                data
+            }
         }) => {
+            console.log(resultCode);
             if (resultCode === "0000") {
-                this.consumeList = data
+                this.productInfo = data;
+                this.$apply();
             } else {
+                log(resultMsg)
                 toast({
-                    titile: resultMsg
+                    title: '查询失败'
                 })
             }
 
         }, err => {
-            this.consumeList = [{
-                idx: 11,
-                price: 50,
-                text: '身体放松坐',
-                time: '5.00元6分钟'
-            }, {
-                idx: 2,
-                price: 150,
-                text: '身体放松坐',
-                time: '150.00元66分钟'
-            }, {
-                idx: 3,
-                price: 100,
-                text: '身体放松坐,身体放松坐',
-                time: '100.00元16分钟'
-            }];
-            this.$apply()
-            return ;
-            log(err)
-            toast({
-                title: REQUEST_FAIL
-            })
-        })
-    }
-
-    reqProductInfo() {
-        reqProductInfo({
-            funId: 'TODO',
-            idx: 'TODO'
-        }).then(({
-            data,
-            resultMsg,
-            resultCode
-        }) => {
-            if (resultCode === "0000") {
-                this.productInfo = data
-            } else {
-                toast({
-                    titile: resultMsg
-                })
-            }
-        }, err => {
-            log(err)
             toast({
                 title: REQUEST_FAIL
             })

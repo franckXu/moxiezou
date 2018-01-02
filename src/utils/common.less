@@ -6,3 +6,27 @@
     background-image: linear-gradient(0deg,  @col-green,#11d00b);
     color:#fff;
 }
+.field() {
+    .display(flex);
+    padding-bottom: 15px;
+    margin:0px 10px 15px;
+    border-bottom: 1px solid @col-ccc;
+}
+
+.label() {
+    .flex(0,0,auto);
+    width: 90px;
+    color:@col-gray;
+}
+
+.form-group-row-2(){
+    .flex-flow(column, nowrap);
+    > view {
+        .display(flex);
+        .flex-flow();
+        margin-top: 5px;
+        .input{
+            .flex(1);
+        }
+    }
+}

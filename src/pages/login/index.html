@@ -8,14 +8,14 @@
             <input id="tel" name="tel" type="number" @input="telIpt()" confirm-type="next"
                 value="{{formData.tel}}" maxlength="11" placeholder="请输入手机号" />
         </view>
-        <view class="field">
+        <!-- <view class="field">
             <view class="label">图片验证</view>
             <input id="imageCode" name="imageCode" @input="formInput()" value="{{formData.imageCode}}"
                 placeholder="请输入图片验证" />
             <view class="btn-image-valid-code right-col" style="display:{{imageCodeSrc ? 'none' :'inline-block' }}" @tap="getImageCode()">获取图片</view>
             <image src="{{imageCodeSrc}}" style="display:{{imageCodeSrc ? 'inline-block' : 'none'}}"
                 @tap="refreshImageCode()" class="image-valid-code right-col" />
-        </view>
+        </view> -->
         <view class="field valid-code-field">
             <view class="label">验证码</view>
             <input id="validCode" name="validCode" @input="formInput()" type="number" value="{{formData.validCode}}"

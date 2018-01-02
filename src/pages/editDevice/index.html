@@ -1,0 +1,46 @@
+<view>
+    <form>
+        <view class="field">
+            <label class="label">{{formData.code.label}}</label>
+            <input type="text" value="{{formData.code.value}}" disabled="{{true}}" />
+        </view>
+
+        <view class="field">
+            <label class="label">{{formData.name.label}}</label>
+            <input type="text" placeholder="请输入{{formData.name.label}}"
+                    value="{{formData.name.value}}"
+                    @input="inputHandler('name')" />
+        </view>
+        <view class="field address">
+            <label class="label">{{formData.address.label}}</label>
+            <view>
+                <input type="text" placeholder="请选择{{formData.address.label}}"  @input="inputHandler('address')" value="{{formData.address.value}}" />
+                <image src="/images/icon-coordinate.png" @tap="chooseLocation()" class="chooseLocationBtn" />
+            </view>
+        </view>
+        <view class="field">
+            <label class="label">{{formData.gpsX.label}}</label>
+            <input type="digit" placeholder="请输入{{formData.gpsX.label}}"  @input="inputHandler('gpsX')" value="{{formData.gpsX.value}}"
+            />
+        </view>
+        <view class="field">
+            <label class="label">{{formData.gpsY.label}}</label>
+            <input type="digit" placeholder="请输入{{formData.gpsY.label}}" @input="inputHandler('gpsY')" value="{{formData.gpsY.value}}"
+            />
+        </view>
+
+        <view class="field col-3">
+            <view class="col-l">
+                <label class="label">{{formData.template.label}}</label>
+                <input type="text" placeholder="请选择{{formData.template.label}}" value="{{formData.template.value.name}}" @input="inputHandler('template')"
+                />
+            </view>
+            <image class="scanBtn" @tap='chooseTemplate()' src="/images/icon-scan.png" />
+        </view>
+
+        <button class="submitBtn" @tap="submit()">提交</button>
+
+        <!-- 设备拥有者 -->
+        <!-- /* 提交 */ -->
+    </form>
+</view>

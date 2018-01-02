@@ -1,7 +1,11 @@
 import wepy from 'wepy'
 import * as bmap from  '../../libs/bmap-wx/bmap-wx.min.js';
 
-import vicinity_listService from './vicinity_list.service.js';
+import serviceFactory from '@/utils/base.service';
+const MXZ030002Service = serviceFactory({'funcId' : 'MXZ030002'})
+const MXZ040001Service = serviceFactory({'funcId' : 'MXZ040001'})
+
+// import vicinity_listService from './vicinity_list.service.js';
 
 export default class Index extends wepy.page {
     config = {
@@ -16,6 +20,7 @@ export default class Index extends wepy.page {
         wxMarkerData: null,
         vicinityList: [],
         getLocationInfoState: 0, // 0=>常状,1=>请求中
+        bannerList : [],
     }
 
     computed = {}
@@ -31,8 +36,8 @@ export default class Index extends wepy.page {
         openLocation(idx){
             const vicinity = this.vicinityList[idx];
             wepy.openLocation({
-                latitude:  vicinity.latitude,
-                longitude: vicinity.longitude,
+                latitude:  +vicinity.latitude,
+                longitude: +vicinity.longitude,
                 scale:     28
             })
         }
@@ -42,16 +47,24 @@ export default class Index extends wepy.page {
     events = {}
 
     onLoad() {
-        this.getLocation();
-        let self = this
-        /* this.$parent.getUserInfo(function(userInfo) {
-            if (userInfo) {
-                self.userInfo = userInfo
-                self.$apply()
-            }
-        }) */
+        this.getLocation()
+            .then(()=>{
+                this.reqVicinityList()
+            })
 
-        this.reqVicinityList()
+        MXZ040001Service()
+            .then(({data:{data,resultCode,resultMsg}})=>{
+                if (resultCode === '0000') {
+                    this.bannerList = data;
+                    this.$apply();
+
+                    console.log(data);
+                }else{
+                    toast({title:resultMsg})
+                }
+            },err=>{
+                toast({title: '图片加载失败'})
+            })
     }
 
     onPullDownRefresh(){
@@ -61,43 +74,55 @@ export default class Index extends wepy.page {
     }
 
     onReachBottom() {
-        wepy.showLoading({
+
+        /* wepy.showLoading({
             title: '加载中'
         })
 
-        this.reqVicinityList({
-            start : this.vicinityList.length
-        })
+        this.reqVicinityList() */
     }
 
-    reqVicinityList(reqParam={}) {
-        const self = this;
-        /* vicinity_listService(reqParam)
-            .then(resp=>{
-                self.vicinityList = [].concat(self.vicinityList, resp.data.data);
-                self.$apply();
-                wepy.hideLoading()
-            },err=>{
-                wepy.showToast({
-                    title: '加载更多失败',
-                })
-                wepy.hideLoading()
-            }) */
+    reqVicinityList() {
+        MXZ030002Service({
+            gpsX:  this.wxMarkerData.latitude,
+            gpsY: this.wxMarkerData.longitude,
+            pageSize: '',
+            currentPage: '',
+        })
+        .then(({data:{data,resultMsg,resultCode}})=>{
+            wepy.hideLoading()
+            if (resultCode === '0000') {
+                this.vicinityList = [].concat(this.vicinityList, data);
+                this.$apply();
+            }else{
+                toast({title:resultMsg})
+            }
+        },err=>{
+            wepy.showToast({
+                title: '加载更多失败',
+            })
+            wepy.hideLoading()
+        })
     }
 
     scanCode() {
         const self = this;
         wepy.scanCode({
-            scanType: ["qrCode"],
-            onlyFromCamera: true,
-            success() {
-                console.log(arguments);
+            success({result}) {
+                try{
+                    const code = result.split('?')[1].split('=')[1];
+                    if (code) {
+                        wepy.navigateTo({
+                            url : `/pages/consume/index?code=${code}`
+                        })
+                    }
+                }catch(err){console.error(err)}
             },
-            fail() {
-                console.log(arguments);
+            fail(resp) {
+                console.log(resp);
             },
             complete() {
-                console.log(arguments);
+                console.log('complete');
             }
         })
     }
@@ -113,24 +138,32 @@ export default class Index extends wepy.page {
             ak: 'WdPrRFRxgEnhhbOls14ctRtrnt9Nd5Hg'
         });
 
-        var fail = function(data) {
-            console.log(data)
-            self.getLocationInfoState = 0;
-        };
-        var success = function(data) {
-            console.log(data);
-            self.wxMarkerData = data.wxMarkerData[0];
-            self.getLocationInfoState = 0;
-            self.$apply()
-        }
+        return new Promise((res,rej)=>{
 
-        BMap.regeocoding({
-            fail: fail,
-            success: success,
-            iconPath: '../../images/marker_red.png',
-            iconTapPath: '../../images/marker_red.png'
-        });
+            var fail = function(data) {
+                console.log(data)
+                self.getLocationInfoState = 0;
+                self.$apply()
 
+                rej(data);
+            };
+
+            var success = function(data) {
+                console.log(data);
+                self.wxMarkerData = data.wxMarkerData[0];
+                self.getLocationInfoState = 0;
+                self.$apply()
+                res(data);
+            }
+
+            BMap.regeocoding({
+                fail: fail,
+                success: success,
+                iconPath: '../../images/marker_red.png',
+                iconTapPath: '../../images/marker_red.png'
+            });
+
+        })
     }
 
     toMapView(){

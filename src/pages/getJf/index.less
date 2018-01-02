@@ -1,0 +1,54 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+.box {
+    margin-bottom: 10px;
+    background-color: #FFF;
+    border-bottom: 4px solid @col-ccc;
+    color: #666;
+    font-size: 14px;
+    padding: 0px 10px 10px;
+    .title,
+    .checkin-box {
+        margin-bottom: 5px;
+    }
+    .title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .checkin-box {
+        overflow: hidden;
+        .toCheckin {
+            float: right;
+            color: @col-green;
+        }
+    }
+}
+
+.rule-list {
+    border-top: 1px solid @col-ccc;
+    padding-top: 10px;
+    .rule-item {
+        display: inline-block;
+        width: 50%;
+        margin-bottom: 10px;
+        text-align: center;
+        padding: 0px 5px;
+        box-sizing: border-box;
+        .inner-box {
+            border: 1px solid @col-green;
+            border-radius: 5px;
+            .top {
+                color: #fff;
+                font-size: 18px;
+                padding: 5px 0px;
+                background-color: @col-green;
+                border-radius: 2px;
+            }
+            .bottom {
+                font-size: 14px;
+                padding: 5px 0;
+            }
+        }
+    }
+}

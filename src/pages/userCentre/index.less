@@ -1,0 +1,48 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+.header {
+    text-align: center;
+    background-color: @col-green;
+    color:#fff;
+    .avatar {
+        border-radius: 100%;
+        width:  50px;
+        height:  50px;
+        box-shadow: 0px 0px 15px #000;
+        margin: 10px auto;
+    }
+    .menu-group {
+        .display(flex);
+        .menu {
+            .flex(1);
+            padding: 16px 0;
+            image{
+                width: 48px;
+                height: 48px;
+            }
+            view{
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.content{
+    margin: 0 8px;
+    view{
+        .display(flex);
+        font-size: 14px;
+        border-bottom:1px solid @col-ccc;
+        height: 36px;
+        line-height: 36px;
+        text:nth-child(1){
+            display: inline-block;
+            .flex(1);
+        }
+        text:nth-child(2){
+            display: inline-block;
+            .flex(none);
+            width:18px;
+        }
+    }
+}

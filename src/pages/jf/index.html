@@ -1,0 +1,24 @@
+<view>
+    <view class='header'>
+        <view class='jf-info'>
+            <view>我的积分</view>
+            <view class='jf_num'>{{jfNum}}</view>
+        </view>
+
+        <view class="menu-wrap">
+            <!-- <view>积分商城</view> -->
+            <view class="menu-item" @tap="getJf()">积分赚取</view>
+        </view>
+    </view>
+
+    <view class="jf-record-list">
+        <view class="item" wx:for="{{jfRecord}}" wx:key="time">
+            <view class="col-left">
+                <view>{{item.from}}</view>
+                <view class="time">{{item.time}}</view>
+            </view>
+            <view class="col-right">{{item.num}}</view>
+        </view>
+    </view>
+</view>
+</view>

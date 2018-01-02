@@ -1,7 +1,9 @@
 import wepy from 'wepy'
 
 import log from '../../utils/log'
-import vicinity_listService from './vicinity_list.service'
+
+import serviceFactory from '@/utils/base.service';
+const MXZ030002Service = serviceFactory({'funcId' : 'MXZ030002'})
 
 export default class Main extends wepy.page {
     config = {}
@@ -42,18 +44,17 @@ export default class Main extends wepy.page {
     onReady() {
         const self = this;
         wepy.getLocation({
-            success({
-                latitude,
-                longitude
-            }) {
+            success({ latitude, longitude }) {
                 log(longitude,latitude);
                 self.lat = latitude;
                 self.lng = longitude;
                 self.$apply();
 
-                vicinity_listService({
-                    // TODO 完善入参
-
+                MXZ030002Service({
+                    gpsX:        self.lat,
+                    gpsY:        self.lng,
+                    pageSize:    '',
+                    currentPage: '',
                 }).then(resp => {
                     self.vicinityList = [].concat(self.vicinityList, resp.data.data);
                     self.updateMarkers()
@@ -67,8 +68,8 @@ export default class Main extends wepy.page {
         this.markers = this.vicinityList.map((item,idx)=> ({
             iconPath: "/images/marker_red.png",
             id: idx,
-            latitude: item.latitude,
-            longitude: item.longitude,
+            latitude: +item.latitude,
+            longitude:+item.longitude,
             width: 30,
             height : 30,
             title : item.name,

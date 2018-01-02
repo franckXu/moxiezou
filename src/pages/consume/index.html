@@ -1,22 +1,22 @@
 <view>
     <view class="logo-wrap">
-        <image src="{{productInfo.logoPic}}" />
+        <image src="{{productInfo.template.logo}}" />
     </view>
-    <image class="product-pic" src="{{productInfo.productPic}}" />
-
+    <image class="product-pic" src="{{productInfo.template.pic}}" />
     <view class="consume-list">
         <view
-              wx:for="{{consumeList}}" wx:for-index="idx" wx:key="idx"
+              wx:for="{{productInfo.template.templateDtl}}"
+                wx:for-index="idx" wx:key="idx"
                 class="consume-item"
-                @tap="handlerConsumeItem({{item.idx}})">
+                @tap="handlerConsumeItem({{item}})">
             <view class="left-col">
-                <view>￥{{item.price}}</view>
-                <view>{{item.text}}</view>
+                <view>￥{{item.money}}</view>
+                <view>{{item.title}}</view>
             </view>
             <view class="right-col">
-            <text>{{item.time}}</text>
+            <text>{{item.money}}元{{item.amounts}}{{unit}}</text>
             </view>
         </view>
     </view>
-    <view class="contact">电话:400000000</view>
+    <view class="contact">电话:400-1633-808</view>
 </view>

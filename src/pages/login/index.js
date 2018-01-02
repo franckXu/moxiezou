@@ -2,11 +2,13 @@ import wepy from 'wepy'
 
 import log from "log"
 
-import getValidCodeService from './getValidCode.service'
-import userBingServer from './userBind.service'
 
-import {REQUEST_FAIL } from '../../utils/index'
-import {toast} from 'config'
+import serviceFactory from '@/utils/base.service'
+const MXZ020002Service = serviceFactory({funcId:'MXZ020002'});
+const MXZ020001Service = serviceFactory({funcId:'MXZ020001'});
+
+import {REQUEST_FAIL } from 'config'
+import { toast } from '@/utils/index';
 
 const PLEASE_INPUT_TEL = '请输入手机号'
 
@@ -16,9 +18,9 @@ export default class Index extends wepy.page {
 
     data = {
         formData: {
-            tel: '',
+            tel: '13012341234',
             imageCode: '',
-            validCode: ''
+            validCode: '1231'
         },
         imageCodeSrc: "",
         validCodeCountdown: 0
@@ -28,11 +30,11 @@ export default class Index extends wepy.page {
         'bindBtnDisabled': function() {
             const {
                 tel,
-                imageCode,
+                // imageCode,
                 validCode
             } = this.formData;
             // log(!(/^1\d{10}/.test(tel) && imageCode && validCode))
-            return !(/^1\d{10}/.test(tel) && imageCode && validCode)
+            return !(/^1\d{10}/.test(tel) && validCode)
         }
     }
 
@@ -54,17 +56,20 @@ export default class Index extends wepy.page {
             }
         },
         tapBindBtn() {
-            userBingServer(this.formData)
-                .then(({data})=>{
-                    if (data.ok) {
-                        this.$parent.globalData.appUserInfo = data.data;
-                        wepy.navigateBack()
-                    }else{
-                        toast({title: data.msg || REQUEST_FAIL})
-                    }
-                },err=>{
-                    toast({title :REQUEST_FAIL})
-                })
+            MXZ020001Service({
+                phoneNum : this.formData.tel,
+                Code : this.formData.validCode
+            }).then(({data:{data,resultMsg,resultCode}})=>{
+                if (resultCode === '0000') {
+                    // this.$parent.globalData.bindUserInfo = data.
+                    // TODO 此处绑定成功，返回到上一个页，就可以继续操作？
+                    wepy.navigateBack()
+                }else{
+                    toast({title: resultMsg})
+                }
+            },err=>{
+                toast({title :REQUEST_FAIL})
+            })
         },
         getImageCode() {
             toast({
@@ -91,17 +96,15 @@ export default class Index extends wepy.page {
         }
     }
     getValidCode() {
-        getValidCodeService({
-            telnum: this.formData.tel
-        }).then(({data}) => {
-            if (data.ok) {
+        MXZ020002Service({
+            phonenum : this.formData.tel
+        }).then(({data:{data,resultMsg,resultCode}}) => {
+            if (resultCode === '0000') {
                 this.validCodeCountdown = 29;
                 this.$apply()
                 this.updateValidCodeCountdown()
             } else {
-                toast({
-                    title: data.msg
-                })
+                toast({ title: resultMsg  || REQUEST_FAIL})
             }
         }, err => {
             toast({title :REQUEST_FAIL})
@@ -135,7 +138,4 @@ export default class Index extends wepy.page {
     }
     events = {}
 
-    onLoad() {
-
-    }
 }

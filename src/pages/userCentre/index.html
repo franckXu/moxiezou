@@ -1,0 +1,32 @@
+<view>
+    <view class="header">
+        <image src="{{userInfo.avatarUrl || ''}}" class="avatar" />
+        <view>{{ userInfo.nickName || '未登录'}}</view>
+
+        <view class="menu-group">
+            <view @tap="toPage('jf')" class="menu">
+                <image src="/images/temp/icon.png" />
+                <view>积分</view>
+            </view>
+            <view @tap="toPage('coupon')" class="menu">
+                <image src="/images/temp/icon.png" />
+                <view>优惠券</view>
+            </view>
+            <view @tap="toPage('')" class="menu">
+                <image src="/images/temp/icon.png" />
+                <view>收入明细</view>
+            </view>
+        </view>
+    </view>
+
+    <view class="content">
+        <view @tap="toPage('addDevice')"> <text>设备录入</text> <text>&gt;</text> </view>
+        <view @tap="toPage('')"> <text>我的设备</text> <text>&gt;</text> </view>
+        <view @tap="toPage('')"> <text>订单列表</text> <text>&gt;</text> </view>
+        <view @tap="toPage('join')"> <text>代理商加盟</text> <text>&gt;</text> </view>
+        <view @tap="toPage('feedback')"> <text>意见反馈</text> <text>&gt;</text></view>
+        <view @tap="toPage('guide')"> <text>用户指南</text> <text>&gt;</text></view>
+        <view @tap="toPage('aboutUs')"> <text>关于我们</text> <text>&gt;</text></view>
+    </view>
+
+</view>

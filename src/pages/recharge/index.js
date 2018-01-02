@@ -18,7 +18,7 @@ export default class Index extends wepy.page {
             header: 170,
             footer: 100
         },
-        appUserInfo : null
+        bindUserInfo : null
     }
 
     computed = {
@@ -34,7 +34,9 @@ export default class Index extends wepy.page {
             })
         },
         toOrderRecord() {
-            log("toOrderRecord")
+            wepy.navigateTo({
+                url : "/pages/rechargeRecord/index"
+            })
         },
         tapChargeTplItem(idx){
             this.chargeTemplate.cur = idx;
@@ -43,7 +45,7 @@ export default class Index extends wepy.page {
         },
         tapCharge(){
             // TODO how to charge? call wx.pay
-            if (this.$parent.globalData.appUserInfo) {
+            if (this.$parent.globalData.bindUserInfo) {
                 log("do Charge")
             }else{
                 wepy.navigateTo({
@@ -73,9 +75,8 @@ export default class Index extends wepy.page {
     }
 
     onShow(){
-        this.appUserInfo = this.$parent.globalData.appUserInfo;
+        this.bindUserInfo = this.$parent.globalData.bindUserInfo;
         this.$apply()
-        log(this.appUserInfo);
     }
 
     fetchChargeTemplate(){

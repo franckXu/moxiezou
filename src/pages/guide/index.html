@@ -1,0 +1,38 @@
+<view>
+    <view @tap="open('0')" class="title {{openIdx === '0' ? 'open' : ''}}">如何使用</view>
+    <view class="content {{openIdx === '0' ? 'open' : ''}}">
+        <view>打开首页>点击‘扫码享椅’>选择相应按摩套餐支付>开启按摩椅</view>
+    </view>
+
+    <view @tap="open('1')" class="title {{openIdx === '1' ? 'open' : ''}}">扫码问题</view>
+    <view class="content {{openIdx === '1' ? 'open' : ''}}">
+        <view>1.扫码不显示或乱码提醒</view>
+        <view>请检查当前网络，可重新扫码尝试</view>
+        <view>2.其他故障</view>
+        <view>请拨打客服电话，我们将有客服为您解决</view>
+    </view>
+
+    <view @tap="open('2')" class="title {{openIdx === '2' ? 'open':''}}">支付问题</view>
+    <view class="content {{openIdx === '2' ? 'open' : ''}}">
+        <view>1.支付后椅子不工作 </view>
+        <view>此种情况系统会自动核实并将您所支付的金额返还到您的账户，优惠金额不返还；如果没有收到退款消息或页面，请在订单列表页面点击订单反馈，我们将会有客服为您解答。</view>
+        <view>2.支付后未满工作时长 </view>
+        <view>遇到此问题请在订单页面点击订单反馈，我们将会有客服为您解答。</view>
+        <view>3.投币支付问题 </view>
+        <view>遇到此问题请拨打我们的客服电话，我们将有客服为您解决。</view>
+    </view>
+
+    <view @tap="open('3')" class="title {{openIdx === '3' ? 'open':''}}">订单问题 </view>
+    <view class="content {{openIdx === '3' ? 'open' : ''}}">
+        <view>1.使用余额支付不了 </view>
+        <view>先确认下您的摩摩哒账户是否有余额，是否有绑定手机号。</view>
+        <view>2.在线支付过程中，订单显示未支付成功，款项却被扣了，怎么办？</view>
+        <view>该问题属于第三方（银行、微信、支付宝等）数据传输延迟问题。您可以再等待一下，如果超过半个小时，订单还是未支付状态，第三方会把款项退回到您的付款账户，具体到账时间依银行而定，一般在2个工作日内。</view>
+    </view>
+
+    <view @tap="open('4')" class="title {{openIdx === '4' ? 'open':''}}">账户问题 </view>
+    <view class="content {{openIdx === '4' ? 'open' : ''}}">
+        <view>1.绑定的账户可更改么？ </view>
+        <view>一个手机号可绑定一个微信号，支付宝账号，绑定后不可更改。</view>
+    </view>
+</view>

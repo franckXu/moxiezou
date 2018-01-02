@@ -1,0 +1,18 @@
+<view>
+    <form>
+        <view class="field">
+            <label class="label">{{formData.telephone.label}}</label>
+            <input type="text" placeholder="请输入{{formData.telephone.label}}" value="{{formData.telephone.value}}"
+                @input="inputHandler('telephone')" />
+        </view>
+
+        <view class="field row-2">
+            <label class="label">{{formData.content.label}}</label>
+            <view>
+                <textarea class="input" placeholder="请选择{{formData.content.label}}"  @input="inputHandler('content')" value="{{formData.content.value}}" />
+            </view>
+        </view>
+
+        <button class="submitBtn" @tap="submit()">提交</button>
+    </form>
+</view>

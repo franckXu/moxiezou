@@ -1,0 +1,31 @@
+<view>
+    <form>
+        <view class="field">
+            <label class="label">{{formData.name.label}}</label>
+            <input type="text" placeholder="请输入{{formData.name.label}}" value="{{formData.name.value}}"
+                @input="inputHandler('name')" />
+        </view>
+
+        <view class="field">
+            <label class="label">{{formData.telephone.label}}</label>
+            <input type="text" placeholder="请输入{{formData.telephone.label}}" value="{{formData.telephone.value}}"
+                @input="inputHandler('telephone')" />
+        </view>
+
+        <view class="field">
+            <label class="label">{{formData.job.label}}</label>
+            <input type="text" placeholder="请输入{{formData.job.label}}" value="{{formData.job.value}}"
+                @input="inputHandler('job')" />
+        </view>
+
+        <view class="field row-2">
+            <label class="label">{{formData.remark.label}}</label>
+            <textarea class="input" placeholder="请输入{{formData.remark.label}}" value="{{formData.remark.value}}"
+                @input="inputHandler('remark')" />
+        </view>
+
+        <button class="submitBtn" @tap="submit()">提交</button>
+        <!-- 设备拥有者 -->
+        <!-- /* 提交 */ -->
+    </form>
+</view>

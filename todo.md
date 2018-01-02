@@ -1,3 +1,9 @@
+role	1	String		角色
+pic	1	String  		用户头像
+telephone	0	String		电话号码
+integral	1	String		总积分
+userId	1	String		用户ID
+
 {
   "originalData": {
     "status": 0,
