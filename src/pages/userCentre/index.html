@@ -1,24 +1,30 @@
 <view>
     <view class="header">
-        <image src="{{userInfo.avatarUrl || ''}}" class="avatar" />
-        <view>{{ userInfo.nickName || '未登录'}}</view>
 
-        <view class="menu-group">
-            <view @tap="toPage('jf')" class="menu">
-                <image src="/images/temp/icon.png" />
-                <view>积分</view>
-            </view>
-            <view @tap="toPage('coupon')" class="menu">
-                <image src="/images/temp/icon.png" />
-                <view>优惠券</view>
-            </view>
-            <view @tap="toPage('')" class="menu">
-                <image src="/images/temp/icon.png" />
-                <view>收入明细</view>
-            </view>
-        </view>
+        <block wx:if="{{userInfo && bindUserInfo}}">
+            <image src="{{userInfo.avatarUrl || ''}}" class="avatar" />
+            <view>{{ userInfo.nickName || ''}}</view>
+            <view>{{bindUserInfo.telephone || ''}}</view>
+        </block>
+        <block wx:else>
+            <view>未登录</view>
+        </block>
     </view>
 
+    <view class="menu-group">
+        <view @tap="toPage('jf')" class="menu">
+            <image src="/images/icon-integral.png" />
+            <view>积分</view>
+        </view>
+        <view @tap="toPage('coupon')" class="menu">
+            <image src="/images/icon-coupon.png" />
+            <view>优惠券</view>
+        </view>
+        <view @tap="toPage('')" class="menu">
+            <image src="/images/icon-consume.png" />
+            <view>消费</view>
+        </view>
+    </view>
     <view class="content">
         <view @tap="toPage('addDevice')"> <text>设备录入</text> <text>&gt;</text> </view>
         <view @tap="toPage('')"> <text>我的设备</text> <text>&gt;</text> </view>
