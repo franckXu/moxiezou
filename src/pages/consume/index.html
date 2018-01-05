@@ -1,7 +1,4 @@
 <view>
-    <view class="logo-wrap">
-        <image src="{{productInfo.template.logo}}" />
-    </view>
     <image class="product-pic" src="{{productInfo.template.pic}}" />
     <view class="consume-list">
         <view
@@ -10,13 +7,17 @@
                 class="consume-item"
                 @tap="handlerConsumeItem({{item}})">
             <view class="left-col">
-                <view>￥{{item.money}}</view>
                 <view>{{item.title}}</view>
+                <view class="amounts">时长: {{item.amounts}} 分钟</view>
+                <image src="/images/bg-template-item.png" class="arrow" />
             </view>
             <view class="right-col">
-            <text>{{item.money}}元{{item.amounts}}{{unit}}</text>
+            <text>{{item.money}}元{{unit}}</text>
             </view>
         </view>
     </view>
-    <view class="contact">电话:400-1633-808</view>
+
+    <view class="contact">
+        <image src="/images/icon-tel.png" />
+        <text>电话:400-1633-808</text></view>
 </view>

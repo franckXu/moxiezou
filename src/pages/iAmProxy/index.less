@@ -1,0 +1,60 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+
+.header {
+    text-align: center;
+    background-color: @col-green;
+    padding-bottom:  10px;
+    color: #fff;
+    overflow:hidden;
+    height: 122px;
+    .myIncome-txt{
+        .display(flex);
+        .justify-content(center);
+        margin-top: 10px;
+        image{
+            width:20px;
+            height:20px;
+            margin-right: 5px;
+        }
+    }
+    .num{
+        font-size: 40px;
+        margin-top: 10px;
+    }
+    .to-detail{
+        font-size: 14px;
+    }
+}
+
+.content {
+    background-color:#eee;
+    overflow: hidden;
+    position:fixed;
+    top:122px;
+    bottom:0px;
+    left: 0px;
+    right: 0px;
+    view {
+        .display(flex);
+        .align-items(center);
+        position:relative;
+        background-color: #fff;
+        font-size: 14px;
+        height: 52px;
+        line-height: 52px;
+        padding: 0 10px;
+        margin-top: 10px;
+        image{
+            width:38px;
+            height: 38px;
+            margin-right: 10px;
+        }
+        &:before{
+            content:">";
+            display: block;
+            position:absolute;
+            right: 10px;
+        }
+    }
+}

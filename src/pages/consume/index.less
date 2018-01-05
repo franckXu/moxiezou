@@ -1,57 +1,71 @@
 @import '../../libs/flex-less/flex.less';
 @import '../../utils/common.less';
-
-.logo-wrap{
-    text-align: center;
-    background-color: #dddddd;
-    image {
-        width: 140px;
-        margin:8px 0;
-        height: 60px;
-    }
-}
-
-.product-pic{
+.product-pic {
     width: 100%;
     height: 180px;
 }
 
-.consume-list{
+.consume-list {
     margin-bottom: 20px;
     padding: 10px;
-
-.consume-item{
-    .display(flex);
-    width: 100%;
-    border:1px solid @col-green;
-    border-radius:5px;
-    margin-bottom: 20px;
-    .left-col{
-        .flex(1);
-        background-color:@col-green;
-        color:#fff;
-        padding: 5px;
-    }
-    .right-col{
-        .flex(1);
+    .consume-item {
         .display(flex);
-        .align-items(center);
-        .justify-content(center);
-        color:@col-green;
+        width: 100%;
+        border: 1px solid @col-green;
+        border-radius: 3px;
+        margin-bottom: 20px;
+        .left-col {
+            .flex(1);
+            background-color: @col-green;
+            color: #fff;
+            padding: 10px;
+            position: relative;
+            .amounts {
+                color: yellow;
+                font-size: 14px;
+            }
+            .arrow {
+                width: 18px;
+                height: 58px;
+                position: absolute;
+                top: 0px;
+                right: -18px;
+            }
+        }
+        .right-col {
+            .flex(1);
+            .display(flex);
+            .align-items(center);
+            .justify-content(center);
+            color: @col-green;
+            font-size: 24px;
+        }
     }
 }
 
-}
-
-.contact{
+.contact {
     position: fixed;
-    width: 100%;
-    bottom:0px;
-    background-color: @col-ccc;
+    left:50%;
+    bottom: 5px;
+    background-color: #fff;
     font-size: 14px;
-    color:#555;
-    height: 24px;
-    line-height: 24px;
-    text-align: center;
+    color: #555;
+    height: 28px;
+    line-height: 28px;
+    @w:150px;
+    width: @w;
+    margin-left: -(@w * 0.5);
+    border:1px solid @col-ccc;
+    border-radius:15px;
+    padding: 0px 10px;
+    image{
+        display:inline-block;
+        position:absolute;
+        top:5px;
+        width: 16px;
+        height:16px;
+    }
+    text{
+        margin-left: 20px;
+    }
 }
-

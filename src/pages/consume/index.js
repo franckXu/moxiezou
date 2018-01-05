@@ -83,7 +83,6 @@ export default class Index extends wepy.page {
                 data
             }
         }) => {
-            console.log(resultCode);
             if (resultCode === "0000") {
                 this.productInfo = data;
                 this.$apply();
@@ -93,7 +92,6 @@ export default class Index extends wepy.page {
                     title: '查询失败'
                 })
             }
-
         }, err => {
             toast({
                 title: REQUEST_FAIL
