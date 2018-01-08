@@ -1,0 +1,14 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+
+.item{
+    padding: 8px;
+    border-bottom:1px solid @col-gray;
+    &:nth-child(even){
+        background-color: @col-eee;
+    }
+    .top{
+        .display(flex);
+        .justify-content(space-between);
+    }
+}

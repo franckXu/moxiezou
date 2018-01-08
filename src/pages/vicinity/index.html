@@ -1,13 +1,13 @@
 <view class="container">
     <view class="ad-wrap">
-        <swiper indicator-dots="true" autoplay="true">
-        <block wx:for="{{bannerList}}" wx:key="{{id}}">
-                <swiper-item>
-                    <image src="{{item.pic}}" class="slide-image" />
-                </swiper-item>
-            </block>
-        </swiper>
-        <!-- <image src="../../images/ad1.jpg" /> -->
+        <!-- <swiper indicator-dots="true" autoplay="true"> -->
+        <!-- <block wx:for="{{bannerList}}" wx:key="{{id}}"> -->
+        <!-- <swiper-item> -->
+        <!-- <image src="{{item.pic}}" class="slide-image" /> -->
+        <!-- </swiper-item> -->
+        <!-- </block> -->
+        <!-- </swiper> -->
+        <image src="../../images/ad1.jpg" />
     </view>
     <view class="location-info">
         <image class="icon-30X30 icon-coordinate" src="../../images/icon-coordinate.png"
@@ -16,23 +16,32 @@
         <image @tap="updateLoaction('a')" class="icon-30X30 icon-refresh" src="../../images/icon-refresh.png"
         />
     </view>
-    <view>
-        <text class="vicinity-title">附近</text>
+    <view class="list-wrap">
+        <view class="vicinity-title">
+            <text class="vicinity-txt">附近商家</text>
+            <view class="map-view-btn" @tap="toMapView()">
+                <image src="../../images/icon-maps.png" />
+                <text>地图找店</text>
+            </view>
+        </view>
         <view>
-            <view class="vicinity-item" wx:for="{{vicinityList}}" wx:for-index="idx" wx:for-item="vicinity"
-                wx:key="pk">
+            <view class="vicinity-item" wx:for="{{vicinityList}}" wx:for-index="idx"
+                    wx:for-item="vicinity"
+                    wx:key="pk"
+                    @tap="openLocation({{idx}})">
                 <view class="vicinity-item-left">
                     <view>{{vicinity.name}}</view>
                     <view class="f12 address">{{vicinity.address}}</view>
                 </view>
-                <view class="vicinity-item-right" @tap="openLocation({{idx}})">
+                <view class="vicinity-item-right" >
+                    <view class="f12">{{vicinity.distance}}km</view>
                     <image class="icon-30X30" src="../../images/icon-go-here.png" />
-                    <!-- <view class="f12">{{vicinity.distance}}km</view> -->
                 </view>
             </view>
         </view>
     </view>
-    <image src="../../images/icon-maps.png" class="map-view-btn" @tap="toMapView()"
-    />
-    <view class="qrcode-btn" @tap="scanCode()">扫码享椅</view>
+    <view class="qrcode-btn" @tap="scanCode()">
+        <image src="../../images/icon-scan-white.png" />
+        <text>扫码享椅</text>
+    </view>
 </view>

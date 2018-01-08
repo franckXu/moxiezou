@@ -1,3 +1,5 @@
+@import '../../libs/flex-less/flex.less';
+@import '../../utils/common.less';
 @tit-h:38px;
 .l{
     float:left;
@@ -27,33 +29,37 @@ image{
     }
 }
 .icon-30X30{
-    width:30px;
-    height:30px;
+    width:20px;
+    height:20px;
+}
+.icon-size{
+    width: 20px;
+    height:20px;
 }
 .location-info{
     height:@tit-h;
     line-height:@tit-h;
-    display:flex;
-    display:-wekit-flex;
-    justify-content: space-between;
+    .display(flex);
+    .justify-content(space-between);
+    .align-items(center);
     .icon-coordinate{
-        --wekit-flex: none;
-        flex:none;
-        width: 30px;
+        .flex(none);
+        .icon-size();
+        padding: 0px 5px;
     }
     text{
-        flex:1;
-        --wekit-flex:1;
+        .flex(1);
         height : @tit-h;
         line-height : @tit-h;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
+        font-size: 14px;
     }
     .icon-refresh{
-        --wekit-flex: none;
-        flex:none;
-        width:30px;
+        .flex(none);
+        .icon-size();
+        padding: 0px 5px;
     }
 }
 
@@ -69,29 +75,51 @@ image{
     .title();
 }
 .vicinity-title {
-    .title();
+    .display(flex);
+    .justify-content(space-between);
+    position:relative;
+    margin: 10px;
+    font-size: 14px;
+    .vicinity-txt{
+        &:before{
+            content:' ';
+            display:block;
+            position:absolute;
+        }
+    }
+    .map-view-btn{
+        .display(flex);
+        .justify-content(center);
+        .align-items(center);
+        padding: 3px 8px;
+        border:1px solid @col-ccc;
+        color:@col-green;
+        border-radius:15px;
+        image{
+            .icon-size();
+        }
+    }
 }
 .vicinity-item{
-    display: -webkit-flex;
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
+    .display(flex);
+    .justify-content(space-between);
+    .align-items(center);
     margin:5px 8px 5px 5px;
     padding-bottom:10px;
     .vicinity-item-right{
-        -webkit-flex: none;
-        flex: none;
+        .flex(none);
         width:38px;
+        text-align: center;
     }
     .address{
         color:gray;
     }
 }
 .qrcode-btn{
-    background-color:black;
-    border-radius : 5px;
+    background-color:@col-green;
+    border-radius : 15px;
     color:white;
-    width:100px !important;
+    width:130px !important;
     height:38px;
     line-height:38px;
     text-align:center;
@@ -99,11 +127,12 @@ image{
     bottom:10px;
     left:50%;
     margin-left:-50px;
+    image{
+        .icon-size();
+        margin-right: 5px;
+        vertical-align:middle;
+    }
 }
-.map-view-btn{
-    position:fixed;
-    bottom:50px;
-    right:0px;
-    height:38px;
-    width:38px;
+.list-wrap{
+    border-top:8px solid @col-eee;
 }

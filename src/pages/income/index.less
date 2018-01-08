@@ -1,0 +1,49 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+
+.time-range-tabs{
+    .display(flex);
+    .justify-content(space-between);
+    border:1px solid @col-green;
+    border-radius:5px;
+    height: 28px;
+    line-height:28px;
+    font-size: 14px;
+    margin: 10px 10px 0px;
+    view{
+        .flex(1);
+        text-align: center;
+        border-right:1px solid @col-green;
+        background-image: linear-gradient(0deg,  @col-ccc,#fff);
+        color:@col-gray;
+        &:first-child{
+            border-radius:5px 0 0 5px;
+        }
+        &:last-child{
+            border-radius:0px 5px 5px 0px;
+        }
+        &:last-child{
+            border-right:none;
+        }
+        &.cur{
+            .green-gradient();
+        }
+    }
+}
+
+.list{
+    .item{
+        .display(flex);
+        .justify-content(space-between);
+        height: 38px;
+        line-height: 38px;
+        padding: 0px 10px;
+        border-bottom:1px solid @col-ccc;
+        &:nth-child(even){
+            background-color: @col-eee;
+        }
+        &:last-child{
+            border-bottom:none;
+        }
+    }
+}

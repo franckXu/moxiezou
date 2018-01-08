@@ -8,7 +8,7 @@
     padding: 10px;
 }
 .header{
-    background-color : #1aad16;
+    background-color : @col-green;
     color:#fff;
     padding:10px;
     .header-top{
@@ -21,11 +21,22 @@
         text{
             text-align:center;
         }
+        .my-modou{
+            .display(flex);
+            .align-items(center);
+            .justify-content(center);
+            text{
+                margin-left: 5px;
+            }
+        }
         .money{
             font-size:58px;
         }
         .desc{
-            font-size:14px;
+            font-size:12px;
+        }
+        image{
+            .icon-size();
         }
     }
 }
@@ -38,15 +49,17 @@
         box-sizing:border-box;
         .charge-money-item-inter-box {
             color:@col-gray;
-            border-radius:5px;
+            border-radius:3px;
             border:1px solid @col-gray;
-            padding:5px;
+            padding:10px;
             view{
                 text-align: center;
                 &:nth-child(1){
                     padding-bottom: 5px;
                     margin-bottom: 5px;
-                    border-bottom:1px solid @col-gray;
+                }
+                &:nth-child(2){
+                    font-size: 12px;
                 }
             }
         }
@@ -54,9 +67,6 @@
             .charge-money-item-inter-box {
                 color: @col-green;
                 border-color: @col-green;
-                view:nth-child(1){
-                    border-bottom:1px solid @col-green;
-                }
             }
         }
     }
@@ -68,9 +78,16 @@
 
 .footer{
     .p10();
+    position: fixed;
+    bottom:0px;
+    left: 0px;
+    right:0px;
     .protocol-txt{
         font-size: 12px;
         color:@col-gray;
+        .protocol-link{
+            color:@col-green;
+        }
     }
     .charge-btn{
         .green-gradient();

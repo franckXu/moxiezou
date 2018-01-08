@@ -3,10 +3,20 @@
         id="map"
         longitude="{{lng}}"
         latitude="{{lat}}"
-        scale="14"
+        scale="16"
         markers="{{markers}}"
         @markertap="markertap"
-        @callouttap="callouttap"
         show-location
-        style="width: 100%; height: 500px;"></map>
+        style="width: 100%; height: {{mapHeight}}px;"></map>
+</view>
+
+<view class="footer" wx:if="{{selectedMarker}}">
+    <view class="info">
+        <view class="info-top">
+            <view class="name">{{selectedMarker.name}}</view>
+            <view class="distance">{{selectedMarker.distance}}km</view>
+        </view>
+        <view class="address">{{selectedMarker.address}}</view>
+    </view>
+    <button class="goHereBtn" @tap="goHere()">到这里</button>
 </view>

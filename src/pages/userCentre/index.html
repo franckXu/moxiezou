@@ -16,18 +16,17 @@
             <image src="/images/icon-integral.png" />
             <view>积分</view>
         </view>
-        <view @tap="toPage('coupon')" class="menu">
+        <view @tap="toPage('')" class="menu">
             <image src="/images/icon-coupon.png" />
             <view>优惠券</view>
         </view>
-        <view @tap="toPage('')" class="menu">
+        <view @tap="toPage('orderList')" class="menu">
             <image src="/images/icon-consume.png" />
             <view>消费</view>
         </view>
     </view>
     <view class="content">
-        <view @tap="toPage('')"> <text>我是代理</text> <text>&gt;</text> </view>
-        <view @tap="toPage('')"> <text>订单列表</text> <text>&gt;</text> </view>
+        <view @tap="toPage('iAmProxy')"> <text>我是代理</text> <text>&gt;</text> </view>
         <view @tap="toPage('join')"> <text>代理商加盟</text> <text>&gt;</text> </view>
         <view @tap="toPage('feedback')"> <text>意见反馈</text> <text>&gt;</text></view>
         <view @tap="toPage('guide')"> <text>用户指南</text> <text>&gt;</text></view>

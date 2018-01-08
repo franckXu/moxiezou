@@ -1,7 +1,11 @@
 import wepy from 'wepy'
 
 import log from 'log'
-import chargeMoneyTemplateService from './get_charge_template.service'
+// import chargeMoneyTemplateService from './get_charge_template.service'
+import serviceFactory from '@/utils/base.service'
+const chargeMoneyTemplateService = serviceFactory({
+    funcId: 'chargeMoneyTemplate'
+});
 
 export default class Index extends wepy.page {
     config = {}
@@ -83,17 +87,22 @@ export default class Index extends wepy.page {
         const self = this;
         chargeMoneyTemplateService({
             idx : 777
-        }).then(({statusCode,data})=>{
-            if (statusCode === 200) {
-                self.chargeTemplate.data = data.data;
+        })
+        .then(({ data: { resultCode, resultMsg, data } }) => {
+            if (resultCode === "0000") {
+                self.chargeTemplate.data = data;
                 self.chargeTemplate.status = 2;
-            }else{
-                // { pk : 1, dou_num: 13, money: 20 }
+            } else {
                 self.chargeTemplate.data = []
                 self.chargeTemplate.status = 3;
+                log(resultMsg)
+                toast({
+                    title: '查询失败'
+                })
             }
             self.$apply()
-        },err=>{
+        }, err => {
+            toast({ title: '查询失败' })
             self.chargeTemplate.status = 3;
             self.$apply()
         })

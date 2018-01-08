@@ -38,6 +38,9 @@ export default class Index extends wepy.page {
                 label: '地址',
                 value : ''
             },
+            'template': {
+                label: '消费模板'
+            },
             'providerId': {
                 label: '设备拥有者'
             },
@@ -47,6 +50,11 @@ export default class Index extends wepy.page {
     computed = {}
 
     methods = {
+        chooseTemplate(){
+            wepy.navigateTo({
+                url : `/pages/templateList/index`
+            })
+        },
         scanQrCode() {
             const self = this;
             wx.scanCode({
@@ -119,8 +127,22 @@ export default class Index extends wepy.page {
 
     events = {}
 
-    onReady() {}
+    onLoad(){
+        this.$parent.globalData.editDevice = {};
+    }
 
-    onShow() {}
+    onShow() {
+        console.log('show');
+        const editDevice = this.$parent.globalData.editDevice;
+        if (editDevice.template) {
+            this.formData.template.value = editDevice.template;
+            this.$apply();
+        }
+    }
+
+    onReady() {
+        // console.log('ready');
+    }
+
 
 }

@@ -17,9 +17,12 @@ export default class extends wepy.app {
     config = {
         pages: [
             'pages/vicinity/index',
+            'pages/income/index',
+            'pages/userCentre/index',
+            'pages/orderList/index',
+            'pages/recharge/index',
             'pages/consume/index',
             'pages/iAmProxy/index',
-            'pages/userCentre/index',
             'pages/myDevice/index',
             'pages/templateList/index',
             'pages/editDevice/index',
@@ -34,7 +37,6 @@ export default class extends wepy.app {
             'pages/jf/index',
             'pages/building/index',
             'pages/rechargeRecord/index',
-            'pages/recharge/index',
             'pages/vicinity/mapView'
         ],
         window: {

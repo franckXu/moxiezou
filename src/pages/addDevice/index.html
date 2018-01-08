@@ -32,6 +32,16 @@
             />
         </view>
 
+        <view class="field col-3">
+            <view class="col-l">
+                <label class="label">{{formData.template.label}}</label>
+                <input type="text" placeholder="请选择{{formData.template.label}}" value="{{formData.template.value.name}}" @input="inputHandler('template')"
+                />
+            </view>
+            <view class="scanBtn" @tap='chooseTemplate()' >...</view>
+            <!-- <image class="scanBtn" @tap='chooseTemplate()' src="/images/icon-scan.png" /> -->
+        </view>
+
         <button class="submitBtn" @tap="submit()">提交</button>
 
         <!-- 设备拥有者 -->

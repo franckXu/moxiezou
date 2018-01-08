@@ -1,26 +1,29 @@
 <view>
     <view class='header'>
         <view class='header-top'>
-            <text @tap="toLoginPage()">{{bindUserInfo ? "" : "点击登录"}}</text>
-            <text @tap="toOrderRecord()">摩豆记录</text>
+            <!-- <text @tap="toLoginPage()">{{bindUserInfo ? "" : "点击登录"}}</text> -->
+            <!-- <text @tap="toOrderRecord()">摩豆记录</text> -->
         </view>
         <view class='balance-info'>
-            <text>余额(摩豆)</text>
-            <text class='money'>12.10</text>
-            <text class='desc'>可直接消费抵用</text>
+            <view class="my-modou">
+                <image src="/images/icon-modou.png" />
+                <text> 我的余额 (摩豆)</text>
+            </view>
+            <text class='money'>6612</text>
+            <text class='desc'>查看充值记录 ></text>
         </view>
     </view>
-    <text >{{ userInfo.nikeName }}</text>
+    <text>{{ userInfo.nikeName }}</text>
     <scroll-view scroll-y style="height : {{heights.chargeMoneyListHeight}}px" id="charge-money-list-scroll-view">
         <view class="text-center" wx:if="{{chargeTemplate.status === 1}}"> 请求中 </view>
         <view class="text-center" wx:elif="{{chargeTemplate.status === 3}}" @tap="fetchChargeTemplate()">查询失败,点击重试</view>
         <block wx:elif="{{chargeTemplate.status === 2}}">
             <view class='charge-money-list' wx:if="{{chargeTemplate.data.length}}">
-            <view wx:for="{{chargeTemplate.data}}" wx:key="pk" @tap="tapChargeTplItem({{idx}})" wx:for-index="idx"
-                class="charge-money-item {{ idx === chargeTemplate.cur ? 'cur' : ''}}">
+                <view wx:for="{{chargeTemplate.data}}" wx:key="pk" @tap="tapChargeTplItem({{idx}})"
+                    wx:for-index="idx" class="charge-money-item {{ idx === chargeTemplate.cur ? 'cur' : ''}}">
                     <view class="charge-money-item-inter-box">
-                    <view>{{item.dou_num}}摩豆</view>
-                        <view>{{item.money}}元</view>
+                        <view>{{item.dou_num}}摩豆</view>
+                        <view>售价: {{item.money}}元</view>
                     </view>
                 </view>
             </view>

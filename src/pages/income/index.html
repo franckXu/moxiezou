@@ -1,0 +1,13 @@
+<view class="time-range-tabs">
+    <view @tap="changeTime('0')" class="{{curTimeTab === '0' ? 'cur' : '' }}">昨天</view>
+    <view @tap="changeTime('1')" class="{{curTimeTab === '1' ? 'cur' : '' }}">今天</view>
+    <view @tap="changeTime('2')" class="{{curTimeTab === '2' ? 'cur' : '' }}">本周</view>
+    <view @tap="changeTime('3')" class="{{curTimeTab === '3' ? 'cur' : '' }}">本月</view>
+</view>
+
+<view class="list">
+    <view wx:for="{{list}}" wx:key="idx" class="item">
+        <view>{{item.time}}</view>
+        <view>{{item.money}}元 > </view>
+    </view>
+</view>

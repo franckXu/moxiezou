@@ -35,9 +35,10 @@ export default class Index extends wepy.page {
         },
         openLocation(idx){
             const vicinity = this.vicinityList[idx];
+            console.log('----',vicinity);
             wepy.openLocation({
-                latitude:  +vicinity.latitude,
-                longitude: +vicinity.longitude,
+                latitude:  +vicinity.gps_y,
+                longitude: +vicinity.gps_x,
                 scale:     28
             })
         }

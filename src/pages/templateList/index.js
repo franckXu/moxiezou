@@ -23,7 +23,7 @@ export default class Index extends wepy.page {
 
     methods = {
         chooseTemplate(item){
-            this.$parent.globalData.editDevice.template = item;
+            if(this.$parent.globalData.editDevice) this.$parent.globalData.editDevice.template = item;
             wepy.navigateBack();
         }
     }

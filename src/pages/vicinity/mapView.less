@@ -1,0 +1,30 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+.footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 88px;
+    background-color: #fff;
+    border-top: 1px solid @col-gray;
+    padding: 10px;
+    .info-top {
+        .display(flex);
+        .justify-content(space-between);
+        .distance {
+            font-size: 18px;
+            color: @col-green;
+        }
+    }
+    .address {
+        font-size: 14px;
+        color: @col-gray;
+    }
+    .goHereBtn{
+        .green-gradient();
+        margin-top: 10px;
+        height: 38px;
+        line-height: 38px;
+    }
+}
