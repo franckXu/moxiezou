@@ -1,18 +1,15 @@
 <view>
     <image class="product-pic" src="{{productInfo.template.pic}}" />
     <view class="consume-list">
-        <view
-              wx:for="{{productInfo.template.templateDtl}}"
-                wx:for-index="idx" wx:key="idx"
-                class="consume-item"
-                @tap="handlerConsumeItem({{item}})">
+        <view wx:for="{{productInfo.template.templateDtl}}" wx:for-index="idx" wx:key="idx"
+            class="consume-item" @tap="handlerConsumeItem({{item}})">
             <view class="left-col">
                 <view>{{item.title}}</view>
                 <view class="amounts">时长: {{item.amounts}} 分钟</view>
                 <image src="/images/bg-template-item.png" class="arrow" />
             </view>
             <view class="right-col">
-            <text>{{item.money}}元{{unit}}</text>
+                <text>{{item.money}}元{{unit}}</text>
             </view>
         </view>
     </view>
@@ -20,4 +17,24 @@
     <view class="contact">
         <image src="/images/icon-tel.png" />
         <text>电话:400-1633-808</text></view>
+    <view class="pay-type-choose-popup">
+        <view class="content">
+            <view class="header">
+                <text>请选择支付方式</text>
+                <text>X</text>
+            </view>
+            <view class="pay-type-group">
+<radio-group class="radio-group" bindchange="radioChange">
+  <label class="radio" wx:for="{{items}}">
+    <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+  </label>
+</radio-group>
+                <!-- <view class="pay-type cur" @tap="choosePayType(2)">微信支付</view>
+                <view class="pay-type" @tap="choosePayType(4)">摩豆支付</view> -->
+            </view>
+            <view class="btn-group">
+                <text>确定</text>
+            </view>
+        </view>
+    </view>
 </view>
