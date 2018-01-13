@@ -44,6 +44,9 @@ export default class Index extends wepy.page {
             'providerId': {
                 label: '设备拥有者'
             },
+            'site': {
+                label: '场地'
+            },
         }
     }
 
@@ -54,6 +57,12 @@ export default class Index extends wepy.page {
             wepy.navigateTo({
                 url : `/pages/templateList/index`
             })
+        },
+        chooseSite(){
+            wepy.navigateTo({
+                url : `/pages/siteList/index`
+            })
+
         },
         scanQrCode() {
             const self = this;
@@ -93,6 +102,7 @@ export default class Index extends wepy.page {
                 "gpsX": ''+formData.gpsX.value,
                 "gpsY": ''+formData.gpsY.value,
                 "address": formData.address.value,
+                "operation" : '1',
                 /* "mchId": "8",
                 "type": "0",
                 "online": "1",
@@ -129,13 +139,19 @@ export default class Index extends wepy.page {
 
     onLoad(){
         this.$parent.globalData.editDevice = {};
+        this.$parent.globalData.siteForAddDevice = {};
     }
 
     onShow() {
         console.log('show');
         const editDevice = this.$parent.globalData.editDevice;
+        const siteForAddDevice = this.$parent.globalData.siteForAddDevice;
         if (editDevice.template) {
             this.formData.template.value = editDevice.template;
+            this.$apply();
+        }
+        if (siteForAddDevice) {
+            this.formData.site.value = siteForAddDevice;
             this.$apply();
         }
     }
@@ -143,6 +159,4 @@ export default class Index extends wepy.page {
     onReady() {
         // console.log('ready');
     }
-
-
 }

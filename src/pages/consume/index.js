@@ -1,8 +1,12 @@
 import wepy from 'wepy';
 
 import log from 'log';
-import { toast } from '@/utils/index';
-import { REQUEST_FAIL } from 'config';
+import {
+    toast
+} from '@/utils/index';
+import {
+    REQUEST_FAIL
+} from 'config';
 
 import serviceFactory from '@/utils/base.service'
 const MXZ030004Service = serviceFactory({
@@ -19,67 +23,138 @@ export default class Index extends wepy.page {
     data = {
         productInfo: {},
         code: '',
-        items: [
-            {name: 'USA', value: '美国'},
-            {name: 'CHN', value: '中国', checked: 'true'},
-            {name: 'BRA', value: '巴西'},
-            {name: 'JPN', value: '日本'},
-            {name: 'ENG', value: '英国'},
-            {name: 'TUR', value: '法国'},
-        ]
+        payTypes: [{
+            name: '4',
+            value: '摩豆支付',
+            checked: 'true'
+        }, {
+            name: '2',
+            value: '微信支付'
+        }],
+        useCoupon: {
+            name: '1',
+            value: '使用优惠券',
+            checked: false
+        },
+        couponInfo: {
+            id: null,
+            name: null
+        },
+        selectedProd: null,
+        selectedPayType: '4',
+        showPayTypeChoosePopup: false,
+        couponForConsume: null
     }
 
-    computed = {}
+    computed = {
+        money(){
+            if(this.selectedProd){
+                return this.getMoney();
+            }else{
+                return null;
+            }
+        }
+    }
+
+    getMoney(){
+        if(this.couponForConsume){
+            return +(this.selectedProd.money) - +(this.couponForConsume.num)
+        }else{
+            return +(this.selectedProd.money);
+        }
+    }
 
     methods = {
-        handlerConsumeItem({code,title,amounts,money}) {
-            MXZ050001Service({
-                title, amounts, money,
-                codeId	: code,
-                pay_way : '2'//1	String		支付方式	1支付宝 2微信 3银联 4余额
-            })
-            .then(({ data: { data, resultCode, resultMsg } }) => {
-                if (resultCode === '0000') {
-                    // TODO 返回的appid有用吗？
-                    // appid	1	String		小程序appidID
-                    const {timestamp,noncestr,prepayid,signType,paySign} = data;
-                    wepy.requestPayment({
-                        "timeStamp": timestamp,
-                        "nonceStr": noncestr,
-                        "package": `prepay_id=${prepayid}`, // String	是	统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=*
-                        "signType": signType,
-                        "paySign": paySign,
-                        "success": function(res) {
-                            console.log(res);
-                            toast({title:'支付成功'})
-                        },
-                        "fail": function({ errMsg }) {
-                            toast({ title: errMsg })
-                            log(errMsg)
-                        },
-                        // 6.5.2 及之前版本中，用户取消支付不会触发 fail 回调，只会触发 complete 回调，回调 errMsg 为 'requestPayment:cancel'
-                        "complete": function() {
-                            log('complete')
-                        }
-                    })
+        submit() {
+            log(this.selectedPayType);
+            log(this.couponForConsume);
+            log(this.selectedProd);
 
-                }else{
-                    toast({title:resultMsg})
-                }
-            }, err => {
-                toast({title:'操作失败'})
-            })
-        }
+            const { code, title, amounts} = this.selectedProd;
+            MXZ050001Service({
+                    equipId:     this.code,
+                    mdCounts:    this.selectedPayType === '4' ? ''+this.getMoney() : '', // 魔豆数量
+                    couponId:    this.couponForConsume ? this.couponForConsume.id : '', // 优惠券id
+                    couponMoney: this.couponForConsume ? this.couponForConsume.num : '', // 优惠券金额
+                    pay_way:     this.selectedPayType, //1	String		支付方式	1支付宝 2微信 3银联 4余额
+                    codeId:      code,
+                    money:       this.selectedPayType === '2' ? ''+this.getMoney() : '',
+                    title,
+                    amounts,
+                })
+                .then(({
+                    data: {
+                        data,
+                        resultCode,
+                        resultMsg
+                    }
+                }) => {
+                    if (resultCode === '0000') {
+                        // TODO 返回的appid有用吗？
+                        // appid	1	String		小程序appidID
+                        if (this.selectedPayType === '4') {
+                            toast({
+                                title: '支付成功'
+                            })
+                            this.showPayTypeChoosePopup = false;
+                            this.$apply();
+                            console.log(resultMsg);
+                        } else {
+                            this.requestPayment(data)
+                        }
+                    } else {
+                        toast({
+                            title: resultMsg
+                        })
+                    }
+                }, err => {
+                    toast({
+                        title: '操作失败'
+                    })
+                })
+        },
+        clickProd(item) {
+            this.selectedProd = item;
+            this.showPayTypeChoosePopup = true;
+            this.$apply();
+        },
+        chooseCoupon(idx) {
+            if (this.useCoupon.checked) {
+                wepy.navigateTo({
+                    url: `/pages/coupon/index?from=consume&maxMoney=${this.selectedProd.money}`
+                })
+            }
+        },
+        checkboxChange(n, e) {
+            this.useCoupon.checked = e.detail.value.length ? true : false;
+            this.couponForConsume = null;
+            this.$apply();
+        },
+        closePayTypePopup() {
+            this.showPayTypeChoosePopup = false;
+            this.$apply();
+        },
+        chgPayType(n, e) {
+            this.selectedPayType = e.detail.value;
+        },
     }
 
     events = {}
 
     onLoad(option) {
         this.data.code = option.code;
+        this.$parent.globalData.couponForConsume = null;
     }
 
     onReady() {
         this.reqMXZ030004()
+    }
+
+    onShow() {
+        if (this.$parent.globalData.couponForConsume) {
+            this.couponForConsume = this.$parent.globalData.couponForConsume;
+            this.$apply();
+        }
     }
     reqMXZ030004() {
         MXZ030004Service({
@@ -106,5 +181,26 @@ export default class Index extends wepy.page {
             })
         })
     }
-
+    requestPayment(data){
+        const {timestamp,noncestr,prepayid,signType,paySign} = data;
+        wepy.requestPayment({
+            "timeStamp": timestamp,
+            "nonceStr": noncestr,
+            "package": `prepay_id=${prepayid}`, // String	是	统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=*
+            "signType": signType,
+            "paySign": paySign,
+            "success": function(res) {
+                console.log(res);
+                toast({title:'支付成功'})
+            },
+            "fail": function({ errMsg }) {
+                toast({ title: errMsg })
+                log(errMsg)
+            },
+            // 6.5.2 及之前版本中，用户取消支付不会触发 fail 回调，只会触发 complete 回调，回调 errMsg 为 'requestPayment:cancel'
+            "complete": function() {
+                log('complete')
+            }
+        })
+    }
 }

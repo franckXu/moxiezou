@@ -1,0 +1,4 @@
+<view class="item" wx:for="{{templateList}}" wx:key="id" @tap="chooseTemplate({{item}})">
+    <image src="{{item.logo}}" class="logo" />
+    <view class="name">{{item.name}}</view>
+</view>

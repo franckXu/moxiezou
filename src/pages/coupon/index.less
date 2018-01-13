@@ -1,0 +1,77 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+.page {
+    background-color: @col-eee;
+    .display(flex);
+    .flex-direction(column);
+    min-height: 600px;
+}
+
+.item {
+    .display(flex);
+    .flex-direction(row);
+    margin: 15px 15px 0px;
+    background-color: #FFF;
+
+    .price {
+        .flex(1, 1, auto);
+        .display(flex);
+        .align-items(center);
+        .justify-content(center);
+        width: 80px;
+        color: @col-green;
+        border-right: 1px dashed @col-green;
+        .num {
+            font-size: 48px;
+        }
+    }
+    .info {
+        .display(flex);
+        .flex-direction(row);
+        .justify-content(space-between);
+        font-size: 16px;
+        padding: 10px;
+        .title {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .desc {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .time,
+        .range {
+            color: @col-ccc;
+        }
+    }
+    .status-box {
+        .flex(1, 1, auto);
+        .display(flex);
+        .justify-content(center);
+        .align-items(center);
+        text-align: center;
+        width: 60px;
+        .status{
+            font-size: 14px;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border:1px solid @col-green;
+            border-radius:100%;
+            color:@col-green;
+            transform:ratote(-45px);
+        }
+    }
+
+    &.disabled{
+        color:@col-gray;
+        .price{
+            color:@col-gray;
+            border-color:@col-gray;
+        }
+        .status{
+            color:@col-gray;
+            border:1px solid @col-gray;
+        }
+    }
+}

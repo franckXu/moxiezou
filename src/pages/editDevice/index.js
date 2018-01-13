@@ -80,6 +80,7 @@ export default class Index extends wepy.page {
                 "gpsX": ''+formData.gpsX.value,
                 "gpsY": ''+formData.gpsY.value,
                 "address": formData.address.value,
+                "operation" : '1',
                 /* "mchId": "8",
                 "type": "0",
                 "online": "1",

@@ -708,6 +708,21 @@ const chargeMoneyTemplate = {
         money: 50
     }]
 }
+
+const MXZ050001 = {
+    funcId: "功能号",
+    data: {
+        appid: "小程序appidID",
+        partnerid: "商户ID  ",
+        timestamp: "时间戳  ",
+        noncestr: "随机串 ",
+        paySign: "参数签名结果",
+        prepayid: "预付单信息 ",
+        signType: "签名类型 ",
+    },
+    resultCode: "0000",
+    resultMsg: "操作失败",
+};
 const data = {
     MXZ030005,
     MXZ040001,
@@ -717,7 +732,8 @@ const data = {
     MXZ030002,
     MXZ030003,
     MXZ030004,
-    chargeMoneyTemplate
+    chargeMoneyTemplate,
+    MXZ050001,
 }
 
 export default function mockData(funcId) {

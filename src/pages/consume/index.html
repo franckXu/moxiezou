@@ -2,7 +2,7 @@
     <image class="product-pic" src="{{productInfo.template.pic}}" />
     <view class="consume-list">
         <view wx:for="{{productInfo.template.templateDtl}}" wx:for-index="idx" wx:key="idx"
-            class="consume-item" @tap="handlerConsumeItem({{item}})">
+            class="consume-item" @tap="clickProd({{item}})">
             <view class="left-col">
                 <view>{{item.title}}</view>
                 <view class="amounts">时长: {{item.amounts}} 分钟</view>
@@ -17,23 +17,42 @@
     <view class="contact">
         <image src="/images/icon-tel.png" />
         <text>电话:400-1633-808</text></view>
-    <view class="pay-type-choose-popup">
+
+    <view class="pay-type-choose-popup {{showPayTypeChoosePopup ? 'show' : ''}}">
         <view class="content">
+
+            <view class="prodInfo">{{selectedProd.title}},{{selectedProd.amounts}}分钟,{{selectedProd.money}}元{{selectedProd.unit}}</view>
+
             <view class="header">
-                <text>请选择支付方式</text>
-                <text>X</text>
+                <text>请选择支付方式:</text>
             </view>
             <view class="pay-type-group">
-<radio-group class="radio-group" bindchange="radioChange">
-  <label class="radio" wx:for="{{items}}">
-    <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
-  </label>
-</radio-group>
-                <!-- <view class="pay-type cur" @tap="choosePayType(2)">微信支付</view>
-                <view class="pay-type" @tap="choosePayType(4)">摩豆支付</view> -->
+                <radio-group class="radio-group" @change="chgPayType()">
+                    <label class="radio pay-type" wx:for="{{payTypes}}" wx:key="id">
+                        <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+                    </label>
+                </radio-group>
             </view>
+            <view class="use-coupon">
+                <checkbox-group @change="checkboxChange()">
+                    <label class="checkbox">
+                        <checkbox value="{{coupon.name}}" checked="{{coupon.checked}}" />使用优惠券
+                    </label>
+                </checkbox-group>
+                <block wx:if="{{useCoupon.checked}}">
+                    <text @tap="chooseCoupon()">{{ couponForConsume ? couponForConsume.num + '元' : '选择优惠券'}}</text>
+                </block>
+            </view>
+
+            <view class="summary">
+                <view>应付:<text class="num">{{selectedProd.money}}</text>元</view>
+                <view wx:if="{{couponForConsume}}">优惠:-<text class="num">{{couponForConsume.num}}</text>元</view>
+                <view>实际支付:<text class="num">{{money}}</text>元</view>
+            </view>
+
             <view class="btn-group">
-                <text>确定</text>
+                <text @tap="closePayTypePopup()">取消</text>
+                <text @tap="submit()">确定</text>
             </view>
         </view>
     </view>

@@ -1,10 +1,3 @@
-role	1	String		角色
-pic	1	String  		用户头像
-telephone	0	String		电话号码
-integral	1	String		总积分
-userId	1	String		用户ID
-
-
 1.优惠卷功能开发
 2.设备录入增加场地选择
 3.支付方式功能开发
@@ -19,3 +12,8 @@ userId	1	String		用户ID
 获取商品模版
 摩豆支付
 消费记录
+
+
+# 待完善的
+    场地选择
+    优惠券列表

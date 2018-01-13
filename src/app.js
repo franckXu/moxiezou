@@ -16,17 +16,19 @@ const MXZ010002Service = serviceFactory({
 export default class extends wepy.app {
     config = {
         pages: [
-            'pages/consume/index',
+            'pages/addDevice/index',
+            'pages/siteList/index',
             'pages/vicinity/index',
-            'pages/income/index',
             'pages/userCentre/index',
+            'pages/consume/index',
+            'pages/coupon/index',
+            'pages/income/index',
             'pages/orderList/index',
             'pages/recharge/index',
             'pages/iAmProxy/index',
             'pages/myDevice/index',
             'pages/templateList/index',
             'pages/editDevice/index',
-            'pages/addDevice/index',
             'pages/aboutUs/index',
             'pages/guide/index',
             'pages/feedback/index',
@@ -73,7 +75,10 @@ export default class extends wepy.app {
     globalData = {
         userInfo: null,
         appUserInfo: null,
-        MXZ010001: null
+        MXZ010001: null,
+        siteForAddDevice : null,
+        editDevice : null,
+        couponForConsume : null,
     }
 
     constructor() {
