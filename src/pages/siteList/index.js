@@ -5,8 +5,8 @@ import {REQUEST_FAIL } from 'config';
 import { toast } from "@/utils/index"
 
 import serviceFactory from '@/utils/base.service'
-const MXZ030005Service = serviceFactory({
-    funcId: 'MXZ030005'
+const MXZ080002Service = serviceFactory({
+    funcId: 'MXZ080002'
 });
 
 
@@ -33,7 +33,7 @@ export default class Index extends wepy.page {
     onLoad() {}
 
     onReady() {
-        MXZ030005Service()
+        MXZ080002Service()
             .then(({data:{data,resultMsg,resultCode}})=>{
                 if (resultCode === '0000') {
                     this.templateList = data;

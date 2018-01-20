@@ -102,6 +102,8 @@ export default class Index extends wepy.page {
                 "gpsX": ''+formData.gpsX.value,
                 "gpsY": ''+formData.gpsY.value,
                 "address": formData.address.value,
+                "fieldId": formData.site.value.id,
+                "templateId": formData.template.value.id,
                 "operation" : '1',
                 /* "mchId": "8",
                 "type": "0",
@@ -132,6 +134,8 @@ export default class Index extends wepy.page {
         this.formData['gpsY'].value = '';
         this.formData['gpsX'].value = '';
         this.formData['address'].value = '';
+        this.formData['site'].value = null;
+        this.formData['template'].value = null;
         this.$apply();
     }
 

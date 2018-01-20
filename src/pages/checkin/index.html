@@ -1,3 +1,28 @@
-<view>
-checkin
+<view class="page">
+
+    <view class="header">
+        <image src="/images/temp/icon.png" />
+        <button disabled="{{signToday === 'Y'}}" class="checkined" @tap="doCheckin()">{{ signToday === 'Y' ? '已签到' : '签到' }}</button>
+        <view class="checkin-day-num">你已连续签到{{signDays}}天</view>
+    </view>
+
+    <view class="jf-num">
+        <text>您已获得<text class="num">{{integral}}</text>积分</text>
+        <text >积分兑换> </text>
+    </view>
+
+    <view class="day-to-jf">
+        <view wx:for="{{signRule}}" wx:for-index="id" wx:key="id" class="day-to-jf-item">
+            <view>+<text>{{item.point_value}}</text></view>
+            <view>{{item.unit}}天</view>
+        </view>
+    </view>
+
+    <view class="rule-box">
+        <view class="title">签到规则</view>
+        <view class="rule-item">1.每日签到,当日获得实时积分累加</view>
+        <view class="rule-item">2.积分有效期内不清零</view>
+        <view class="rule-item">3.每日签到获得10积分，连续签到获得积分加速，如中断签到从10积分从新开始</view>
+    </view>
+
 </view>

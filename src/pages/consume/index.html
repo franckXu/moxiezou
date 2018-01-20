@@ -40,13 +40,13 @@
                     </label>
                 </checkbox-group>
                 <block wx:if="{{useCoupon.checked}}">
-                    <text @tap="chooseCoupon()">{{ couponForConsume ? couponForConsume.num + '元' : '选择优惠券'}}</text>
+                    <text @tap="chooseCoupon()">{{ couponForConsume ? couponForConsume.money + '元' : '选择优惠券'}}</text>
                 </block>
             </view>
 
             <view class="summary">
                 <view>应付:<text class="num">{{selectedProd.money}}</text>元</view>
-                <view wx:if="{{couponForConsume}}">优惠:-<text class="num">{{couponForConsume.num}}</text>元</view>
+                <view wx:if="{{couponForConsume}}">优惠:-<text class="num">{{couponForConsume.money}}</text>元</view>
                 <view>实际支付:<text class="num">{{money}}</text>元</view>
             </view>
 

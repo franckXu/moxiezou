@@ -33,8 +33,8 @@ export default class Index extends wepy.page {
 
     onReady() {
         MXZ030003Service({
-            pageSize : 10,
-            currentPage : 1
+            /* pageSize : 10,
+            currentPage : 1 */
         })
         .then(({data:{data,resultMsg,resultCode}})=>{
             if (resultCode === '0000') {

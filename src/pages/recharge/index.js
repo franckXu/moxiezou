@@ -1,10 +1,14 @@
 import wepy from 'wepy'
 
 import log from 'log'
-// import chargeMoneyTemplateService from './get_charge_template.service'
 import serviceFactory from '@/utils/base.service'
-const chargeMoneyTemplateService = serviceFactory({
-    funcId: 'chargeMoneyTemplate'
+import { toast } from "@/utils/index"
+
+const MXZ060001 = serviceFactory({
+    funcId: 'MXZ060001'
+});
+const MXZ060002 = serviceFactory({
+    funcId: 'MXZ060002'
 });
 
 export default class Index extends wepy.page {
@@ -12,6 +16,7 @@ export default class Index extends wepy.page {
     components = {}
 
     data = {
+        myAmount : '',
         chargeTemplate: {
             status : 0,// 0=normal,1=requesting,2=succss,3=fail
             data : [],
@@ -50,7 +55,21 @@ export default class Index extends wepy.page {
         tapCharge(){
             // TODO how to charge? call wx.pay
             if (this.$parent.globalData.bindUserInfo) {
-                log("do Charge")
+                MXZ060002({
+                    amount :  this.chargeTemplate.data[this.chargeTemplate.cur].amount,
+                    money : this.chargeTemplate.data[this.chargeTemplate.cur].money
+                }).then(({ data: { resultCode, resultMsg, data } }) => {
+                    if (resultCode === "0000") {
+                        toast({title:'充值成功'})
+                        this.fetchChargeTemplate();
+                    } else {
+                        toast({title:'充值失败'})
+                    }
+                }, err => {
+                    toast({title:'充值失败'})
+                    self.chargeTemplate.status = 3;
+                    self.$apply()
+                })
             }else{
                 wepy.navigateTo({
                     url : "/pages/login/index"
@@ -73,7 +92,6 @@ export default class Index extends wepy.page {
             }
         })
 
-        self.chargeTemplate.status = 1;
         self.$apply()
         self.fetchChargeTemplate()
     }
@@ -85,26 +103,27 @@ export default class Index extends wepy.page {
 
     fetchChargeTemplate(){
         const self = this;
-        chargeMoneyTemplateService({
-            idx : 777
-        })
-        .then(({ data: { resultCode, resultMsg, data } }) => {
-            if (resultCode === "0000") {
-                self.chargeTemplate.data = data;
-                self.chargeTemplate.status = 2;
-            } else {
-                self.chargeTemplate.data = []
+        self.chargeTemplate.status = 1;
+        MXZ060001({})
+            .then(({ data: { resultCode, resultMsg, data } }) => {
+                if (resultCode === "0000") {
+                    this.myAmount = data.myAmount;
+                    this.chargeTemplate.data = data.recharge;
+                    self.chargeTemplate.status = 2;
+                } else {
+                    this.myAmount = '';
+                    this.chargeTemplate.data = [];
+                    self.chargeTemplate.status = 3;
+                    log(resultMsg)
+                    toast({
+                        title: '查询失败'
+                    })
+                }
+                self.$apply()
+            }, err => {
+                toast({ title: '查询失败' })
                 self.chargeTemplate.status = 3;
-                log(resultMsg)
-                toast({
-                    title: '查询失败'
-                })
-            }
-            self.$apply()
-        }, err => {
-            toast({ title: '查询失败' })
-            self.chargeTemplate.status = 3;
-            self.$apply()
-        })
+                self.$apply()
+            })
     }
 }

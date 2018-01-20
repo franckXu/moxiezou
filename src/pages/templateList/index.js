@@ -36,7 +36,7 @@ export default class Index extends wepy.page {
         MXZ030005Service()
             .then(({data:{data,resultMsg,resultCode}})=>{
                 if (resultCode === '0000') {
-                    this.templateList = data;
+                    this.templateList = data.template;
                     this.$apply();
                 }else{
                     toast({title:resultMsg || REQUEST_FAIL});

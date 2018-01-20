@@ -1,5 +1,6 @@
 import wepy from 'wepy'
 import * as bmap from  '../../libs/bmap-wx/bmap-wx.min.js';
+import {  isProd } from 'config';
 
 import serviceFactory from '@/utils/base.service';
 const MXZ030002Service = serviceFactory({'funcId' : 'MXZ030002'})
@@ -114,6 +115,8 @@ export default class Index extends wepy.page {
                     const code = result.split('?')[1].split('=')[1];
                     if (code) {
                         wepy.navigateTo({
+
+
                             url : `/pages/consume/index?code=${code}`
                         })
                     }

@@ -1,0 +1,44 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+.page {
+    font-size: 18px;
+    color: #444;
+}
+
+.tabs {
+    .display(flex);
+    > view {
+        .flex(1);
+        text-align: center;
+        height: 38px;
+        line-height: 38px;
+        &.cur {
+            color: @col-green;
+            border-bottom: 3px solid @col-green;
+        }
+    }
+}
+.swiper{
+    min-height:400px;
+}
+.list {
+    .row {
+        .display(flex);
+        &:nth-child(even) {
+            background-color: #eee;
+        }
+        > view {
+            padding: 5px;
+            word-break: break-all;
+        }
+        .label {
+            .flex(1);
+            text-align: right;
+            color: #999;
+            border-right: 1px solid #fff;
+        }
+        .value {
+            .flex(2);
+        }
+    }
+}

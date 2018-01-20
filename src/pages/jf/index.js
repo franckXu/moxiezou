@@ -7,7 +7,7 @@ export default class Index extends wepy.page {
     components = {}
 
     data = {
-        jfNum: "120",
+        bindUserInfo:null,
         jfRecord: [{
             from: "绑定微信",
             time: "2017-12-07 22:10:55",
@@ -56,7 +56,7 @@ export default class Index extends wepy.page {
     methods = {
         getJf() {
             wepy.navigateTo({
-                url: "/pages/building/index"
+                url: "/pages/getJf/index"
             });
         }
     }
@@ -66,7 +66,16 @@ export default class Index extends wepy.page {
 
     onReady() {}
 
-    onShow() {}
+    onShow() {
+        const self = this;
+        self.$parent.getBindUserInfo()
+            .then(bindUserInfo=>{
+                self.bindUserInfo = bindUserInfo;
+                self.$apply();
+            },err=>{
+                toast({title : '获取用户信息'})
+            })
+    }
 
 
 }

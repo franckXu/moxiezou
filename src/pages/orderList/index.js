@@ -1,7 +1,11 @@
 import wepy from 'wepy'
 
 import log from 'log'
-
+import { toast } from '@/utils/index';
+import serviceFactory from '@/utils/base.service'
+const MXZ010003 = serviceFactory({
+    funcId: 'MXZ010003'
+});
 export default class Index extends wepy.page {
     config = {}
     components = {}
@@ -10,29 +14,32 @@ export default class Index extends wepy.page {
         list: []
     }
 
-    computed = {
-    }
+    computed = {}
 
-    methods = {
-    }
+    methods = {}
 
     events = {}
     onLoad() {}
 
     onReady() {
+        MXZ010003({
+
+            })
+            .then(({ data: { data, resultCode, resultMsg } }) => {
+                if (resultCode === '0000') {
+                    this.list = data;
+                    this.$apply();
+                } else {
+                    toast({
+                        title: resultMsg
+                    })
+                }
+            }, err => {
+                toast({
+                    title: '操作失败'
+                })
+            })
+
     }
-
-    onShow(){
-        for (let i = 0, len = 15; i < len; i++) {
-            this.list.push({
-                time : '2017-12-25 12:24',
-                money: `${5 * (i +1)}元/${10 * i + 3}分钟`,
-                address : '广州市越秀区林农下路旺角广场'.substr(0,Math.floor(Math.random() * 8 + 7))
-           })
-        }
-
-        this.$apply();
-    }
-
 
 }

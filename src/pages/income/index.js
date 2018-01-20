@@ -46,6 +46,9 @@ export default class Index extends wepy.page {
             this.curTimeTab = time;
             this.$apply();
         }
+        toDayIncome(item){
+            console.log(item);
+        }
     }
 
     events = {}

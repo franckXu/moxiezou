@@ -1,10 +1,12 @@
 const MXZ010002 = {
     "currentPage": 1,
     "data": {
-        "role": "普通用户",
-        "integral": "100",
+        "role": "商户",
+        "coupon": "1",
+        "integral": "20",
+        "md": "101",
         "telephone": "18627565223",
-        "pic": "http:\/\/39.108.103.238:8088\/\/\/upfile\/img\/icon\/empty.png",
+        "pic": "http:\/\/39.108.103.238:8088\/\/\/mmdAvator\/d916de02-f08a-4bee-af78-3b46e72451dd.jpg",
         "userId": "8"
     },
     "exception": "",
@@ -426,98 +428,97 @@ const MXZ030003 = {
     }]
 }
 
+
 const MXZ030004 = {
-    "resultCode": "0000",
-    "resultMsg": "成功",
-    "funcId": " MXZ020001",
+    "currentPage": 1,
     "data": {
-        "code": 1,
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
-        "type": 0,
-        "online": 1,
-        "template": {
-            "code": "0001",
-            "logo": "/images/temp/icon.png",
-            "pic": "/images/ad1.jpg",
-            "name": "正佳广场模板",
+        "template": [{
+            "name": "摩羯座001",
             "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
+                "unit": "分钟",
                 "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
+                "amounts": 5,
+                "describe": "身体放松坐",
+                "title": "身体放松坐1"
             }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "15",
-                "amounts": "20",
-                "unit": "分钟"
+                "unit": "分钟",
+                "money": "8",
+                "amounts": 10,
+                "describe": "身体恢复坐11",
+                "title": "身体恢复坐"
             }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "25",
-                "amounts": "30",
-                "unit": "分钟"
-            }]
-        }
-    }
+                "unit": "分钟",
+                "money": "10",
+                "amounts": 15,
+                "describe": "身体缓解坐",
+                "title": "身体缓解坐"
+            }],
+            "logo": "",
+            "id": 40
+        }],
+        "code": "MXZ001",
+        "gps_x": "11",
+        "address": "长沙岳麓区3",
+        "gps_y": "28.232",
+        "m_date": "2018-01-04 00:58:14",
+        "mch_id": "MXZ00122",
+        "type": 0,
+        "c_date": "2017-12-31 23:47:50",
+        "name": "11",
+        "online": 1,
+        "provider_id": 16,
+        "template_id": "40",
+        "id": 7
+    },
+    "exception": "",
+    "funcId": "MXZ030004",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
 }
 
 const MXZ030005 = {
     "currentPage": 1,
-    "data": [{
-        "id": 31,
-        "logo": "/images/icon-myDevice.png",
-        "name": "摩羯座001",
-        "templateDtl": [{
-            "unit": "分钟",
-            "title": "身体放松坐",
-            "amounts": 6,
-            "describe": "身体放松坐",
-            "money": "5"
+    "data": {
+        "template": [{
+            "name": "摩羯座001",
+            "templateDtl": [{
+                "unit": "分钟",
+                "money": "5",
+                "amounts": 5,
+                "describe": "身体放松坐",
+                "title": "身体放松坐1"
+            }, {
+                "unit": "分钟",
+                "money": "8",
+                "amounts": 10,
+                "describe": "身体恢复坐11",
+                "title": "身体恢复坐"
+            }, {
+                "unit": "分钟",
+                "money": "10",
+                "amounts": 15,
+                "describe": "身体缓解坐",
+                "title": "身体缓解坐"
+            }],
+            "logo": "",
+            "id": 40
         }, {
-            "unit": "分钟",
-            "title": "身体恢复坐",
-            "amounts": 10,
-            "describe": "身体恢复坐",
-            "money": "8"
-        }, {
-            "unit": "分钟",
-            "title": "身体缓解坐",
-            "amounts": 15,
-            "describe": "身体缓解坐",
-            "money": "10"
+            "name": "测试2",
+            "templateDtl": [{
+                "unit": "分钟",
+                "money": "11",
+                "amounts": 11,
+                "describe": "5分钟",
+                "title": "超级舒适"
+            }],
+            "logo": "",
+            "id": 42
         }]
-    }, {
-        "id": 32,
-        "logo": "/images/icon-myDevice.png",
-        "name": "摩羯座002",
-        "templateDtl": [{
-            "unit": "分钟",
-            "title": "身体放松坐",
-            "amounts": 6,
-            "describe": "身体放松坐",
-            "money": "5"
-        }, {
-            "unit": "分钟",
-            "title": "身体恢复坐",
-            "amounts": 10,
-            "describe": "身体恢复坐",
-            "money": "8"
-        }, {
-            "unit": "分钟",
-            "title": "身体缓解坐",
-            "amounts": 15,
-            "describe": "身体缓解坐",
-            "money": "10"
-        }]
-    }],
+    },
     "exception": "",
     "funcId": "MXZ030005",
     "homedir": "",
@@ -527,7 +528,6 @@ const MXZ030005 = {
     "totalCount": 0,
     "totalPage": 1
 }
-
 
 const MXZ040001 = {
     "resultCode": "0000",
@@ -667,7 +667,7 @@ const MXZ030002 = {
     "funcId": "MXZ040001",
     "data": (function() {
         const ret = [];
-        locationData.forEach((item,i)=>{
+        locationData.forEach((item, i) => {
             ret.push({
                 "id": item.uid,
                 "gps_y": item.location.lat,
@@ -675,7 +675,7 @@ const MXZ030002 = {
                 "address": item.address,
                 "name": item.address,
                 "m_date": "2017-12-19 00:56:40",
-                "code": item.street_id.substr(0,7),
+                "code": item.street_id.substr(0, 7),
                 "c_date": "2017-12-19 00:56:40",
                 "type": 0,
                 "online": 1,
@@ -723,6 +723,173 @@ const MXZ050001 = {
     resultCode: "0000",
     resultMsg: "操作失败",
 };
+
+const MXZ070001 = {
+    "currentPage": 1,
+    "data": [{
+        "usable_money": 10.00,
+        "usable_field": null,
+        "money": 2.00,
+        "expiry_date": "2018-01-13至2018-01-31",
+        "id": 1,
+        "title": "新用户按摩椅代金券",
+        "expiry_time": "全天",
+        "remarks": "适用于所以门店按摩椅"
+    }],
+    "exception": "",
+    "funcId": "MXZ070001",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
+};
+
+const MXZ080002 = {
+    "currentPage": 1,
+    "data": [{
+        "chargeValue": "20.00",
+        "chargeWay": "1",
+        "fieldAddress": "芙蓉路万达广场43",
+        "fieldName": "万达广场网咖1",
+        "fieldPhone": "18627565224",
+        "id": "4",
+        "ismyField": null,
+        "remarks": "芙蓉路万达广场，人口密集11",
+        "user_id": null
+    }],
+    "exception": "",
+    "funcId": "MXZ070001",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
+}
+
+const MXZ050002 = {};
+
+const MXZ060001 = {
+	"currentPage": 1,
+	"data": {
+		"myAmount": "101",
+		"recharge": [{
+			"amount": 13,
+			"money": 20,
+			"remarks": "13魔豆20元"
+		}, {
+			"amount": 16,
+			"money": 28,
+			"remarks": "16魔豆28元"
+		}, {
+			"amount": 23,
+			"money": 40,
+			"remarks": "23魔豆40元"
+		}, {
+			"amount": 33,
+			"money": 50,
+			"remarks": "33魔豆40元"
+		}]
+	},
+	"exception": "",
+	"funcId": "MXZ060001",
+	"homedir": "",
+	"pageSize": 10,
+	"resultCode": "0000",
+	"resultMsg": "操作成功",
+	"totalCount": 0,
+	"totalPage": 1
+};
+
+const MXZ060002  ={};
+
+const MXZ060003 = {
+	"currentPage": 1,
+	"data": [{
+		"amount": 100,
+		"money": 80.00,
+		"c_date": "2018-01-12 23:21:44"
+	}, {
+		"amount": 100,
+		"money": 80.00,
+		"c_date": "2018-01-12 23:21:15"
+	}, {
+		"amount": 100,
+		"money": 80.00,
+		"c_date": "2018-01-12 23:21:04"
+	}, {
+		"amount": 100,
+		"money": 80.00,
+		"c_date": "2018-01-12 23:19:37"
+	}, {
+		"amount": 100,
+		"money": 80.00,
+		"c_date": "2018-01-12 23:19:37"
+	}],
+	"exception": "",
+	"funcId": "MXZ060001",
+	"homedir": "",
+	"pageSize": 10,
+	"resultCode": "0000",
+	"resultMsg": "操作成功",
+	"totalCount": 0,
+	"totalPage": 1
+};
+
+const MXZ090001 = {
+	"currentPage": 1,
+	"data":  {
+		"signRule": [{
+			"id": 5,
+			"unit": 1,
+			"point_value": 1,
+			"name": "签到一天送1积分",
+			"remarks": ""
+		}, {
+			"id": 6,
+			"unit": 10,
+			"point_value": 15,
+			"name": "连续签到10天送15积分",
+			"remarks": ""
+		}, {
+			"id": 7,
+			"unit": 30,
+			"point_value": 50,
+			"name": "连续签到30天送50积分",
+			"remarks": ""
+		}],
+		"signDays": "0",
+		"integral": "20",
+        "signToday" : "N"
+	},
+	"exception": "",
+	"funcId": "MXZ090001",
+	"homedir": "",
+	"pageSize": 10,
+	"resultCode": "0000",
+	"resultMsg": "操作成功",
+	"totalCount": 0,
+	"totalPage": 1
+};
+
+const MXZ090002 = {
+	"currentPage": 1,
+	"data":  {
+        "signDays": "2",
+        "integral": "23"
+	},
+	"exception": "",
+	"funcId": "MXZ090002",
+	"homedir": "",
+	"pageSize": 10,
+	"resultCode": "0000",
+	"resultMsg": "操作成功",
+	"totalCount": 0,
+	"totalPage": 1
+};
+
 const data = {
     MXZ030005,
     MXZ040001,
@@ -734,6 +901,14 @@ const data = {
     MXZ030004,
     chargeMoneyTemplate,
     MXZ050001,
+    MXZ050002,
+    MXZ070001,
+    MXZ080002,
+    MXZ060001,
+    MXZ060002,
+    MXZ060003,
+    MXZ090001,
+    MXZ090002
 }
 
 export default function mockData(funcId) {

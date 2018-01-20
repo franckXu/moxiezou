@@ -4,8 +4,8 @@ import log from 'log'
 import { toast } from "@/utils/index"
 
 import serviceFactory from '@/utils/base.service';
-const MXZ040002Service = serviceFactory({
-    'funcId' : 'MXZ040002'
+const MXZ040003Service = serviceFactory({
+    'funcId' : 'MXZ040003'
 })
 
 export default class Index extends wepy.page {
@@ -38,7 +38,7 @@ export default class Index extends wepy.page {
         },
         submit() {
             const formData = this.formData;
-            MXZ040002Service({
+            MXZ040003Service({
                     name: formData.name.value,
                     telephone: formData.telephone.value,
                     job: formData.job.value,

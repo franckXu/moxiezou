@@ -1,9 +1,7 @@
 import wepy from 'wepy';
 
 import log from 'log';
-import {
-    toast
-} from '@/utils/index';
+import { toast } from '@/utils/index';
 import {
     REQUEST_FAIL
 } from 'config';
@@ -12,8 +10,8 @@ import serviceFactory from '@/utils/base.service'
 const MXZ030004Service = serviceFactory({
     funcId: 'MXZ030004'
 });
-const MXZ050001Service = serviceFactory({
-    funcId: 'MXZ050001'
+const MXZ050002Service = serviceFactory({
+    funcId: 'MXZ050002'
 });
 
 export default class Index extends wepy.page {
@@ -58,7 +56,7 @@ export default class Index extends wepy.page {
 
     getMoney(){
         if(this.couponForConsume){
-            return +(this.selectedProd.money) - +(this.couponForConsume.num)
+            return +(this.selectedProd.money) - +(this.couponForConsume.money)
         }else{
             return +(this.selectedProd.money);
         }
@@ -70,15 +68,15 @@ export default class Index extends wepy.page {
             log(this.couponForConsume);
             log(this.selectedProd);
 
-            const { code, title, amounts} = this.selectedProd;
-            MXZ050001Service({
-                    equipId:     this.code,
+            const { id, title, amounts} = this.selectedProd;
+            MXZ050002Service({
+                    equipCode:   this.code,
                     mdCounts:    this.selectedPayType === '4' ? ''+this.getMoney() : '', // 魔豆数量
                     couponId:    this.couponForConsume ? this.couponForConsume.id : '', // 优惠券id
-                    couponMoney: this.couponForConsume ? this.couponForConsume.num : '', // 优惠券金额
+                    couponMoney: this.couponForConsume ? this.couponForConsume.money : '', // 优惠券金额
                     pay_way:     this.selectedPayType, //1	String		支付方式	1支付宝 2微信 3银联 4余额
-                    codeId:      code,
                     money:       this.selectedPayType === '2' ? ''+this.getMoney() : '',
+                    codeId:      id,
                     title,
                     amounts,
                 })
@@ -142,7 +140,7 @@ export default class Index extends wepy.page {
     events = {}
 
     onLoad(option) {
-        this.data.code = option.code;
+        this.code = option.code;
         this.$parent.globalData.couponForConsume = null;
     }
 
@@ -158,14 +156,8 @@ export default class Index extends wepy.page {
     }
     reqMXZ030004() {
         MXZ030004Service({
-            code: this.data.code
-        }).then(({
-            data: {
-                resultCode,
-                resultMsg,
-                data
-            }
-        }) => {
+            code: this.code
+        }).then(({ data: { resultCode, resultMsg, data } }) => {
             if (resultCode === "0000") {
                 this.productInfo = data;
                 this.$apply();

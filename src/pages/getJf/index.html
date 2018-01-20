@@ -21,34 +21,10 @@
         </view>
 
         <view class="rule-list">
-            <view class="rule-item">
+            <view class="rule-item" wx:for="{{signRule}}" wx:key="{{id}}">
                 <view class="inner-box">
-                    <view class="top">+10积分</view>
-                    <view class="bottom">签到一天</view>
-                </view>
-            </view>
-            <view class="rule-item">
-                <view class="inner-box">
-                    <view class="top">+30积分</view>
-                    <view class="bottom">连续签到三天以上</view>
-                </view>
-            </view>
-            <view class="rule-item">
-                <view class="inner-box">
-                    <view class="top">+30积分</view>
-                    <view class="bottom">连续签到三天以上</view>
-                </view>
-            </view>
-            <view class="rule-item">
-                <view class="inner-box">
-                    <view class="top">+30积分</view>
-                    <view class="bottom">连续签到三天以上</view>
-                </view>
-            </view>
-            <view class="rule-item">
-                <view class="inner-box">
-                    <view class="top">+30积分</view>
-                    <view class="bottom">连续签到三天以上</view>
+                    <view class="top">+{{item.point_value}}积分</view>
+                    <view class="bottom">{{item.name}}</view>
                 </view>
             </view>
         </view>

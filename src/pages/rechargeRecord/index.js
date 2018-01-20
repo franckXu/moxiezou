@@ -1,10 +1,16 @@
 import wepy from 'wepy'
 
-import { toast } from "@/utils/index"
-import { REQUEST_FAIL} from 'config'
+import {
+    toast
+} from "@/utils/index"
+import {
+    REQUEST_FAIL
+} from 'config'
 
-import rechargeRecordService from './recharge_record.service.js';
-
+import serviceFactory from '@/utils/base.service'
+const MXZ060003 = serviceFactory({
+    funcId: 'MXZ060003'
+});
 export default class Index extends wepy.page {
     config = {}
     components = {}
@@ -28,22 +34,25 @@ export default class Index extends wepy.page {
     }
 
     requestRechargeRecord() {
-        rechargeRecordService()
-            .then(({
-                data
-            }) => {
-                if (data.ok) {
-                    this.recordList = data.data;
-                    this.$apply()
-                } else {
-                    toast({
-                        title: data.msg || REQUEST_FAIL
-                    })
-                }
-            }, err => {
+        MXZ060003({}).then(({
+            data: {
+                data,
+                resultMsg,
+                resultCode
+            }
+        }) => {
+            if (resultCode === '0000') {
+                this.recordList = data;
+                this.$apply();
+            } else {
                 toast({
-                    title: REQUEST_FAIL
-                })
+                    title: resultMsg || REQUEST_FAIL
+                });
+            }
+        }, err => {
+            toast({
+                title: REQUEST_FAIL
             })
+        })
     }
 }

@@ -1,0 +1,75 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+.page {
+    font-size: 18px;
+    color: #444;
+}
+
+.header {
+    text-align: center;
+    background-color: @col-green;
+    color: #fff;
+    overflow: hidden;
+    .title {
+        font-size: 22px;
+        margin: 10px 0px;
+    }
+    .overview {
+        .display(flex);
+        .flex-direction(row);
+        background-color: rgba(255, 255, 255, .2);
+        padding: 5px;
+        > view {
+            .flex(1);
+            border-right: 1px solid #fff;
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+}
+
+.list {
+    .title {
+        padding: 5px 0px;
+        text-align: center;
+        background-color: #eee;
+
+    }
+    .list-header, .row {
+        .display(flex);
+        > view {
+            .flex(1);
+        }
+    }
+    .list-header {
+        font-weight: bold;
+        text-align: center;
+        background-color: #ddd;
+        padding: 5px 0px;
+    }
+    .row {
+        font-size: 14px;
+        word-break: break-all;
+        text-align: center;
+        &:nth-child(even) {
+            background-color: #eee;
+        }
+        > view {
+            padding: 5px;
+            .display(flex);
+            .align-items(center);
+            .justify-content(center);
+            .flex-direction(column);
+        }
+        .time {
+            .channel {
+                color: #f00;
+            }
+        }
+        .operation {
+            text-align: center;
+            color: @col-green;
+        }
+    }
+}

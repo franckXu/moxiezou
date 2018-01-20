@@ -2,22 +2,27 @@ import wepy from 'wepy'
 
 import log from 'log'
 
+import serviceFactory from '@/utils/base.service'
+const MXZ090001 = serviceFactory({
+    funcId: 'MXZ090001'
+});
+
 export default class Index extends wepy.page {
     config = {
     }
+
     components = {}
 
     data = {
-
+        signRule : []
     }
 
     computed = {}
 
     methods = {
         toCheckin(){
-            // TODO
             wepy.navigateTo({
-                url : "/pages/building/index"
+                url : "/pages/checkin/index"
             })
         }
     }
@@ -27,7 +32,19 @@ export default class Index extends wepy.page {
 
     onReady() {}
 
-    onShow() {}
+    onShow() {
+        MXZ090001({}).then(({ data: { data, resultMsg, resultCode } }) => {
+            if (resultCode === "0000") {
+                this.signRule  = data.signRule;
+                this.$apply();
+            } else {
+                log(resultMsg)
+                toast({
+                    title: '查询失败'
+                })
+            }
+        })
+    }
 
 
 }

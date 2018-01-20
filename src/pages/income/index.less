@@ -1,6 +1,20 @@
 @import "../../libs/flex-less/flex.less";
 @import "../../utils/common.less";
 
+.tabs {
+    .display(flex);
+    > view {
+        .flex(1);
+        text-align: center;
+        height: 38px;
+        line-height: 38px;
+        &.cur {
+            color: @col-green;
+            border-bottom: 3px solid @col-green;
+        }
+    }
+}
+
 .time-range-tabs{
     .display(flex);
     .justify-content(space-between);
