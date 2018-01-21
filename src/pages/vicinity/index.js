@@ -1,13 +1,11 @@
 import wepy from 'wepy'
 import * as bmap from  '../../libs/bmap-wx/bmap-wx.min.js';
-import {  isProd } from 'config';
+import { isProd } from 'config';
 import { toast } from '@/utils/index';
 
 import serviceFactory from '@/utils/base.service';
 const MXZ030002Service = serviceFactory({'funcId' : 'MXZ030002'})
 const MXZ040001Service = serviceFactory({'funcId' : 'MXZ040001'})
-
-// import vicinity_listService from './vicinity_list.service.js';
 
 export default class Index extends wepy.page {
     config = {
@@ -33,7 +31,18 @@ export default class Index extends wepy.page {
             this.getLocation()
         },
         scanCode() {
-            this.scanCode();
+            this.$parent.getBindUserInfo(bindUserInfo=>{
+                if (bindUserInfo.telephone) {
+                    this.scanCode();
+                }else{
+                    wepy.navigateTo({
+                        url : '/pages/login/index'
+                    })
+                }
+            },function(){
+                toast({title : '获取用户信息失败' })
+                console.warn(arguments);
+            })
         },
         openLocation(idx){
             const vicinity = this.vicinityList[idx];
@@ -112,16 +121,14 @@ export default class Index extends wepy.page {
         const self = this;
         wepy.scanCode({
             success({result}) {
-                try{
-                    const code = result.split('?')[1].split('=')[1];
-                    if (code) {
-                        wepy.navigateTo({
-
-
-                            url : `/pages/consume/index?code=${code}`
-                        })
-                    }
-                }catch(err){console.error(err)}
+                const code = result.split('?')[1].split('=')[1];
+                if (code) {
+                    wepy.navigateTo({
+                        url : `/pages/consume/index?code=${code}`
+                    })
+                }else{
+                    toast({title : '扫码异常'})
+                }
             },
             fail(resp) {
                 console.log(resp);

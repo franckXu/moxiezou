@@ -3,6 +3,7 @@ import wepy from 'wepy';
 import log from 'log';
 import { toast } from '@/utils/index';
 import { REQUEST_FAIL } from 'config';
+import Page from '@/components/page/index' // alias example
 
 import serviceFactory from '@/utils/base.service'
 const MXZ030004Service = serviceFactory({
@@ -14,10 +15,12 @@ const MXZ050002Service = serviceFactory({
 
 export default class Index extends wepy.page {
     config = {}
-    components = {}
+    components = {
+        page : Page
+    }
 
     data = {
-        requestIng:false,
+        requestIng:1,
         serviceTel : "400-1633-808",
         productInfo: {},
         code: '',
@@ -160,13 +163,13 @@ export default class Index extends wepy.page {
         }
     }
     reqMXZ030004() {
-        this.requestIng = true;
+        this.requestIng = 1;
         this.$apply();
-        return ;
+
         MXZ030004Service({
-            code: this.code
+            cod1: this.code
         }).then(({ data: { resultCode, resultMsg, data } }) => {
-            this.requestIng = false;
+            this.requestIng = 0;
             if (resultCode === "0000") {
                 this.productInfo = data;
             } else {
@@ -180,7 +183,7 @@ export default class Index extends wepy.page {
             toast({
                 title: REQUEST_FAIL
             })
-            this.requestIng = false;
+            this.requestIng = 0;
             this.$apply();
         })
     }

@@ -1,36 +1,41 @@
-<view>
-    <view class="header">
-
-        <block wx:if="{{userInfo && bindUserInfo}}">
+<block wx:if="{{userInfo && bindUserInfo}}">
+    <view>
+        <view class="header">
             <image src="{{userInfo.avatarUrl || ''}}" class="avatar" />
             <view>{{ userInfo.nickName || ''}}</view>
-            <view>{{bindUserInfo.telephone || ''}}</view>
-        </block>
-        <block wx:else>
-            <view>未登录</view>
-        </block>
-    </view>
 
-    <view class="menu-group">
-        <view @tap="toPage('jf')" class="menu">
-            <image src="/images/icon-integral.png" />
-            <view>积分</view>
+            <view class="telephone">
+                <view wx:if="{{bindUserInfo.telephone}}">{{bindUserInfo.telephone}}</view>
+                <view wx:else @tap="toLoginPage()">去绑定手机号</view>
+            </view>
         </view>
-        <view @tap="toPage('coupon')" class="menu">
-            <image src="/images/icon-coupon.png" />
-            <view>优惠券</view>
-        </view>
-        <view @tap="toPage('orderList')" class="menu">
-            <image src="/images/icon-consume.png" />
-            <view>消费</view>
-        </view>
-    </view>
-    <view class="content">
-        <view @tap="toPage('iAmProxy')"> <text>我是代理</text> <text>&gt;</text> </view>
-        <view @tap="toPage('join')"> <text>代理商加盟</text> <text>&gt;</text> </view>
-        <view @tap="toPage('feedback')"> <text>意见反馈</text> <text>&gt;</text></view>
-        <view @tap="toPage('guide')"> <text>用户指南</text> <text>&gt;</text></view>
-        <view @tap="toPage('aboutUs')"> <text>关于我们</text> <text>&gt;</text></view>
-    </view>
 
-</view>
+        <view class="menu-group">
+            <view @tap="toPage('jf')" class="menu">
+                <image src="/images/icon-integral.png" />
+                <view>积分</view>
+            </view>
+            <view @tap="toPage('coupon')" class="menu">
+                <image src="/images/icon-coupon.png" />
+                <view>优惠券</view>
+            </view>
+            <view @tap="toPage('orderList')" class="menu">
+                <image src="/images/icon-consume.png" />
+                <view>消费</view>
+            </view>
+        </view>
+        <view class="content">
+            <view @tap="toPage('iAmProxy')" wx:if="{{bindUserInfo.roleId === '1' || bindUserInfo.roleId === '2' }}">
+            <text>我是代理</text> <text>&gt;</text> </view>
+            <view @tap="toPage('join')" wx:if="{{bindUserInfo.roleId !== '1' && bindUserInfo.roleId !== '2' }}">
+            <text>代理商加盟</text> <text>&gt;</text> </view>
+            <view @tap="toPage('feedback')"> <text>意见反馈</text> <text>&gt;</text></view>
+            <view @tap="toPage('guide')"> <text>用户指南</text> <text>&gt;</text></view>
+            <view @tap="toPage('aboutUs')"> <text>关于我们</text> <text>&gt;</text></view>
+        </view>
+
+    </view>
+</block>
+<block wx:else>
+    <view class="text-center mt-20">加载中</view>
+</block>

@@ -5,9 +5,14 @@ const MXZ010002 = {
         "coupon": "1",
         "integral": "20",
         "md": "101",
-        "telephone": "18627565223",
+        "telephone": "",
+        // "telephone": "18627565223",
         "pic": "http:\/\/39.108.103.238:8088\/\/\/mmdAvator\/d916de02-f08a-4bee-af78-3b46e72451dd.jpg",
-        "userId": "8"
+        "userId": "8",
+        "consuemrId" : "顾客id",
+        "consumerId" :"用户ID",
+        "roleId":"9", // 0-商户 1-一级代理 2-二级代理 9-系统管理员
+        "subscribeWay":"1" // 1-购机2-交押金3-认购 4-渠道商
     },
     "exception": "",
     "funcId": "MXZ010002",

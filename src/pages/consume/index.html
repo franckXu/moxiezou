@@ -1,5 +1,5 @@
-<view class="page">
-    <block wx:if="{{!requestIng}}">
+<page :requestIng.sync="requestIng">
+    <view slot="content">
         <block wx:if="{{productInfo && productInfo.template && productInfo.template.templateDtl}}">
             <image class="product-pic" src="{{productInfo.template.pic}}" />
             <view class="consume-list">
@@ -60,10 +60,9 @@
             </view>
         </block>
         <block wx:else>
-            <view>
+            <view class="text-center">
                 没有数据
             </view>
         </block>
-    </block>
-    <block wx:else><view class="page-loading">加载中...</view></block>
-</view>
+    </view>
+</page>

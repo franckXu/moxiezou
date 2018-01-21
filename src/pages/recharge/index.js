@@ -53,28 +53,33 @@ export default class Index extends wepy.page {
             log(this.chargeTemplate.data[idx]);
         },
         tapCharge(){
-            // TODO how to charge? call wx.pay
-            if (this.$parent.globalData.bindUserInfo) {
-                MXZ060002({
-                    amount :  this.chargeTemplate.data[this.chargeTemplate.cur].amount,
-                    money : this.chargeTemplate.data[this.chargeTemplate.cur].money
-                }).then(({ data: { resultCode, resultMsg, data } }) => {
-                    if (resultCode === "0000") {
-                        toast({title:'充值成功'})
-                        this.fetchChargeTemplate();
-                    } else {
+            this.$parent.getBindUserInfo(bindUserInfo=>{
+                if (bindUserInfo.telephone) {
+                    MXZ060002({
+                        amount :  this.chargeTemplate.data[this.chargeTemplate.cur].amount,
+                        money : this.chargeTemplate.data[this.chargeTemplate.cur].money
+                    }).then(({ data: { resultCode, resultMsg, data } }) => {
+                        if (resultCode === "0000") {
+                            toast({title:'充值成功'})
+                            this.fetchChargeTemplate();
+                        } else {
+                            toast({title:'充值失败'})
+                        }
+                    }, err => {
                         toast({title:'充值失败'})
-                    }
-                }, err => {
-                    toast({title:'充值失败'})
-                    self.chargeTemplate.status = 3;
-                    self.$apply()
-                })
-            }else{
-                wepy.navigateTo({
-                    url : "/pages/login/index"
-                })
-            }
+                        self.chargeTemplate.status = 3;
+                        self.$apply()
+                    })
+                }else{
+                    wepy.navigateTo({
+                        url : '/pages/login/index'
+                    })
+                }
+            },function(){
+                toast({title : '获取用户信息失败' })
+                console.warn(arguments);
+            })
+
         }
     }
 

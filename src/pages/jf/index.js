@@ -68,11 +68,10 @@ export default class Index extends wepy.page {
 
     onShow() {
         const self = this;
-        self.$parent.getBindUserInfo()
-            .then(bindUserInfo=>{
+        self.$parent.getBindUserInfo(bindUserInfo=>{
                 self.bindUserInfo = bindUserInfo;
                 self.$apply();
-            },err=>{
+            },function(){
                 toast({title : '获取用户信息'})
             })
     }

@@ -1,16 +1,15 @@
 <view>
     <view class='header'>
-        <view class='header-top'>
-            <!-- <text @tap="toLoginPage()">{{bindUserInfo ? "" : "点击登录"}}</text> -->
-            <text @tap="toOrderRecord()">摩豆记录</text>
-        </view>
         <view class='balance-info'>
             <view class="my-modou">
                 <image src="/images/icon-modou.png" />
                 <text> 我的余额 (摩豆)</text>
             </view>
             <text class='money'>{{myAmount}}</text>
-            <text class='desc'>查看充值记录 ></text>
+            <view class="desc">
+                <text wx:if="{{bindUserInfo.telephone}}" @tap="toOrderRecord()">查看充值记录 ></text>
+                <text wx:else @tap="toLoginPage()" >绑定手机</text>
+            </view>
         </view>
     </view>
     <text>{{ userInfo.nikeName }}</text>

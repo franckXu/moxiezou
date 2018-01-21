@@ -1,7 +1,7 @@
 import wepy from 'wepy'
 
 import log from "log"
-
+import { isProd } from 'config';
 
 import serviceFactory from '@/utils/base.service'
 const MXZ020002Service = serviceFactory({funcId:'MXZ020002'});
@@ -18,9 +18,9 @@ export default class Index extends wepy.page {
 
     data = {
         formData: {
-            tel: '13012341234',
+            tel: isProd ? null : '13012341234',
             imageCode: '',
-            validCode: '1231'
+            validCode: isProd ? null : '1231'
         },
         imageCodeSrc: "",
         validCodeCountdown: 0
@@ -61,9 +61,16 @@ export default class Index extends wepy.page {
                 Code : this.formData.validCode
             }).then(({data:{data,resultMsg,resultCode}})=>{
                 if (resultCode === '0000') {
+                    this.$parent.getBindUserInfoForServer(()=>{
+                        if(!isProd )
+                            this.$parent.globalData.bindUserInfo.telephone = "13912341234";
+                        wepy.navigateBack()
+                    },function(){
+                        toast({title :REQUEST_FAIL})
+                        console.warn(arguments);
+                    })
                     // this.$parent.globalData.bindUserInfo = data.
                     // TODO 此处绑定成功，返回到上一个页，就可以继续操作？
-                    wepy.navigateBack()
                 }else{
                     toast({title: resultMsg})
                 }

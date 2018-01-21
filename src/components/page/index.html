@@ -1,0 +1,10 @@
+<view class="page">
+    <block wx:if="{{requestIng}}">
+         <view class="page-loading">加载中...</view>
+    </block>
+    <block wx:else>
+        <slot name="content">
+            content
+        </slot>
+    </block>
+</view>

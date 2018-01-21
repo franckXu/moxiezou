@@ -2,22 +2,23 @@ import wepy from 'wepy'
 import 'wepy-async-function'
 
 import log from 'log';
-import {isProd} from 'config';
+import { isProd } from 'config';
 
-import serviceFactory from '@/utils/base.service';
 import { toast } from '@/utils/index';
+import serviceFactory from '@/utils/base.service';
 const MXZ010001Service = serviceFactory({
-    'funcId' : 'MXZ010001'
+    'funcId': 'MXZ010001'
 })
 const MXZ010002Service = serviceFactory({
-    'funcId' : 'MXZ010002'
+    'funcId': 'MXZ010002'
 })
 
 export default class extends wepy.app {
     config = {
         pages: [
-            'pages/income/index',
+            'pages/welcome/index',
             'pages/vicinity/index',
+            'pages/income/index',
             'pages/incomeDetail/index',
             'pages/dayIncome/index',
             'pages/getJf/index',
@@ -78,9 +79,9 @@ export default class extends wepy.app {
         userInfo: null,
         appUserInfo: null,
         MXZ010001: null,
-        siteForAddDevice : null,
-        editDevice : null,
-        couponForConsume : null,
+        siteForAddDevice: null,
+        editDevice: null,
+        couponForConsume: null,
     }
 
     constructor() {
@@ -88,99 +89,9 @@ export default class extends wepy.app {
         this.use('requestfix')
     }
 
-    getBindUserInfo() {
-        return new Promise((res,rej)=>{
-            if(this.globalData.bindUserInfo){
-                return res(this.globalData.bindUserInfo);
-            }else{
-                MXZ010002Service()
-                    .then(({ data: { data, resultCode, resultMsg } }) => {
-                        if (resultCode === '0000') {
-                            this.globalData.bindUserInfo =
-                                data ? data : isProd ? {
-                                    integral : "100",
-                                    pic : "http://39.108.103.238:8088///upfile/img/icon/empty.png",
-                                    role : "普通用户",
-                                    telephone : "18627565223",
-                                    userId : "8"
-                                } : null;
-
-                            return res(this.globalData.bindUserInfo)
-                        } else {
-                            console.log(resultMsg);
-                            rej()
-                        }
-                    }, err => {
-                        rej()
-                        /* toast({
-                            title: '获取用户信息失败'
-                        }) */
-                    })
-            }
-        })
-    }
-
     onLaunch() {
-        // this.testAsync()
-        this.login()
+        // this.login()
     }
-
-    login(){
-        const self = this;
-        this.getUserInfo(function(userInfo) {
-            self.globalData.userInfo = userInfo;
-            log(userInfo)
-
-            wepy.checkSession({
-                success() {
-                    this.getBindUserInfo()
-                },
-                fail() {
-                    //登录态过期
-                    console.log('sessionId invalid');
-                    wepy.login({
-                        success(res) {
-                            log(res);
-                            MXZ010001Service({
-                                    code: res.code,
-                                    encryptedData: self.globalData.userInfo.encryptedData,
-                                    iv: self.globalData.userInfo.iv
-                                })
-                                .then(({data:{ data, resultCode, resultMsg }}) => {
-                                    console.log(data, resultCode, resultMsg);
-                                    wepy.setStorage({
-                                        key:"sessionId",
-                                        data: data && data.sessionId ? data.sessionId : isProd ? '' : 'test666',
-                                        success(){
-                                            this.getBindUserInfo()
-                                        }
-                                    })
-                                }, err => {
-                                    isProd || wepy.setStorage({
-                                        key:"sessionId",
-                                        data: data.sessionId || "test666"
-                                    })
-                                })
-                        }
-                    })
-                }
-            })
-
-        })
-    }
-
-    /* sleep(s) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve('promise resolved')
-            }, s * 1000)
-        })
-    } */
-
-    /* async testAsync() {
-        const data = await this.sleep(3)
-        console.log(data)
-    } */
 
     getUserInfo(cb) {
         const that = this
@@ -194,4 +105,86 @@ export default class extends wepy.app {
             }
         })
     }
+
+    login(succFn=()=>{}, failFn=()=>{}) {
+        const self = this;
+        wepy.checkSession({
+            success() {
+                // token valid
+                return self.getBindUserInfoForServer(succFn, failFn)
+            },
+            fail() {
+                //token invalid
+                console.log('sessionId invalid');
+                wepy.login({
+                    success({ code }) {
+                        wepy.getUserInfo({
+                            withCredentials: true,
+                            success({ encryptedData, iv }) {
+                                MXZ010001Service({ code, encryptedData, iv })
+                                    .then(({ data: { data, resultCode, resultMsg } }) => {
+                                        console.log(data, resultCode, resultMsg);
+                                        wepy.setStorage({
+                                            key: "sessionId",
+                                            data: data && data.sessionId ? data.sessionId : '',
+                                            success() {
+                                                self.getBindUserInfo(succFn, failFn)
+                                            },
+                                            fail() {
+                                                failFn(arguments);
+                                                console.warn(arguments);
+                                            }
+                                        })
+                                    }, function(){
+                                        failFn(arguments);
+                                        console.log(err);
+                                    })
+
+                            },
+                            fail(){
+                                failFn(arguments);
+                                console.log(arguments);
+                            }
+                        })
+                    },
+                    fail() {
+                        failFn(arguments)
+                        console.log(res)
+                    }
+                })
+            }
+        })
+    }
+
+    getBindUserInfoForServer(succFn,failFn){
+        if (wepy.getStorageSync('sessionId')) {
+            MXZ010002Service()
+                .then(({ data: { data, resultCode, resultMsg } }) => {
+                    if (resultCode === '0000') {
+                        this.globalData.bindUserInfo = data;
+                        succFn(this.globalData.bindUserInfo)
+                    } else {
+                        console.warn(resultMsg);
+                        failFn(resultMsg)
+                    }
+                }, function() {
+                    failFn(arguments)
+                    console.warn(arguments);
+                })
+        } else {
+            console.warn('storage\'s sessionId is empty');
+            failFn('storage\'s sessionId is empty');
+        }
+
+    }
+
+    getBindUserInfo(succFn, failFn) {
+        if (this.globalData.bindUserInfo) {
+            succFn(this.globalData.bindUserInfo);
+        } else {
+            this.login(succFn,failFn);
+
+        }
+    }
+
 }
