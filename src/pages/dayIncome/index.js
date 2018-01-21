@@ -14,10 +14,17 @@ export default class Index extends wepy.page {
     }
 
     methods = {
+        toIncomeDetail(item) {
+            wepy.navigateTo({
+                url: `/pages/incomeDetail/index?idx=${item}`
+            })
+        }
     }
 
     events = {}
-    onLoad() {}
+    onLoad(options) {
+        console.log(options);
+    }
 
     onReady() {
     }

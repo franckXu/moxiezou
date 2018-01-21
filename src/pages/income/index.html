@@ -1,13 +1,26 @@
 <view class="tabs">
-    <view @tap="changeTime('0')" class="{{curTimeTab === '0' ? 'cur' : '' }}">昨天</view>
-    <view @tap="changeTime('1')" class="{{curTimeTab === '1' ? 'cur' : '' }}">今天</view>
-    <view @tap="changeTime('2')" class="{{curTimeTab === '2' ? 'cur' : '' }}">本周</view>
-    <view @tap="changeTime('3')" class="{{curTimeTab === '3' ? 'cur' : '' }}">本月</view>
+    <view @tap="clickTab(0)" class="{{curTab === 0 ? 'cur' : '' }}">昨天</view>
+    <view @tap="clickTab(1)" class="{{curTab === 1 ? 'cur' : '' }}">今天</view>
+    <view @tap="clickTab(2)" class="{{curTab === 2 ? 'cur' : '' }}">本周</view>
+    <view @tap="clickTab(3)" class="{{curTab === 3 ? 'cur' : '' }}">本月</view>
 </view>
 
-<view class="list">
-    <view wx:for="{{list}}" wx:key="idx" class="item" @tap="toDayIncome({{item}})">
-        <view>{{item.time}}</view>
-        <view>{{item.money}}元 > </view>
-    </view>
-</view>
+<swiper @change="change()" current="{{curTab}}" class="swiper" style="height: {{listHeight}}px;">
+    <swiper-item>
+        <view class="list">
+            <view wx:for="{{list}}" wx:key="idx" class="item" @tap="toDayIncome({{item}})">
+                <view>{{item.time}}</view>
+                <view>{{item.money}}元 > </view>
+            </view>
+        </view>
+    </swiper-item>
+    <swiper-item>
+        1
+    </swiper-item>
+    <swiper-item>
+        2
+    </swiper-item>
+    <swiper-item>
+        3
+    </swiper-item>
+</swiper>

@@ -1,0 +1,24 @@
+@import './common.less';
+@import '../libs/flex-less/flex.less';
+
+.page(){
+    .page-loading{
+        text-align: center;
+        margin-top: 30px;
+        color:#666;
+    }
+}
+
+.tabs() {
+    .display(flex);
+    > view {
+        .flex(1);
+        text-align: center;
+        height: 38px;
+        line-height: 38px;
+        &.cur {
+            color: @col-green;
+            border-bottom: 3px solid @col-green;
+        }
+    }
+}

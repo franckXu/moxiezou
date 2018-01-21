@@ -1,6 +1,7 @@
 import wepy from 'wepy'
 import * as bmap from  '../../libs/bmap-wx/bmap-wx.min.js';
 import {  isProd } from 'config';
+import { toast } from '@/utils/index';
 
 import serviceFactory from '@/utils/base.service';
 const MXZ030002Service = serviceFactory({'funcId' : 'MXZ030002'})

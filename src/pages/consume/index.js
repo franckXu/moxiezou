@@ -2,9 +2,7 @@ import wepy from 'wepy';
 
 import log from 'log';
 import { toast } from '@/utils/index';
-import {
-    REQUEST_FAIL
-} from 'config';
+import { REQUEST_FAIL } from 'config';
 
 import serviceFactory from '@/utils/base.service'
 const MXZ030004Service = serviceFactory({
@@ -19,6 +17,8 @@ export default class Index extends wepy.page {
     components = {}
 
     data = {
+        requestIng:false,
+        serviceTel : "400-1633-808",
         productInfo: {},
         code: '',
         payTypes: [{
@@ -135,6 +135,11 @@ export default class Index extends wepy.page {
         chgPayType(n, e) {
             this.selectedPayType = e.detail.value;
         },
+        callCustomerService(){
+            wepy.makePhoneCall({
+                phoneNumber: this.serviceTel
+            })
+        }
     }
 
     events = {}
@@ -145,32 +150,38 @@ export default class Index extends wepy.page {
     }
 
     onReady() {
-        this.reqMXZ030004()
     }
 
     onShow() {
+        this.reqMXZ030004()
         if (this.$parent.globalData.couponForConsume) {
             this.couponForConsume = this.$parent.globalData.couponForConsume;
             this.$apply();
         }
     }
     reqMXZ030004() {
+        this.requestIng = true;
+        this.$apply();
+        return ;
         MXZ030004Service({
             code: this.code
         }).then(({ data: { resultCode, resultMsg, data } }) => {
+            this.requestIng = false;
             if (resultCode === "0000") {
                 this.productInfo = data;
-                this.$apply();
             } else {
                 log(resultMsg)
                 toast({
                     title: '查询失败'
                 })
             }
+            this.$apply();
         }, err => {
             toast({
                 title: REQUEST_FAIL
             })
+            this.requestIng = false;
+            this.$apply();
         })
     }
     requestPayment(data){

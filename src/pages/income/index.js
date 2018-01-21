@@ -19,7 +19,7 @@ const mockData = type => {
             date = '04';
     }
 
-    for (let i = 0, len = 23; i < len; i++) {
+    for (let i = 0, len =53; i < len; i++) {
         ret.push({
             idx: i,
             time: `2018-01-${date}`,
@@ -35,19 +35,28 @@ export default class Index extends wepy.page {
 
     data = {
         list: [],
-        curTimeTab: '0'
+        curTab: 0,
+        listHeight: 300
     }
 
     computed = {}
 
     methods = {
-        changeTime(time) {
-            this.list = mockData(time);
-            this.curTimeTab = time;
+        clickTab(time) {
+            // this.list = mockData(time);
+            this.curTab = +time;
             this.$apply();
-        }
+        },
         toDayIncome(item){
-            console.log(item);
+            wepy.navigateTo({
+                url : `/pages/dayIncome/index?${Object.keys(item).map(k=>{ return `${k}=${item[k]}` }).join('&')}`
+            })
+        },
+        change(n,{detail:{current,source}}){
+            if (source === 'touch') {
+                this.curTab = current;
+                this.$apply();
+            }
         }
     }
 
@@ -57,7 +66,15 @@ export default class Index extends wepy.page {
     onReady() {}
 
     onShow() {
+        const self = this;
         this.list  = mockData('1');
+        wepy.getSystemInfo({
+            success({ windowHeight }) {
+                self.listHeight = windowHeight - 38;
+                self.$apply();
+            }
+        })
+
     }
 
 
