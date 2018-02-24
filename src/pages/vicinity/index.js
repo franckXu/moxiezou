@@ -3,6 +3,8 @@ import * as bmap from  '../../libs/bmap-wx/bmap-wx.min.js';
 import { isProd } from 'config';
 import { toast } from '@/utils/index';
 
+import EmptyView from '@/components/emptyView/index'
+
 import serviceFactory from '@/utils/base.service';
 const MXZ030002Service = serviceFactory({'funcId' : 'MXZ030002'})
 const MXZ040001Service = serviceFactory({'funcId' : 'MXZ040001'})
@@ -11,14 +13,16 @@ export default class Index extends wepy.page {
     config = {
         enablePullDownRefresh: true
     }
-    components = {}
+    components = {
+        emptyView : EmptyView
+    }
 
     data = {
         userInfo: {
             nickName: '加载中...'
         },
         wxMarkerData: null,
-        vicinityList: [],
+        vicinityList: null,
         getLocationInfoState: 0, // 0=>常状,1=>请求中
         bannerList : [],
     }
@@ -31,7 +35,8 @@ export default class Index extends wepy.page {
             this.getLocation()
         },
         scanCode() {
-            this.$parent.getBindUserInfo(bindUserInfo=>{
+            this.scanCode();
+            /* this.$parent.getBindUserInfo(bindUserInfo=>{
                 if (bindUserInfo.telephone) {
                     this.scanCode();
                 }else{
@@ -42,11 +47,10 @@ export default class Index extends wepy.page {
             },function(){
                 toast({title : '获取用户信息失败' })
                 console.warn(arguments);
-            })
+            }) */
         },
         openLocation(idx){
             const vicinity = this.vicinityList[idx];
-            console.log('----',vicinity);
             wepy.openLocation({
                 latitude:  +vicinity.gps_y,
                 longitude: +vicinity.gps_x,
@@ -56,7 +60,12 @@ export default class Index extends wepy.page {
     }
 
 
-    events = {}
+    events = {
+        retry(){
+            this.vicinityList = null;
+            this.reqVicinityList();
+        }
+    }
 
     onLoad() {
         this.getLocation()
@@ -69,8 +78,6 @@ export default class Index extends wepy.page {
                 if (resultCode === '0000') {
                     this.bannerList = data;
                     this.$apply();
-
-                    console.log(data);
                 }else{
                     toast({title:resultMsg})
                 }
@@ -80,40 +87,34 @@ export default class Index extends wepy.page {
     }
 
     onPullDownRefresh(){
-        this.vicinityList = [];
-        this.reqVicinityList()
-        wepy.stopPullDownRefresh()
-    }
-
-    onReachBottom() {
-
-        /* wepy.showLoading({
-            title: '加载中'
-        })
-
-        this.reqVicinityList() */
+        // this.vicinityList = null;
+        this.reqVicinityList();
     }
 
     reqVicinityList() {
+        // wepy.showLoading();
         MXZ030002Service({
-            gpsX:  this.wxMarkerData.latitude,
-            gpsY: this.wxMarkerData.longitude,
-            pageSize: '',
+            gpsX:        this.wxMarkerData.longitude,
+            gpsY:        this.wxMarkerData.latitude,
+            pageSize:    '',
             currentPage: '',
         })
         .then(({data:{data,resultMsg,resultCode}})=>{
-            wepy.hideLoading()
+            // wepy.hideLoading()
             if (resultCode === '0000') {
-                this.vicinityList = [].concat(this.vicinityList, data);
-                this.$apply();
+                this.vicinityList = data;
             }else{
+                this.vicinityList = null;
                 toast({title:resultMsg})
             }
+            this.$apply();
+            wepy.stopPullDownRefresh();
         },err=>{
             wepy.showToast({
                 title: '加载更多失败',
             })
-            wepy.hideLoading()
+            // wepy.hideLoading()
+            wepy.stopPullDownRefresh();
         })
     }
 

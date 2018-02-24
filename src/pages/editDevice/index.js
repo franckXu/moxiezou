@@ -44,12 +44,20 @@ export default class Index extends wepy.page {
             'providerId': {
                 label: '设备拥有者'
             },
+            'site': {
+                label: '场地'
+            },
         }
     }
 
     computed = {}
 
     methods = {
+        chooseSite(){
+            wepy.navigateTo({
+                url : `/pages/siteList/index`
+            })
+        },
         chooseTemplate(){
             wepy.navigateTo({
                 url : `/pages/templateList/index`
@@ -59,16 +67,18 @@ export default class Index extends wepy.page {
             const self = this;
             wepy.chooseLocation({
                 success({ name, address, latitude, longitude }) {
+                    // chooseLocation是异步的,不确定会onShow之前触发还是之后触发
                     self.formData.address.value = address;
                     self.formData.gpsX.value = longitude;
                     self.formData.gpsY.value = latitude;
-                    self.$apply()
+                    self.$apply();
+
+                    // self.$parent.globalData.editDevice.address  = address;
+                    // self.$parent.globalData.editDevice.gps_x = longitude;
+                    // self.$parent.globalData.editDevice.gps_y = latitude;
                 },
                 fail(resp) {
-                    console.log(resp)
-                },
-                complet(resp) {
-                    console.log(resp)
+                    console.warn(resp)
                 }
             })
         },
@@ -80,7 +90,9 @@ export default class Index extends wepy.page {
                 "gpsX": ''+formData.gpsX.value,
                 "gpsY": ''+formData.gpsY.value,
                 "address": formData.address.value,
-                "operation" : '1',
+                "operation" : '2',
+                "templateId" : formData.template.value.id,
+                "fieldId": formData.site.value.id,
                 /* "mchId": "8",
                 "type": "0",
                 "online": "1",
@@ -91,6 +103,9 @@ export default class Index extends wepy.page {
                 if (resultCode === '0000') {
                     toast({title: '录入成功'})
                     this.resetForm();
+                    this.$parent.globalData.editDevice = null;
+                    this.$parent.globalData.siteForAddDevice = null;
+                    wepy.navigateBack();
                 }else{
                     toast({title:resultMsg})
                 }
@@ -110,6 +125,8 @@ export default class Index extends wepy.page {
         this.formData['gpsY'].value = '';
         this.formData['gpsX'].value = '';
         this.formData['address'].value = '';
+        this.formData['site'].value = null;
+        this.formData['template'].value = null;
         this.$apply();
     }
 
@@ -122,12 +139,28 @@ export default class Index extends wepy.page {
     }
 
     onShow() {
-        const editDevice = this.$parent.globalData.editDevice;
-        Object.keys(editDevice)
-            .forEach(key=>{
-                this.formData[key].value = editDevice[key];
-            })
+        const {editDevice,templateForEditDevice,siteForAddDevice} = this.$parent.globalData;
 
+        if (editDevice) {
+            Object.keys(this.formData)
+                .forEach(key=>{
+                    this.formData[key].value = editDevice[key];
+                })
+
+            this.formData['gpsX'].value = editDevice.gps_x;
+            this.formData['gpsY'].value = editDevice.gps_y;
+            this.$parent.globalData.editDevice = null;
+        }
+
+        if (templateForEditDevice) {
+            this.formData.template.value = templateForEditDevice;
+            this.$parent.globalData.templateForEditDevice = null;
+        }
+
+        if (siteForAddDevice) {
+            this.formData.site.value = siteForAddDevice;
+            this.$parent.globalData.siteForAddDevice = null;
+        }
         this.$apply();
     }
 

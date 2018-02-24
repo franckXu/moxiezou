@@ -1,12 +1,18 @@
-<view class="empty">
-    <image src="/images/empty.png" class="empty-image" />
-    <view class="txt">您还没有摩豆记录</view>
-</view>
-<view>
-    <view class="charge-record-item"
-            wx:for="{{recordList}}" wx:for-index="idx" wx:key="idx" >
-        <view class="charge-word">充</view>
-        <view class="date">{{item.c_date}}</view>
-        <view class="num">{{item.amount}}<text class="prefix">个</text></view>
+<page :requestIng.sync="requestIng">
+    <view slot="content">
+        <view wx:if="{{recordList !== null}}">
+            <view wx:if="{{recordList.length}}">
+                <scroll-view class="" scroll-y style="height: {{listHeight}}px;" @scrolltolower="scrolltolower()">
+                    <view class="charge-record-item" wx:for="{{recordList}}" wx:for-index="idx" wx:key="idx">
+                        <view class="charge-word">充</view>
+                        <view class="date">{{item.c_date}}</view>
+                        <view class="num">{{item.amount}}<text class="prefix">个</text></view>
+                    </view>
+                </scroll-view>
+            </view>
+            <view wx:else>
+                <emptyView :title="emptyTips" :height.sync="emptyViewHeight"></emptyView>
+            </view>
+        </view>
     </view>
-</view>
+</page>

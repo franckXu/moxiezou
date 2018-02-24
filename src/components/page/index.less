@@ -2,10 +2,28 @@
 @import "../../utils/common.less";
 @import "../../utils/component.less";
 
-.page{
-    .page();
+@-webkit-keyframes move_eye {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-.tabs{
+@keyframes move_eye {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.page {
+    .page();
+    .page-loading image{
+        transform: rotate(10deg);
+        -webkit-animation: 2s linear 0s infinite reverse move_eye;
+        animation: 2s linear 0s infinite reverse move_eye;
+        margin-bottom: 10px;
+        width:85px / 2;
+        height:85px / 2;
+    }
+}
+
+.tabs {
     .tabs();
 }

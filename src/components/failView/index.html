@@ -1,0 +1,7 @@
+<view class="empty-data-view" style="height:{{height === 'full' ? windowHeight : height || 130}}px;"
+    @tap="tap()">
+    <view class="innerBox">
+        <image class="pic-empty" src="/images/network-fail.png"></image>
+        <view>{{ txt || '加载失败,轻点重试'}}</view>
+    </view>
+</view>

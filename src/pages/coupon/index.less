@@ -1,18 +1,18 @@
 @import "../../libs/flex-less/flex.less";
 @import "../../utils/common.less";
-.page {
+.list {
     background-color: @col-eee;
     .display(flex);
     .flex-direction(column);
-    min-height: 600px;
+    padding-top: 10px;
+    box-sizing:border-box;
 }
 
 .item {
     .display(flex);
     .flex-direction(row);
-    margin: 15px 15px 0px;
-    background-color: #FFF;
-
+    margin: 0px 10px 10px;
+    background-color: #fff;
     .price {
         .flex(1, 1, auto);
         .display(flex);
@@ -22,7 +22,7 @@
         color: @col-green;
         border-right: 1px dashed @col-green;
         .num {
-            font-size: 48px;
+            font-size: 38px;
         }
     }
     .info {

@@ -5,7 +5,7 @@ import { toast } from "@/utils/index"
 
 import serviceFactory from '@/utils/base.service';
 const MXZ040001Service = serviceFactory({
-    'funcId' : 'MXZ040001'
+    'funcId' : 'MXZ040002'
 })
 
 export default class Index extends wepy.page {

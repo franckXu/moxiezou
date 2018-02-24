@@ -44,7 +44,8 @@ image{
     .align-items(center);
     .icon-coordinate{
         .flex(none);
-        .icon-size();
+        width: 16px;
+        height:20px;
         padding: 0px 5px;
     }
     text{
@@ -59,7 +60,7 @@ image{
     .icon-refresh{
         .flex(none);
         .icon-size();
-        padding: 0px 5px;
+        padding: 0px 10px;
     }
 }
 
@@ -104,8 +105,8 @@ image{
     .display(flex);
     .justify-content(space-between);
     .align-items(center);
-    margin:5px 8px 5px 5px;
-    padding-bottom:10px;
+    padding:5px 8px 15px 5px;
+    border-top:1px solid @col-eee;
     .vicinity-item-right{
         .flex(none);
         width:38px;
@@ -115,9 +116,10 @@ image{
         color:gray;
     }
 }
+
 .qrcode-btn{
     background-color:@col-green;
-    border-radius : 15px;
+    border-radius : 100px;
     color:white;
     width:130px !important;
     height:38px;
@@ -131,6 +133,9 @@ image{
         .icon-size();
         margin-right: 5px;
         vertical-align:middle;
+    }
+    &:hover{
+        background-color:#16b88b;
     }
 }
 .list-wrap{

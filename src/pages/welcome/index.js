@@ -13,7 +13,7 @@ export default class Index extends wepy.page {
 
     data = {
         requestIng : 0,
-        loadFail : false
+        loadSucc : true,
     }
 
     computed = {
@@ -21,17 +21,31 @@ export default class Index extends wepy.page {
 
     methods = {
         retry(){
-            this.loadUserInfo();
+            this.retry();
         }
     }
 
-    events = {}
+    events = {
+        retry(){
+            this.retry();
+        }
+    }
     onLoad() {}
 
     onReady() { }
 
     onShow(){
         this.loadUserInfo();
+    }
+
+    retry(){
+        const self = this;
+        wx.removeStorage({
+            key: 'sessionId',
+            success: function(res) {
+                self.loadUserInfo();
+            }
+        })
     }
 
     loadUserInfo(){
@@ -41,16 +55,17 @@ export default class Index extends wepy.page {
 
         this.$parent.getBindUserInfo(()=>{
             wx.switchTab({
-                url : `/pages/userCentre/index`
+                url : `/pages/vicinity/index`
             })
-            /* self.requestIng = 0;
-            self.loadFail = false;
-            self.$apply(); */
-        },function(){
-            self.loadFail = true;
+        },function(res){
+            self.loadSucc = false;
             self.requestIng = 0;
             self.$apply();
+
             console.warn(arguments);
+            if (typeof(res) === 'string') {
+                toast({title : res})
+            }
         })
 
     }

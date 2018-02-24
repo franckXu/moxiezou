@@ -1,6 +1,5 @@
 import wepy from 'wepy'
 
-import log from "log"
 import { isProd } from 'config';
 
 import serviceFactory from '@/utils/base.service'
@@ -17,9 +16,10 @@ export default class Index extends wepy.page {
     components = {}
 
     data = {
+        userInfo : null,
         formData: {
-            tel: isProd ? null : '13012341234',
-            imageCode: '',
+            tel: null,
+            // imageCode: '',
             validCode: isProd ? null : '1231'
         },
         imageCodeSrc: "",
@@ -33,7 +33,6 @@ export default class Index extends wepy.page {
                 // imageCode,
                 validCode
             } = this.formData;
-            // log(!(/^1\d{10}/.test(tel) && imageCode && validCode))
             return !(/^1\d{10}/.test(tel) && validCode)
         }
     }
@@ -58,12 +57,11 @@ export default class Index extends wepy.page {
         tapBindBtn() {
             MXZ020001Service({
                 phoneNum : this.formData.tel,
-                Code : this.formData.validCode
-            }).then(({data:{data,resultMsg,resultCode}})=>{
+                code : this.formData.validCode
+            }).then((resp)=>{
+                const {data,resultMsg,resultCode} = resp.data;
                 if (resultCode === '0000') {
                     this.$parent.getBindUserInfoForServer(()=>{
-                        if(!isProd )
-                            this.$parent.globalData.bindUserInfo.telephone = "13912341234";
                         wepy.navigateBack()
                     },function(){
                         toast({title :REQUEST_FAIL})
@@ -104,11 +102,12 @@ export default class Index extends wepy.page {
     }
     getValidCode() {
         MXZ020002Service({
-            phonenum : this.formData.tel
+            phoneNum : this.formData.tel
         }).then(({data:{data,resultMsg,resultCode}}) => {
             if (resultCode === '0000') {
-                this.validCodeCountdown = 29;
+                this.validCodeCountdown = 59;
                 this.$apply()
+                toast({ title: '验证码已下发'})
                 this.updateValidCodeCountdown()
             } else {
                 toast({ title: resultMsg  || REQUEST_FAIL})
@@ -144,5 +143,13 @@ export default class Index extends wepy.page {
         this.$apply()
     }
     events = {}
+
+    onShow(){
+        this.$parent.getUserInfo(({ userInfo }) => {
+            this.userInfo = userInfo;
+            this.$apply();
+        })
+
+    }
 
 }

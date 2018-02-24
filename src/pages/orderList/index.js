@@ -1,43 +1,83 @@
 import wepy from 'wepy'
 
-import log from 'log'
+import {pageSize} from 'config';
 import { toast } from '@/utils/index';
 import serviceFactory from '@/utils/base.service'
 const MXZ010003 = serviceFactory({
     funcId: 'MXZ010003'
 });
+
+import Page from '@/components/page/index';
+import EmptyView from '@/components/emptyView/index';
+
 export default class Index extends wepy.page {
     config = {}
-    components = {}
-
+    components = {
+        page : Page,
+        emptyView:EmptyView
+    }
     data = {
-        list: []
+        list:null
+
+        ,requestIng : false
+        ,loadSucc : true
+        ,emptyViewHeight : 'full'
     }
 
-    computed = {}
+    computed = {
+        windowHeight(){
+            return wepy.getSystemInfoSync().windowHeight;
+        }
+    }
+    methods = {
+        scrolltolower(){
+            this.reqMXZ010003();
+        }
+    }
 
-    methods = {}
-
-    events = {}
+    events = {
+        retry(from){
+            if (from !== "emptyView") {
+                this.requestIng = true;
+                this.$apply();
+                this.reqMXZ010003();
+            }
+        }
+    }
     onLoad() {}
 
     onReady() {
-        MXZ010003({
+        this.requestIng = true;
+        this.$apply();
 
-            })
-            .then(({ data: { data, resultCode, resultMsg } }) => {
+        this.reqMXZ010003();
+    }
+
+    reqMXZ010003(){
+        wepy.showLoading();
+
+        const curData = Array.isArray(this.list) ? this.list : [];
+        MXZ010003({
+                pageSize: '' + pageSize,
+                currentPage: '' + (parseInt((curData.length / pageSize)) + 1)
+            }).then(({ data: { data, resultCode, resultMsg } }) => {
+                wepy.hideLoading();
+                this.requestIng = false;
                 if (resultCode === '0000') {
-                    this.list = data;
-                    this.$apply();
+                    this.list = curData.concat(data);
+                    this.loadSucc = true;
                 } else {
-                    toast({
-                        title: resultMsg
-                    })
+                    this.list = null;
+                    this.loadSucc = false;
+                    toast({ title: resultMsg })
                 }
+                this.$apply();
             }, err => {
-                toast({
-                    title: '操作失败'
-                })
+                this.list = null;
+                this.loadSucc = false;
+                this.$apply();
+                wepy.hideLoading();
+                toast({ title: '操作失败' })
             })
 
     }

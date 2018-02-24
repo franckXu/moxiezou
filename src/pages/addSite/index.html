@@ -1,0 +1,54 @@
+<view>
+    <form>
+        <view class="field">
+            <label class="label">{{formData.fieldName.label}}</label>
+            <input type="text" placeholder="请输入{{formData.fieldName.label}}" value="{{formData.fieldName.value}}"
+                @input="inputHandler('fieldName')" />
+        </view>
+
+        <view class="field">
+            <label class="label">{{formData.fieldPhone.label}}</label>
+            <input type="number" placeholder="请输入{{formData.fieldPhone.label}}" value="{{formData.fieldPhone.value}}"
+                @input="inputHandler('fieldPhone')" />
+        </view>
+
+        <view class="field">
+            <label class="label">{{formData.fieldAddress.label}}</label>
+            <input type="text" placeholder="请输入{{formData.fieldAddress.label}}" value="{{formData.fieldAddress.value}}"
+                @input="inputHandler('fieldAddress')" />
+        </view>
+
+        <view class="field">
+            <label class="label">{{formData.chargeWay.label}}</label>
+            <radio-group class="radio-group" @change="changeChargeWay()">
+                <label class="radio" wx:for="{{chargeWays}}" wx:key="id">
+                    <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+                </label>
+            </radio-group>
+        </view>
+
+        <view class="field">
+            <label class="label">{{formData.chargeValue.label}}</label>
+            <input type="digit" placeholder="请输入{{formData.chargeValue.label}}" value="{{formData.chargeValue.value}}"
+                @input="inputHandler('chargeValue')" />
+        </view>
+
+        <view class="field col-3">
+            <label class="label">{{formData.equipIds.label}}</label>
+            <view class="equip-group">
+                <view wx:for="{{formData.equipIds.value}}" wx:key="code" class="equip-wrap">
+                    <view class="equip"><view>{{item.name}}</view><view @tap="removeDevice({{item}})" class="remove-device-btn">X</view></view>
+                </view>       
+                <view @tap="chooseDevice()" class="add-device-btn">+添加</view>         
+            </view>
+        </view>
+
+        <view class="field row-2">
+            <label class="label">{{formData.remark.label}}</label>
+            <textarea class="input" placeholder="请输入{{formData.remark.label}}" value="{{formData.remark.value}}"
+                @input="inputHandler('remark')" />
+        </view>
+
+        <button class="submitBtn" @tap="submit()">提交</button>
+    </form>
+</view>

@@ -102,7 +102,7 @@ export default class Index extends wepy.page {
                 "gpsX": ''+formData.gpsX.value,
                 "gpsY": ''+formData.gpsY.value,
                 "address": formData.address.value,
-                "fieldId": formData.site.value.id,
+                "fieldId":formData.site.value ? formData.site.value.id : '',
                 "templateId": formData.template.value.id,
                 "operation" : '1',
                 /* "mchId": "8",
@@ -142,25 +142,23 @@ export default class Index extends wepy.page {
     events = {}
 
     onLoad(){
-        this.$parent.globalData.editDevice = {};
-        this.$parent.globalData.siteForAddDevice = {};
+        this.$parent.globalData.templateForEditDevice = null;
+        this.$parent.globalData.siteForAddDevice = null;
     }
 
     onShow() {
-        console.log('show');
-        const editDevice = this.$parent.globalData.editDevice;
-        const siteForAddDevice = this.$parent.globalData.siteForAddDevice;
-        if (editDevice.template) {
-            this.formData.template.value = editDevice.template;
+        const {siteForAddDevice,templateForEditDevice } = this.$parent.globalData;
+
+        if (templateForEditDevice) {
+            this.formData.template.value = templateForEditDevice;
+            this.$parent.globalData.templateForEditDevice = null;
             this.$apply();
         }
+
         if (siteForAddDevice) {
             this.formData.site.value = siteForAddDevice;
+            this.$parent.globalData.siteForAddDevice = null;
             this.$apply();
         }
-    }
-
-    onReady() {
-        // console.log('ready');
     }
 }

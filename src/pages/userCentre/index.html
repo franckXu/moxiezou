@@ -1,5 +1,6 @@
-<block wx:if="{{userInfo && bindUserInfo}}">
-    <view>
+<page :requestIng.sync="requestIng" :loadSucc.sync="loadSucc" :failViewTxt="fuck">
+    <!-- <block wx:if="{{userInfo && bindUserInfo}}"> -->
+    <view slot="content">
         <view class="header">
             <image src="{{userInfo.avatarUrl || ''}}" class="avatar" />
             <view>{{ userInfo.nickName || ''}}</view>
@@ -25,17 +26,35 @@
             </view>
         </view>
         <view class="content">
-            <view @tap="toPage('iAmProxy')" wx:if="{{bindUserInfo.roleId === '1' || bindUserInfo.roleId === '2' }}">
-            <text>我是代理</text> <text>&gt;</text> </view>
-            <view @tap="toPage('join')" wx:if="{{bindUserInfo.roleId !== '1' && bindUserInfo.roleId !== '2' }}">
-            <text>代理商加盟</text> <text>&gt;</text> </view>
-            <view @tap="toPage('feedback')"> <text>意见反馈</text> <text>&gt;</text></view>
-            <view @tap="toPage('guide')"> <text>用户指南</text> <text>&gt;</text></view>
-            <view @tap="toPage('aboutUs')"> <text>关于我们</text> <text>&gt;</text></view>
+            <view @tap="toPage('iAmProxy')" wx:if="{{ bindUserInfo.roleId !== '' && bindUserInfo.roleId !== '9' }}">
+                <text>我是代理</text>
+                <image src="/images/arrow.png" class="arrow"
+                />
+            </view>
+            <view @tap="toPage('join')" wx:if="{{bindUserInfo.roleId  === ''}}">
+                <text>代理商加盟</text>
+                <image src="/images/arrow.png" class="arrow"
+                />
+            </view>
+            <view @tap="toPage('addSite')" wx:if="{{ bindUserInfo.roleId === '9' }}"> <text>场地录入</text>
+                <image src="/images/arrow.png" class="arrow" />
+            </view>
+            <view @tap="toPage('siteManage')" wx:if="{{ bindUserInfo.roleId === '9' }}"> <text>场地管理</text>
+                <image src="/images/arrow.png" class="arrow" />
+            </view>
+            <view @tap="toPage('addDevice')" wx:if="{{ bindUserInfo.roleId === '9' }}"> <text>添加设备</text>
+                <image src="/images/arrow.png" class="arrow" />
+            </view>
+            <view @tap="toPage('feedback')"> <text>意见反馈</text>
+                <image src="/images/arrow.png" class="arrow" />
+            </view>
+            <view @tap="toPage('guide')"> <text>用户指南</text>
+                <image src="/images/arrow.png" class="arrow" />
+            </view>
+            <view @tap="toPage('aboutUs')"> <text>关于我们</text>
+                <image src="/images/arrow.png" class="arrow" />
+            </view>
         </view>
 
     </view>
-</block>
-<block wx:else>
-    <view class="text-center mt-20">加载中</view>
-</block>
+</page>

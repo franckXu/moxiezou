@@ -1,8 +1,8 @@
-<page :requestIng.sync="requestIng">
-    <view slot="content">
-        <view @tap="retry()" wx:if="{{loadFail}}" class="text-center mt-180">
+<page :requestIng.sync="requestIng" :loadSucc.sync="loadSucc" >
+    <!-- <view slot="loadFail">
+        <view class="text-center">
             <view>启动遇到点小问题~~</view>
             <view>点击重试</view>
         </view>
-    </view>
+    </view> -->
 </page>

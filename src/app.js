@@ -17,21 +17,26 @@ export default class extends wepy.app {
     config = {
         pages: [
             'pages/welcome/index',
-            'pages/vicinity/index',
+            'pages/userCentre/index',
+            'pages/myDevice/index',
+            'pages/rechargeProtocol/index',
+            'pages/addSite/index',
+            'pages/editSite/index',
+            'pages/siteManage/index',
+            'pages/siteList/index',
+            'pages/consume/index',
+            'pages/orderList/index',
+            'pages/coupon/index',
+            'pages/checkin/index',
+            'pages/rechargeRecord/index',
             'pages/income/index',
+            'pages/recharge/index',
+            'pages/vicinity/index',
             'pages/incomeDetail/index',
             'pages/dayIncome/index',
             'pages/getJf/index',
-            'pages/checkin/index',
             'pages/addDevice/index',
-            'pages/siteList/index',
-            'pages/userCentre/index',
-            'pages/consume/index',
-            'pages/coupon/index',
-            'pages/orderList/index',
-            'pages/recharge/index',
             'pages/iAmProxy/index',
-            'pages/myDevice/index',
             'pages/templateList/index',
             'pages/editDevice/index',
             'pages/aboutUs/index',
@@ -41,18 +46,18 @@ export default class extends wepy.app {
             'pages/login/index',
             'pages/jf/index',
             'pages/building/index',
-            'pages/rechargeRecord/index',
             'pages/vicinity/mapView'
         ],
         window: {
-            backgroundTextStyle: 'light',
+            backgroundTextStyle: 'dark', // dark/light
+            // "backgroundColor": "#eeeeee",
             navigationBarBackgroundColor: '#fff',
             navigationBarTitleText: '摩歇坐',
             navigationBarTextStyle: 'black'
         },
         tabBar: {
-            color: '#c1c1c1',
-            selectedColor: '#1aad16',
+            color: '#7A7E83',
+            selectedColor: '#34C9A0',
             backgroundColor: '#ffffff',
             list: [{
                     pagePath: 'pages/vicinity/index',
@@ -80,8 +85,10 @@ export default class extends wepy.app {
         appUserInfo: null,
         MXZ010001: null,
         siteForAddDevice: null,
+        siteForSiteManage: null,
         editDevice: null,
         couponForConsume: null,
+        deviceForSite : null
     }
 
     constructor() {
@@ -89,11 +96,7 @@ export default class extends wepy.app {
         this.use('requestfix')
     }
 
-    onLaunch() {
-        // this.login()
-    }
-
-    getUserInfo(cb) {
+    getUserInfo(cb,failFn) {
         const that = this
         if (this.globalData.userInfo) {
             return cb && cb(this.globalData.userInfo)
@@ -102,6 +105,9 @@ export default class extends wepy.app {
             success(res) {
                 that.globalData.userInfo = res
                 cb && cb(res)
+            },
+            fail(res){
+                failFn && failFn(res)
             }
         })
     }
@@ -111,70 +117,89 @@ export default class extends wepy.app {
         wepy.checkSession({
             success() {
                 // token valid
-                return self.getBindUserInfoForServer(succFn, failFn)
+                console.log('token valid')
+                // self.doLogin(succFn,failFn);
+                if (wepy.getStorageSync('sessionId')) {
+                    self.getBindUserInfoForServer(succFn, failFn)
+                } else {
+                    self.doLogin(succFn,failFn);
+                }
+
             },
             fail() {
                 //token invalid
                 console.log('sessionId invalid');
-                wepy.login({
-                    success({ code }) {
-                        wepy.getUserInfo({
-                            withCredentials: true,
-                            success({ encryptedData, iv }) {
-                                MXZ010001Service({ code, encryptedData, iv })
-                                    .then(({ data: { data, resultCode, resultMsg } }) => {
-                                        console.log(data, resultCode, resultMsg);
-                                        wepy.setStorage({
-                                            key: "sessionId",
-                                            data: data && data.sessionId ? data.sessionId : '',
-                                            success() {
-                                                self.getBindUserInfo(succFn, failFn)
-                                            },
-                                            fail() {
-                                                failFn(arguments);
-                                                console.warn(arguments);
-                                            }
-                                        })
-                                    }, function(){
-                                        failFn(arguments);
-                                        console.log(err);
-                                    })
+                self.doLogin(succFn,failFn);
 
-                            },
-                            fail(){
+            }
+        })
+    }
+
+    doLogin(succFn,failFn){
+        const self = this;
+        wepy.login({
+            success({ code }) {
+                wepy.getUserInfo({
+                    withCredentials: true,
+                    success({ encryptedData, iv }) {
+                        MXZ010001Service({ code, encryptedData, iv })
+                            .then(({data:respData,statusCode}) => {
+                                if (statusCode >= 200 && statusCode < 300) {
+                                    const { data, resultCode, resultMsg } = respData;
+                                    wepy.setStorage({
+                                        key: "sessionId",
+                                        data: data && data.sessionId ? data.sessionId : '',
+                                        success() {
+                                            self.getBindUserInfoForServer(succFn, failFn)
+                                        },
+                                        fail() {
+                                            failFn(arguments);
+                                            console.warn('setStorage fail',arguments);
+                                        }
+                                    })
+                                }else{
+                                    failFn(statusCode);
+                                    console.warn('MXZ010001 fail',statusCode);
+                                }
+                            }, function(){
                                 failFn(arguments);
-                                console.log(arguments);
-                            }
-                        })
+                                console.warn('MXZ010001 fail',err);
+                            })
+
                     },
-                    fail() {
-                        failFn(arguments)
-                        console.log(res)
+                    fail(){
+                        failFn(arguments);
+                        console.warn('getUserInfo fail',arguments);
                     }
                 })
+            },
+            fail() {
+                failFn(arguments)
+                console.warn('login fail',arguments)
             }
         })
     }
 
     getBindUserInfoForServer(succFn,failFn){
-        if (wepy.getStorageSync('sessionId')) {
-            MXZ010002Service()
-                .then(({ data: { data, resultCode, resultMsg } }) => {
+        MXZ010002Service()
+            .then(({data:respData,statusCode}) => {
+                if (statusCode >= 200 && statusCode < 300) {
+                    const { data, resultCode, resultMsg } = respData;
                     if (resultCode === '0000') {
                         this.globalData.bindUserInfo = data;
                         succFn(this.globalData.bindUserInfo)
                     } else {
-                        console.warn(resultMsg);
+                        console.warn(data);
                         failFn(resultMsg)
                     }
-                }, function() {
-                    failFn(arguments)
-                    console.warn(arguments);
-                })
-        } else {
-            console.warn('storage\'s sessionId is empty');
-            failFn('storage\'s sessionId is empty');
-        }
+                }else{
+                    console.warn(statusCode);
+                    failFn('请求失败');
+                }
+            }, function() {
+                failFn(arguments)
+                console.warn('MXZ01002 fail',arguments);
+            })
 
     }
 

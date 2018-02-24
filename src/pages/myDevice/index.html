@@ -1,8 +1,18 @@
-<view class="item" wx:for="{{deviceList}}" wx:key="code"
-    @tap="editDevice({{item}})">
-    <view class="box">
-        <view>{{item.name}}</view>
-        <view>{{item.code}}</view>
+<page :requestIng.sync="requestIng" :loadSucc.sync="loadSucc">
+    <view slot="content">
+        <view wx:if="{{deviceList !== null}}">
+            <view wx:if="{{deviceList.length}}">
+                <view class="item" wx:for="{{deviceList}}" wx:key="code" @tap="editDevice({{item}})">
+                    <view class="box">
+                        <view>{{item.name}}</view>
+                        <view>{{item.code}}</view>
+                    </view>
+                    <view>{{item.address}}</view>
+                </view>
+            </view>
+            <view wx:else>
+                <emptyView :height.sync="emptyViewHeight" />
+            </view>
+        </view>
     </view>
-    <view>{{item.address}}</view>
-</view>
+</page>

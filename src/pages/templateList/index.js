@@ -5,47 +5,72 @@ import {REQUEST_FAIL } from 'config';
 import { toast } from "@/utils/index"
 
 import serviceFactory from '@/utils/base.service'
-const MXZ030005Service = serviceFactory({
+const MXZ030005 = serviceFactory({
     funcId: 'MXZ030005'
 });
+
+import Page from '@/components/page/index';
+import EmptyView from '@/components/emptyView/index';
 
 
 export default class Index extends wepy.page {
     config = {}
-    components = {}
+    components = {
+        page : Page,
+        emptyView : EmptyView
+    }
 
     data = {
-        templateList : []
+        items : []
+
+        ,emptyViewHeight : 'full'
+        ,requestIng : false
+        ,loadSucc : true
     }
 
     computed = {
+        windowHeight(){
+            return wepy.getSystemInfoSync().windowHeight;
+        }
     }
 
     methods = {
         chooseTemplate(item){
-            if(this.$parent.globalData.editDevice) this.$parent.globalData.editDevice.template = item;
+            this.$parent.globalData.templateForEditDevice= item;
             wepy.navigateBack();
         }
     }
 
-    events = {}
+    events = {
+        retry(){
+            this.reqData();
+        }
+    }
 
-    onLoad() {}
+    onShow() {
+        this.reqData();
+    }
+    reqData() {
+        wepy.showLoading();
+        this.requestIng = true;
+        this.$apply();
 
-    onReady() {
-        MXZ030005Service()
+        MXZ030005()
             .then(({data:{data,resultMsg,resultCode}})=>{
+                wepy.hideLoading();
+                this.requestIng = false;
                 if (resultCode === '0000') {
-                    this.templateList = data.template;
-                    this.$apply();
+                    this.loadSucc = true;
+                    this.items = data.template;
                 }else{
+                    this.loadSucc = false;
                     toast({title:resultMsg || REQUEST_FAIL});
                 }
+
+                this.$apply();
+            },err=>{
+                wepy.hideLoading();
             })
     }
-
-    onShow(){
-    }
-
 
 }

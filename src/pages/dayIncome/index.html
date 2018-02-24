@@ -2,9 +2,9 @@
     <view class="header">
         <view class="title">
             <view>累计营收(元)</view>
-            <view>217.00</view>
+            <view>{{options.money}}</view>
         </view>
-        <view class="overview">
+        <!-- <view class="overview">
             <view>
                 <view>移动收入</view>
                 <view>2.00</view>
@@ -21,13 +21,13 @@
                 <view>移动收入</view>
                 <view>217.00</view>
             </view>
-        </view>
+        </view> -->
 
     </view>
 
     <view>
         <view class="list">
-            <view class="title">移动收入和广告收入如下</view>
+            <!-- <view class="title" >移动收入和广告收入如下</view> -->
             <view class="list-header">
                 <view>产品</view>
                 <view>订单状态</view>
@@ -35,160 +35,23 @@
                 <view>操作</view>
             </view>
             <view class="body">
-                <view class="row">
-
-                    <view class="name">顺利完成出货!@#KASDFGHJKLsdgbhnjbner顺利完成出货!@#KASDFGHJKLsdgbhnjbner</view>
+                <view wx:for="{{list}}" wx:key="this" class="row">
+                    <view class="name">{{item.template_name}}</view>
                     <view class="status">
-                        <view>订单关闭</view>
-                        <view>(顺利完成出货)</view>
+                        <view>{{item.statusText}}</view>
                     </view>
                     <view class="time">
                         <view>
-                            <view>2018/11/17 </view>
-                            <view>20:24:41</view>
+                            <view>{{item.c_date_arr[0]}}</view>
+                            <view>{{item.c_date_arr[1]}}</view>
                         </view>
-                        <view class="channel">微信关注赠送</view>
+                        <view class="channel">{{item.pay_type_text}}</view>
                     </view>
                     <view class="operation">
-                        <view @tap="toIncomeDetail('666')">详情 ></view>
-                    </view>
-
-                </view>
-                <view class="row">
-
-                    <view class="name">!@#KASDFGHJKLsdgbhnjbner</view>
-                    <view class="status">
-                        <view>订单关闭</view>
-                        <view>(顺利完成出货)</view>
-                    </view>
-                    <view class="time">
-                        <view>
-                            <view>2018/11/17 </view>
-                            <view>20:24:41</view>
-                        </view>
-                        <view class="channel">微信关注赠送</view>
-                    </view>
-                    <view class="operation">
-                        <view>详情 ></view>
-                    </view>
-
-                </view>
-                <view class="row">
-
-                    <view class="name">!@#KASDFGHJKLsdgbhnjbner</view>
-                    <view class="status">
-                        <view>订单关闭</view>
-                        <view>(顺利完成出货)</view>
-                    </view>
-                    <view class="time">
-                        <view>
-                            <view>2018/11/17 </view>
-                            <view>20:24:41</view>
-                        </view>
-                        <view class="channel">微信关注赠送</view>
-                    </view>
-                    <view class="operation">
-                        <view>详情 ></view>
-                    </view>
-
-                </view>
-                <view class="row">
-
-                    <view class="name">!@#KASDFGHJKLsdgbhnjbner</view>
-                    <view class="status">
-                        <view>订单关闭</view>
-                        <view>(顺利完成出货)</view>
-                    </view>
-                    <view class="time">
-                        <view>
-                            <view>2018/11/17 </view>
-                            <view>20:24:41</view>
-                        </view>
-                        <view class="channel">微信关注赠送</view>
-                    </view>
-                    <view class="operation">
-                        <view>详情 ></view>
-                    </view>
-
-                </view>
-            
-                <view class="row">
-
-                    <view class="name">顺利完成出货!@#KASDFGHJKLsdgbhnjbner顺利完成出货!@#KASDFGHJKLsdgbhnjbner</view>
-                    <view class="status">
-                        <view>订单关闭</view>
-                        <view>(顺利完成出货)</view>
-                    </view>
-                    <view class="time">
-                        <view>
-                            <view>2018/11/17 </view>
-                            <view>20:24:41</view>
-                        </view>
-                        <view class="channel">微信关注赠送</view>
-                    </view>
-                    <view class="operation">
-                        <view>详情 ></view>
-                    </view>
-
-                </view>
-                <view class="row">
-
-                    <view class="name">!@#KASDFGHJKLsdgbhnjbner</view>
-                    <view class="status">
-                        <view>订单关闭</view>
-                        <view>(顺利完成出货)</view>
-                    </view>
-                    <view class="time">
-                        <view>
-                            <view>2018/11/17 </view>
-                            <view>20:24:41</view>
-                        </view>
-                        <view class="channel">微信关注赠送</view>
-                    </view>
-                    <view class="operation">
-                        <view>详情 ></view>
-                    </view>
-
-                </view>
-                <view class="row">
-
-                    <view class="name">!@#KASDFGHJKLsdgbhnjbner</view>
-                    <view class="status">
-                        <view>订单关闭</view>
-                        <view>(顺利完成出货)</view>
-                    </view>
-                    <view class="time">
-                        <view>
-                            <view>2018/11/17 </view>
-                            <view>20:24:41</view>
-                        </view>
-                        <view class="channel">微信关注赠送</view>
-                    </view>
-                    <view class="operation">
-                        <view>详情 ></view>
-                    </view>
-
-                </view>
-                <view class="row">
-
-                    <view class="name">!@#KASDFGHJKLsdgbhnjbner</view>
-                    <view class="status">
-                        <view>订单关闭</view>
-                        <view>(顺利完成出货)</view>
-                    </view>
-                    <view class="time">
-                        <view>
-                            <view>2018/11/17 </view>
-                            <view>20:24:41</view>
-                        </view>
-                        <view class="channel">微信关注赠送</view>
-                    </view>
-                    <view class="operation">
-                        <view>详情 ></view>
+                        <view @tap="toIncomeDetail({{item}})">详情 ></view>
                     </view>
 
                 </view>
             </view>
         </view>
     </view>
-</view>

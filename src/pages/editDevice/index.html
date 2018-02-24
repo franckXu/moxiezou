@@ -11,10 +11,17 @@
                     value="{{formData.name.value}}"
                     @input="inputHandler('name')" />
         </view>
+        <view class="field col-3">
+            <view class="col-l">
+                <label class="label">{{formData.site.label}}</label>
+                <input type="text" placeholder="请选择{{formData.site.label}}" value="{{formData.site.value.fieldName}}" disabled="{{true}}" />
+            </view>
+            <view class="scanBtn" @tap='chooseSite()' >...</view>
+        </view>
         <view class="field address">
             <label class="label">{{formData.address.label}}</label>
             <view>
-                <input type="text" placeholder="请选择{{formData.address.label}}"  @input="inputHandler('address')" value="{{formData.address.value}}" />
+                <input type="text" placeholder="请选择{{formData.address.label}}"  @input="inputHandler('address')" value="{{formData.address.value}}" style="font-size:16px;" />
                 <image src="/images/icon-coordinate.png" @tap="chooseLocation()" class="chooseLocationBtn" />
             </view>
         </view>
@@ -36,7 +43,6 @@
                 />
             </view>
             <view class="scanBtn" @tap='chooseTemplate()' >...</view>
-            <!-- <image class="scanBtn" @tap='chooseTemplate()' src="/images/icon-scan.png" /> -->
         </view>
 
         <button class="submitBtn" @tap="submit()">提交</button>

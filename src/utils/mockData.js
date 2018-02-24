@@ -1,3 +1,17 @@
+const MXZ010001 = {
+    "currentPage": 1,
+    "data": {
+        "sessionId": "66666666666666666"
+    },
+    "exception": "",
+    "funcId": "MXZ010001",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
+}
 const MXZ010002 = {
     "currentPage": 1,
     "data": {
@@ -9,10 +23,10 @@ const MXZ010002 = {
         // "telephone": "18627565223",
         "pic": "http:\/\/39.108.103.238:8088\/\/\/mmdAvator\/d916de02-f08a-4bee-af78-3b46e72451dd.jpg",
         "userId": "8",
-        "consuemrId" : "顾客id",
-        "consumerId" :"用户ID",
-        "roleId":"9", // 0-商户 1-一级代理 2-二级代理 9-系统管理员
-        "subscribeWay":"1" // 1-购机2-交押金3-认购 4-渠道商
+        "consuemrId": "顾客id",
+        "consumerId": "用户ID",
+        "roleId": "9", // 0-商户 1-一级代理 2-二级代理 9-系统管理员
+        "subscribeWay": "1" // 1-购机2-交押金3-认购 4-渠道商
     },
     "exception": "",
     "funcId": "MXZ010002",
@@ -777,125 +791,324 @@ const MXZ080002 = {
 const MXZ050002 = {};
 
 const MXZ060001 = {
-	"currentPage": 1,
-	"data": {
-		"myAmount": "101",
-		"recharge": [{
-			"amount": 13,
-			"money": 20,
-			"remarks": "13魔豆20元"
-		}, {
-			"amount": 16,
-			"money": 28,
-			"remarks": "16魔豆28元"
-		}, {
-			"amount": 23,
-			"money": 40,
-			"remarks": "23魔豆40元"
-		}, {
-			"amount": 33,
-			"money": 50,
-			"remarks": "33魔豆40元"
-		}]
-	},
-	"exception": "",
-	"funcId": "MXZ060001",
-	"homedir": "",
-	"pageSize": 10,
-	"resultCode": "0000",
-	"resultMsg": "操作成功",
-	"totalCount": 0,
-	"totalPage": 1
+    "currentPage": 1,
+    "data": {
+        "myAmount": "101",
+        "recharge": [{
+            "amount": 13,
+            "money": 20,
+            "remarks": "13魔豆20元"
+        }, {
+            "amount": 16,
+            "money": 28,
+            "remarks": "16魔豆28元"
+        }, {
+            "amount": 23,
+            "money": 40,
+            "remarks": "23魔豆40元"
+        }, {
+            "amount": 33,
+            "money": 50,
+            "remarks": "33魔豆40元"
+        }]
+    },
+    "exception": "",
+    "funcId": "MXZ060001",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
 };
 
-const MXZ060002  ={};
+const MXZ060002 = {};
 
 const MXZ060003 = {
-	"currentPage": 1,
-	"data": [{
-		"amount": 100,
-		"money": 80.00,
-		"c_date": "2018-01-12 23:21:44"
-	}, {
-		"amount": 100,
-		"money": 80.00,
-		"c_date": "2018-01-12 23:21:15"
-	}, {
-		"amount": 100,
-		"money": 80.00,
-		"c_date": "2018-01-12 23:21:04"
-	}, {
-		"amount": 100,
-		"money": 80.00,
-		"c_date": "2018-01-12 23:19:37"
-	}, {
-		"amount": 100,
-		"money": 80.00,
-		"c_date": "2018-01-12 23:19:37"
-	}],
-	"exception": "",
-	"funcId": "MXZ060001",
-	"homedir": "",
-	"pageSize": 10,
-	"resultCode": "0000",
-	"resultMsg": "操作成功",
-	"totalCount": 0,
-	"totalPage": 1
+    "currentPage": 1,
+    "data": [{
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:21:44"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:21:15"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:21:04"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:19:37"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:19:37"
+    },{
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:21:44"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:21:15"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:21:04"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:19:37"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:19:37"
+    },{
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:21:44"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:21:15"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:21:04"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:19:37"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:19:37"
+    },{
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:21:44"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:21:15"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:21:04"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:19:37"
+    }, {
+        "amount": 100,
+        "money": 80.00,
+        "c_date": "2018-01-12 23:19:37"
+    }],
+    "exception": "",
+    "funcId": "MXZ060001",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
 };
 
 const MXZ090001 = {
-	"currentPage": 1,
-	"data":  {
-		"signRule": [{
-			"id": 5,
-			"unit": 1,
-			"point_value": 1,
-			"name": "签到一天送1积分",
-			"remarks": ""
-		}, {
-			"id": 6,
-			"unit": 10,
-			"point_value": 15,
-			"name": "连续签到10天送15积分",
-			"remarks": ""
-		}, {
-			"id": 7,
-			"unit": 30,
-			"point_value": 50,
-			"name": "连续签到30天送50积分",
-			"remarks": ""
-		}],
-		"signDays": "0",
-		"integral": "20",
-        "signToday" : "N"
-	},
-	"exception": "",
-	"funcId": "MXZ090001",
-	"homedir": "",
-	"pageSize": 10,
-	"resultCode": "0000",
-	"resultMsg": "操作成功",
-	"totalCount": 0,
-	"totalPage": 1
+    "currentPage": 1,
+    "data": {
+        "signRule": [{
+            "id": 5,
+            "unit": 1,
+            "point_value": 1,
+            "name": "签到一天送1积分",
+            "remarks": ""
+        }, {
+            "id": 6,
+            "unit": 10,
+            "point_value": 15,
+            "name": "连续签到10天送15积分",
+            "remarks": ""
+        }, {
+            "id": 7,
+            "unit": 30,
+            "point_value": 50,
+            "name": "连续签到30天送50积分",
+            "remarks": ""
+        }],
+        "signDays": "0",
+        "integral": "20",
+        "signToday": "N"
+    },
+    "exception": "",
+    "funcId": "MXZ090001",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
 };
 
 const MXZ090002 = {
-	"currentPage": 1,
-	"data":  {
+    "currentPage": 1,
+    "data": {
         "signDays": "2",
         "integral": "23"
-	},
-	"exception": "",
-	"funcId": "MXZ090002",
-	"homedir": "",
-	"pageSize": 10,
-	"resultCode": "0000",
-	"resultMsg": "操作成功",
-	"totalCount": 0,
-	"totalPage": 1
+    },
+    "exception": "",
+    "funcId": "MXZ090002",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
 };
 
+
+const MXZ090003 = {
+    "currentPage": 1,
+    "data": {
+        "records": [{
+            "remarks": "连续签到1天送1积分",
+            "points": 1,
+            "type": 1,
+            "c_date": "2018-01-22 23:50:25"
+        }, {
+            "remarks": "连续签到1天送1积分",
+            "points": 1,
+            "type": 1,
+            "c_date": "2018-01-22 23:51:52"
+        }],
+        "integral": "22"
+    },
+    "exception": "",
+    "funcId": "MXZ090003",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
+}
+
+const MXZ010004 = {
+    "currentPage": 1,
+    "data": {
+        "incomeTotal": "18.00",
+        "incomeList": (function() {
+            const ret = [];
+            const len = 44;
+            for (let i = 0; i < len; i++) {
+                ret.push({
+                    "money": 18.00,
+                    "pay_date": "20180123"
+                })
+            }
+            return ret;
+        })()
+    },
+    "exception": "",
+    "funcId": "MXZ090003",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
+}
+
+const MXZ010005 = {
+    "currentPage": 1,
+    "data": (function() {
+            const ret = [];
+            const len = 25;
+            for (let i = 0; i < len; i++) {
+                ret.push({
+                    "template_name": "5.00元5分钟",
+                    "pay_type": "2",
+                    "status": "0",
+                    "equip_code": "MXZ001",
+                    "c_date": "2018-01-23 21:48:45",
+                    "order_no": "1516715326005996957"
+                })
+            }
+            return ret;
+        })()
+    ,
+    "exception": "",
+    "funcId": "MXZ090003",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
+}
+
+const MXZ010006 = {
+    "currentPage": 1,
+    "data": {
+        "template_dtl_unit": "分钟",
+        "template_dtl_id": 107,
+        "template_dtl_money": 5.00,
+        "status": "0",
+        "consumer_name": "林子",
+        "consumer_id": 10,
+        "c_date": "2018-02-05 00:35:17",
+        "field_charge_way": 0,
+        "field_id": 5,
+        "equipment_id": 11,
+        "order_no": "1517762117099873060",
+        "user_name": "superMan",
+        "coupon_money": 0.00,
+        "template_name": "5.00元5分钟",
+        "pay_type": "4",
+        "equip_code": "J57959",
+        "buy_type": "",
+        "field_charge_value": 100.0,
+        "money": 5.00,
+        "equip_address": "广东省广州市花都区迎宾大道89号",
+        "template_dtl_amounts": 5,
+        "user_id": 54
+    },
+    "exception": "",
+    "funcId": "MXZ010006",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
+}
+
+const MXZ010003 = {
+    "resultCode": "0000",
+    "resultMsg": "成功",
+    "funcId": "MXZ010003",
+    "data": [{
+        "template_dtl_id": 85,
+        "id": 16,
+        "template_name": "8元10分钟",
+        "nickname": "nickName4",
+        "status": "0",
+        "address": "长沙岳麓区3",
+        "pay_way": "余额",
+        "money": 8.00,
+        "pay_date": "2018-01-19 11:29:31",
+        "consumer_id": 8,
+        "code": "MXZ001",
+        "equipment_id": 7,
+        "order_no": "1516332528108136238"
+    }]
+}
+
 const data = {
+    MXZ010001,
     MXZ030005,
     MXZ040001,
     MXZ010002,
@@ -913,11 +1126,17 @@ const data = {
     MXZ060002,
     MXZ060003,
     MXZ090001,
-    MXZ090002
+    MXZ090002,
+    MXZ090003,
+    MXZ010004,
+    MXZ010005,
+    MXZ010003
 }
 
 export default function mockData(funcId) {
     return {
-        data: data[funcId]
+        data: data[funcId],
+        statusCode : 200,
+        header : {}
     }
 }

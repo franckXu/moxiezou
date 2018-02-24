@@ -1,4 +1,17 @@
-<view class="item" wx:for="{{templateList}}" wx:key="id" @tap="chooseTemplate({{item}})">
-    <image src="{{item.logo}}" class="logo" />
-    <view class="name">{{item.name}}</view>
-</view>
+<scroll-view class="list" style="height:{{windowHeight}}px" scroll-y >
+    <page :requestIng.sync="requestIng" :loadSucc.sync="loadSucc">
+        <view slot="content">
+            <view wx:if="{{items !== null}}">
+                <view wx:if="{{items.length}}">
+                    <view class="item" wx:for="{{items}}" wx:key="id" @tap="chooseTemplate({{item}})">
+                        <image src="{{item.logo}}" class="logo" />
+                        <view class="name">{{item.name}}</view>
+                    </view>
+                </view>
+                <view wx:else>
+                    <emptyView :height.sync="emptyViewHeight" />
+                </view>
+            </view>
+        </view>
+    </page>
+</scroll-view>

@@ -61,17 +61,13 @@ export default class Main extends wepy.page {
         wepy.getLocation({
             success({ latitude, longitude }) {
                 log(longitude,latitude);
-                // self.lat = latitude;
-                // self.lng = longitude;
-
-                self.lat = 23.1175;
-                self.lng = 113.3245;
-
+                self.lat = latitude;
+                self.lng = longitude;
                 self.$apply();
 
                 MXZ030002Service({
-                    gpsX:        self.lat,
-                    gpsY:        self.lng,
+                    gpsX:        self.lng,
+                    gpsY:        self.lat,
                     pageSize:    '',
                     currentPage: '',
                 }).then(resp => {

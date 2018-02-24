@@ -18,9 +18,11 @@ export default function serviceFactory(defaultParam) {
     return function serivce(reqParam = {}) {
         return new Promise((res, rej) => {
             if (isProd) {
+                console.log(defaultParam.funcId,reqParam);
                 wepy.request(Object.assign(REQ_CONFIG(defaultParam), {
-                    data: Object.assign(defaultParam, reqParam),
+                    data: Object.assign({},defaultParam, reqParam),
                     success(resp) {
+                        console.log(defaultParam.funcId,resp);
                         res(resp)
                     },
                     fail(resp) {
@@ -29,7 +31,9 @@ export default function serviceFactory(defaultParam) {
                 }))
             } else {
                 console.log(mockData(defaultParam.funcId))
-                res(mockData(defaultParam.funcId))
+                setTimeout(function() {
+                    res(mockData(defaultParam.funcId))
+                }.bind(this), 1000);
             }
         })
     }

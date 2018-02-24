@@ -1,0 +1,6 @@
+<view class="search-bar">
+    <input class="search-ipt" placeholder="场地名称" @change="fieldChange()" value="{{fieldName}}" />
+    <view class="search-btn" @tap="submit()">搜索</view>
+</view>
+
+<list :offsetHeight.sync="offsetHeight"/>

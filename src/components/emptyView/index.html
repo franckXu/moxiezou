@@ -1,0 +1,7 @@
+<view class="empty-data-view"
+    style="height:{{height === 'full' ? windowHeight : height || 130}}px;" @tap="tap()">
+    <view class="innerBox">
+        <image class="pic-empty" src="/images/empty.png"></image>
+        <view>{{title || '暂无数据'}}</view>
+    </view>
+</view>

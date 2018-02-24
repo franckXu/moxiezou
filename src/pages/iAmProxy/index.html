@@ -4,15 +4,15 @@
             <image src="/images/icon-wallet.png" />
             <view>我的收入</view>
         </view>
-        <view class="num">￥666.66</view>
+        <view class="num">{{ incomeTotal ? '￥' + incomeTotal : '--'}}</view>
         <view class="to-detail" @tap="toPage('income')">查看详情 > </view>
     </view>
 
     <view class="content">
         <view @tap="toPage('myDevice')">
             <image src="/images/icon-myDevice.png" /> <text>我的设备</text> </view>
-        <view @tap="toPage('addDevice')">
-            <image src="/images/icon-addDevice.png" /><text>添加设备</text> </view>
+        <!-- <view @tap="toPage('addDevice')">
+            <image src="/images/icon-addDevice.png" /><text>添加设备</text> </view> -->
         <view @tap="toPage('building')">
             <image src="/images/icon-addDevice.png" /><text>我要提现</text> </view>
     </view>

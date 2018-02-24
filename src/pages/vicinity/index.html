@@ -25,21 +25,27 @@
             </view>
         </view>
         <view>
-            <view class="vicinity-item" wx:for="{{vicinityList}}" wx:for-index="idx" wx:for-item="vicinity"
-                wx:key="pk" @tap="openLocation({{idx}})">
-                <view class="vicinity-item-left">
-                    <view>{{vicinity.name}}</view>
-                    <view class="f12 address">{{vicinity.address}}</view>
+            <view wx:if="{{vicinityList !== null}}">
+                <view wx:if="{{vicinityList.length}}">
+                    <view class="vicinity-item" wx:for="{{vicinityList}}" wx:for-index="idx" wx:for-item="vicinity"
+                        wx:key="pk" @tap="openLocation({{idx}})">
+                        <view class="vicinity-item-left">
+                            <view>{{vicinity.name}}</view>
+                            <view class="f12 address">{{vicinity.address}}</view>
+                        </view>
+                        <view class="vicinity-item-right">
+                            <view class="f12">{{vicinity.distance}}km</view>
+                            <image class="icon-30X30" src="../../images/icon-go-here.png" />
+                        </view>
+                    </view>
                 </view>
-                <view class="vicinity-item-right">
-                    <view class="f12">{{vicinity.distance}}km</view>
-                    <image class="icon-30X30" src="../../images/icon-go-here.png" />
-                </view>
+                <view wx:else> <emptyView></emptyView> </view>
             </view>
         </view>
     </view>
-    <view class="qrcode-btn" @tap="scanCode()">
-        <image src="../../images/icon-scan-white.png" />
-        <text>扫码享椅</text>
-    </view>
+</view>
+<view class="qrcode-btn" @tap="scanCode()">
+    <image src="../../images/icon-scan-white.png" />
+    <text>扫码享椅</text>
+</view>
 </view>

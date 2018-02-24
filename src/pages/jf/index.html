@@ -1,8 +1,8 @@
-<view>
+<scroll-view class="" scroll-y style="height: {{listHeight}}px;" @scrolltolower="scrolltolower()">
     <view class='header'>
         <view class='jf-info'>
             <view>我的积分</view>
-            <view class='jf_num'>{{bindUserInfo.integral}}</view>
+            <view class='jf_num'>{{integral  || '--'}}</view>
         </view>
 
         <view class="menu-wrap">
@@ -12,13 +12,19 @@
     </view>
 
     <view class="jf-record-list">
-        <view class="item" wx:for="{{jfRecord}}" wx:key="time">
-            <view class="col-left">
-                <view>{{item.from}}</view>
-                <view class="time">{{item.time}}</view>
+        <view wx:if="{{jfRecord !== null}}">
+            <view wx:if="{{jfRecord.length}}">
+                <view class="item" wx:for="{{jfRecord}}" wx:key="time">
+                    <view class="col-left">
+                        <view>{{item.type === '1' ? '赚积分' : '兑换积分'}}</view>
+                        <view class="time">{{item.c_date}}</view>
+                    </view>
+                    <view class="col-right">{{item.num}}</view>
+                </view>
             </view>
-            <view class="col-right">{{item.num}}</view>
+            <view wx:else>
+                <emptyView :height="emptyViewHeight" />
+            </view>
         </view>
     </view>
-</view>
-</view>
+</scroll-view>

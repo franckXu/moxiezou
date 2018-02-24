@@ -1,39 +1,36 @@
-<view>
-    <view class='header'>
-        <view class='balance-info'>
-            <view class="my-modou">
-                <image src="/images/icon-modou.png" />
-                <text> 我的余额 (摩豆)</text>
-            </view>
-            <text class='money'>{{myAmount}}</text>
-            <view class="desc">
-                <text wx:if="{{bindUserInfo.telephone}}" @tap="toOrderRecord()">查看充值记录 ></text>
-                <text wx:else @tap="toLoginPage()" >绑定手机</text>
-            </view>
+<view class='header'>
+    <view class='balance-info'>
+        <view class="my-modou">
+            <image src="/images/icon-modou.png" />
+            <text> 我的摩豆余额</text>
+        </view>
+        <text class='money'>{{myAmount}}</text>
+        <view class="desc">
+            <text wx:if="{{bindUserInfo.telephone}}" @tap="toOrderRecord()">查看充值记录 ></text>
+            <text wx:else @tap="toLoginPage()">绑定手机</text>
         </view>
     </view>
-    <text>{{ userInfo.nikeName }}</text>
+</view>
+<block wx:if="{{chargeTemplate.data !== null}}">
     <scroll-view scroll-y style="height : {{heights.chargeMoneyListHeight}}px" id="charge-money-list-scroll-view">
-        <view class="text-center" wx:if="{{chargeTemplate.status === 1}}"> 请求中 </view>
-        <view class="text-center" wx:elif="{{chargeTemplate.status === 3}}" @tap="fetchChargeTemplate()">查询失败,点击重试</view>
-        <block wx:elif="{{chargeTemplate.status === 2}}">
-            <view class='charge-money-list' wx:if="{{chargeTemplate.data.length}}">
-                <view wx:for="{{chargeTemplate.data}}" wx:key="idx" @tap="tapChargeTplItem({{idx}})"
-                    wx:for-index="idx" class="charge-money-item {{ idx === chargeTemplate.cur ? 'cur' : ''}}">
-                    <view class="charge-money-item-inter-box">
-                        <view>{{item.amount}}摩豆</view>
-                        <view>售价: {{item.money}}元</view>
-                    </view>
+        <view class='charge-money-list' wx:if="{{chargeTemplate.data.length}}">
+            <view wx:for="{{chargeTemplate.data}}" wx:key="idx" @tap="tapChargeTplItem({{idx}})"
+                wx:for-index="idx" class="charge-money-item {{ idx === chargeTemplate.cur ? 'cur' : ''}}">
+                <view class="charge-money-item-inter-box">
+                    <view>{{item.amount}}摩豆</view>
+                    <view>售价: {{item.money}}元</view>
                 </view>
             </view>
-            <view class="text-center" wx:else>抱歉,没查询到数据</view>
-        </block>
+        </view>
+        <view style="padding-top:10px;" wx:else>
+            <emptyView></emptyView>
+        </view>
     </scroll-view>
+
     <view class="footer">
         <button class="charge-btn" @tap="tapCharge()">立即充值</button>
         <view class="protocol-txt">
             点击充值即表示同意<text class="protocol-link" @tap="tapProtocolLink()">《充返协议》</text>,知悉充值本金和返还以摩豆形式不可提现转移
         </view>
     </view>
-
-</view>
+</block>

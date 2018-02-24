@@ -1,9 +1,7 @@
 import wepy from 'wepy'
 
 import log from 'log'
-import {
-    toast
-} from '@/utils/index';
+import { toast } from '@/utils/index';
 import Page from '@/components/page/index' // alias example
 
 
@@ -16,6 +14,9 @@ export default class Index extends wepy.page {
     data = {
         userInfo: null,
         bindUserInfo: null
+
+        ,requestIng : false
+        ,loadSucc:true
     }
 
     computed = {}
@@ -37,8 +38,6 @@ export default class Index extends wepy.page {
                             url: `/pages/login/index`
                         })
                     }
-
-                }
             } else {
                 wepy.navigateTo({
                     url: '/pages/building/index'
@@ -50,22 +49,28 @@ export default class Index extends wepy.page {
     events = {}
     onLoad() {}
 
-    onReady() {}
-
     onShow() {
-        this.$parent.getUserInfo(({
-            userInfo
-        }) => {
+        this.requestIng = true;
+        this.$apply();
+
+        this.$parent.getUserInfo(({ userInfo }) => {
             this.$parent.getBindUserInfo(bindUserInfo => {
                 this.userInfo = userInfo;
                 this.bindUserInfo = bindUserInfo;
+                this.requestIng = false;
+                this.loadSucc = true;
                 this.$apply();
             }, function() {
-                toast({
-                    title: '获取用户信息'
-                })
+                toast({ title: '获取用户信息' })
+                this.requestIng = false;
+                this.loadSucc = false;
+                this.$apply();
                 console.warn(arguments);
             })
+        },err=>{
+            this.requestIng = false;
+            this.loadSucc = false;
+            this.$apply();
         })
     }
 

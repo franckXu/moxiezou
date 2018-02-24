@@ -1,8 +1,8 @@
 <view class="page">
     <view class="tabs">
-        <view @tap="clickTab(0)" class="{{ curTab === 0 ? 'cur' : ''}}">详细</view>
-        <view @tap="clickTab(1)" class="{{ curTab === 1 ? 'cur' : ''}}">支付/出货</view>
-        <view @tap="clickTab(2)" class="{{ curTab === 2 ? 'cur' : ''}}">结算</view>
+        <view @tap="clickTab(0)" class="{{ curTab === 0 ? 'cur' : ''}}">订单</view>
+        <view @tap="clickTab(1)" class="{{ curTab === 1 ? 'cur' : ''}}">设备</view>
+        <view @tap="clickTab(2)" class="{{ curTab === 2 ? 'cur' : ''}}">支付方式</view>
     </view>
 
     <view>
@@ -11,67 +11,32 @@
                 <scroll-view scroll-y style="height: {{listHeight}}px;">
                     <view class="list">
                         <view class="row">
-                            <view class="label">订订单号单号</view>
-                            <view class="value">0</view>
-                        </view>
-                        <view class="row">
                             <view class="label">订单号</view>
-                            <view class="value">1234567891234567123456789123456788</view>
+                            <view class="value">{{detail.order_no}}</view>
                         </view>
                         <view class="row">
-                            <view class="label">订单号</view>
-                            <view class="value">12345678912345678</view>
-                        </view>
-
-                        <view class="row">
-                            <view class="label">订订单号单号</view>
-                            <view class="value">1123456789123456782345678912345678</view>
+                            <view class="label">商家</view>
+                            <view class="value">{{detail.user_name}}</view>
                         </view>
                         <view class="row">
-                            <view class="label">订单号</view>
-                            <view class="value">1234567891234567123456789123456788</view>
+                            <view class="label">商品编码</view>
+                            <view class="value">{{detail.template_dtl_id}}</view>
                         </view>
                         <view class="row">
-                            <view class="label">订单号</view>
-                            <view class="value">12345678912345678</view>
-                        </view>
-
-                        <view class="row">
-                            <view class="label">订订单号单号</view>
-                            <view class="value">1123456789123456782345678912345678</view>
+                            <view class="label">商品名称</view>
+                            <view class="value">{{detail.template_name}}</view>
                         </view>
                         <view class="row">
-                            <view class="label">订单号</view>
-                            <view class="value">1234567891234567123456789123456788</view>
+                            <view class="label">金额</view>
+                            <view class="value">{{detail.template_dtl_money}}</view>
                         </view>
                         <view class="row">
-                            <view class="label">订单号</view>
-                            <view class="value">12345678912345678</view>
-                        </view>
-
-                        <view class="row">
-                            <view class="label">订订单号单号</view>
-                            <view class="value">1123456789123456782345678912345678</view>
+                            <view class="label">消费用户</view>
+                            <view class="value">{{detail.consumer_name}}</view>
                         </view>
                         <view class="row">
-                            <view class="label">订单号</view>
-                            <view class="value">1234567891234567123456789123456788</view>
-                        </view>
-                        <view class="row">
-                            <view class="label">订单号</view>
-                            <view class="value">12345678912345678</view>
-                        </view>
-                        <view class="row">
-                            <view class="label">订订单号单号</view>
-                            <view class="value">1123456789123456782345678912345678</view>
-                        </view>
-                        <view class="row">
-                            <view class="label">订单号</view>
-                            <view class="value">1234567891234567123456789123456788</view>
-                        </view>
-                        <view class="row">
-                            <view class="label">订单号</view>
-                            <view class="value">12345678912345678</view>
+                            <view class="label">订单状态</view>
+                            <view class="value">{{detail.status === '0' ? '未支付' : detail.status === '1' ? '正在支付' : '支付成功'}}</view>
                         </view>
                     </view>
                 </scroll-view>
@@ -79,16 +44,33 @@
             <swiper-item>
                 <view class="list">
                     <view class="row">
-                        <view class="label">订订单号单号</view>
-                        <view class="value">1</view>
+                        <view class="label">设备编码</view>
+                        <view class="value">{{detail.equip_code}}</view>
                     </view>
+                    <view class="row">
+                        <view class="label">设备地点</view>
+                        <view class="value">{{detail.equip_address}}</view>
+                    </view>
+
                 </view>
             </swiper-item>
             <swiper-item>
                 <view class="list">
                     <view class="row">
-                        <view class="label">订单号</view>
-                        <view class="value">2</view>
+                        <view class="label">支付方式</view>
+                        <view class="value">{{detail.buy_type === '1' ? '支付宝' : detail.buy_type === '2' ? '微信' : detail.buy_value === '3' ? '银联' : '余额魔豆'}}</view>
+                    </view>
+                    <view class="row">
+                        <view class="label">金额</view>
+                        <view class="value">{{detail.template_dtl_money}}</view>
+                    </view>
+                    <view class="row">
+                        <view class="label">创建时间</view>
+                        <view class="value">{{detail.c_date}}</view>
+                    </view>
+                    <view class="row">
+                        <view class="label">支付时间</view>
+                        <view class="value">{{detail.c_date}}</view>
                     </view>
                 </view>
             </swiper-item>

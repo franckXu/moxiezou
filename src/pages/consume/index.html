@@ -20,44 +20,52 @@
                 <image src="/images/icon-tel.png" />
                 <text @tap="callCustomerService()">电话:{{serviceTel}}</text></view>
 
-            <view class="pay-type-choose-popup {{showPayTypeChoosePopup ? 'show' : ''}}">
+            <view class="popup pay-type-choose-popup {{showPayTypeChoosePopup ? 'show' : ''}}">
                 <view class="content">
-
-                    <view class="prodInfo">{{selectedProd.title}},{{selectedProd.amounts}}分钟,{{selectedProd.money}}元{{selectedProd.unit}}</view>
-
-                    <view class="header">
-                        <text>请选择支付方式:</text>
-                    </view>
+                    <view class="title">{{selectedProd.title}}</view>
+                    <view class="sub-title">{{selectedProd.money}}元/{{selectedProd.amounts}}分钟</view>
+                    <view class="header"> 请选择支付方式 </view>
                     <view class="pay-type-group">
                         <radio-group class="radio-group" @change="chgPayType()">
                             <label class="radio pay-type" wx:for="{{payTypes}}" wx:key="id">
-                        <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
-                    </label>
+                                <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+                            </label>
                         </radio-group>
                     </view>
                     <view class="use-coupon">
                         <checkbox-group @change="checkboxChange()">
                             <label class="checkbox">
-                        <checkbox value="{{coupon.name}}" checked="{{coupon.checked}}" />使用优惠券
-                    </label>
+                                <checkbox value="{{useCoupon.name}}" checked="{{useCoupon.checked}}" />使用优惠券
+                            </label>
                         </checkbox-group>
                         <block wx:if="{{useCoupon.checked}}">
-                            <text @tap="chooseCoupon()">{{ couponForConsume ? couponForConsume.money + '元' : '选择优惠券'}}</text>
+                        <text @tap="chooseCoupon()">{{ couponForConsume ? couponForConsume.money + '元' : '选择优惠券>'}}</text>
                         </block>
                     </view>
 
                     <view class="summary">
-                        <view>应付:<text class="num">{{selectedProd.money}}</text>元</view>
-                        <view wx:if="{{couponForConsume}}">优惠:-<text class="num">{{couponForConsume.money}}</text>元</view>
-                        <view>实际支付:<text class="num">{{money}}</text>元</view>
+                        <view>
+                            <text class="detail">总计￥<text >{{selectedProd.money}}</text>元</text>
+                            <text wx:if="{{couponForConsume}}">优惠￥<text >{{couponForConsume.money}}</text>元</text>
+                        </view>
+                        <view class="num">应付￥<text>{{money}}</text></view>
                     </view>
 
-                    <view class="btn-group">
-                        <text @tap="closePayTypePopup()">取消</text>
-                        <text @tap="submit()">确定</text>
-                    </view>
+                    <view class="btn-wrap"><button class="btn" @tap="submit()">确定</button></view>
+
+                    <view class="close-btn" @tap="closePayTypePopup()">X</view>
                 </view>
             </view>
+
+            <view class="popup pay-success-popup {{ showPaySuccPopup ? 'show' : '' }}">
+                <view class="content">
+                    <image src="/images/smile.png"></image>
+                    <view class="title">支付成功!赶快体验吧</view>
+                    <view class="sub-title">{{selectedProd.title}}</view>
+                    <view class="btn-wrap"><button class="btn" @tap="closePaySuccPopup()">好</button></view>
+                </view>
+            </view>
+
         </block>
         <block wx:else>
             <view class="text-center">

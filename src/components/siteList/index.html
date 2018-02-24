@@ -1,0 +1,17 @@
+<scroll-view class="list" style="height:{{windowHeight}}px" scroll-y @scrolltolower="scrolltolower()">
+    <page :requestIng.sync="requestIng" :loadSucc.sync="loadSucc">
+        <view slot="content">
+            <view wx:if="{{templateList !== null}}">
+                <view wx:if="{{templateList.length}}">
+                    <view class="item" wx:for="{{templateList}}" wx:key="id" @tap="chooseTemplate({{item}})">
+                        <view class="name">{{item.field_name}}</view>
+                        <view class="address">{{item.field_address}}</view>
+                    </view>
+                </view>
+                <view wx:else>
+                    <emptyView :height.sync="emptyViewHeight" />
+                </view>
+            </view>
+        </view>
+    </page>
+</scroll-view>

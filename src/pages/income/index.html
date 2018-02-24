@@ -6,23 +6,19 @@
 </view>
 
 <swiper @change="change()" current="{{curTab}}" class="swiper" style="height: {{listHeight}}px;">
-    <swiper-item>
+    <swiper-item wx:for="{{list}}" wx:key="this" wx:for-item="subList">
         <scroll-view scroll-y style="height: {{listHeight}}px;">
             <view class="list">
-                <view wx:for="{{list}}" wx:key="idx" class="item" @tap="toDayIncome({{item}})">
-                    <view>{{item.time}}</view>
-                    <view>{{item.money}}元 > </view>
+                <view wx:if="{{!subList.length}}">
+                    <emptyView :height="emptyViewHeight" />
+                </view>
+                <view wx:else>
+                    <view wx:for="{{subList}}" wx:key="idx" class="item" @tap="toDayIncome({{item}})">
+                        <view>{{item.pay_date}}</view>
+                        <view>{{item.money}}元 > </view>
+                    </view>
                 </view>
             </view>
         </scroll-view>
-    </swiper-item>
-    <swiper-item>
-        1
-    </swiper-item>
-    <swiper-item>
-        2
-    </swiper-item>
-    <swiper-item>
-        3
     </swiper-item>
 </swiper>
