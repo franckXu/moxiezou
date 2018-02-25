@@ -38,8 +38,8 @@
             <view class="equip-group">
                 <view wx:for="{{formData.equipIds.value}}" wx:key="code" class="equip-wrap">
                     <view class="equip"><view>{{item.name}}</view><view @tap="removeDevice({{item}})" class="remove-device-btn">X</view></view>
-                </view>       
-                <view @tap="chooseDevice()" class="add-device-btn">+添加</view>         
+                </view>
+                <view @tap="chooseDevice()" class="add-device-btn">+添加</view>
             </view>
         </view>
 

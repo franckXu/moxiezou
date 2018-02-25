@@ -1,17 +1,18 @@
 @import "../../libs/flex-less/flex.less";
 @import "../../utils/common.less";
 
+@header-h:152px;
 .header {
-    text-align: center;
+    .display(flex);
+    .align-items(center);
+    .flex-direction(column);
     background-color: @col-green;
-    padding-bottom:  10px;
     color: #fff;
-    overflow:hidden;
-    height: 122px;
+    height: @header-h;
     .myIncome-txt{
         .display(flex);
         .justify-content(center);
-        margin-top: 10px;
+        margin-top: 20px;
         image{
             width:20px;
             height:20px;
@@ -24,17 +25,18 @@
     }
     .to-detail{
         font-size: 14px;
+        margin: 10px 0px 20px;
     }
 }
 
 .content {
-    background-color:#eee;
+    /* background-color:#eee;
     overflow: hidden;
     position:fixed;
-    top:122px;
+    top:@header-h;
     bottom:0px;
     left: 0px;
-    right: 0px;
+    right: 0px; */
     view {
         .display(flex);
         .align-items(center);

@@ -20,10 +20,14 @@ export default class Index extends wepy.page {
             content: {
                 label: '内容'
             }
-        }
+        },
     }
 
-    computed = {}
+    computed = {
+        notCanSubmit(){
+            return !this.formData.telephone.value || !this.formData.content.value
+        }
+    }
 
     methods = {
         inputHandler(k, evt) {
@@ -39,11 +43,14 @@ export default class Index extends wepy.page {
                 .then(({ data: { data, resultMsg, resultCode } }) => {
                     if (resultCode === '0000') {
                         toast({title:resultMsg})
+                        setTimeout(()=>{
+                            wepy.navigateBack();
+                        },500)
+                    }else{
+                        toast({ title: '提交失败' })
                     }
                 }, err => {
-                    toast({
-                        title: '提交失败'
-                    })
+                    toast({ title: '提交失败' })
                 })
         }
     }

@@ -17,6 +17,8 @@ export default class Index extends wepy.page {
             id:            {'label':'场地Id'},
             field_phone:   {'label':'联系电话 '},
             field_address: {'label':'地址'},
+            gpsX:          {'label':'经度'},
+            gpsY:          {'label':'纬度'},
             charge_way:    {'label':'计费方式', value : '0' }, // 计费方式 0-月租 1-百分比
             charge_value:  {'label':'场地费'},
             remark:        {'label':'备注'}
@@ -32,6 +34,23 @@ export default class Index extends wepy.page {
     computed = {}
 
     methods = {
+        chooseLocation() {
+            const self = this;
+            wepy.chooseLocation({
+                success({ name, address, latitude, longitude }) {
+                    self.formData.field_address.value = address;
+                    self.formData.gpsX.value = longitude;
+                    self.formData.gpsY.value = latitude;
+                    self.$apply()
+                },
+                fail(resp) {
+                    console.warn(resp)
+                },
+                complet(resp) {
+                    console.warn(resp)
+                }
+            })
+        },
         removeDevice({id}){
             const data = this.formData.equipIds.value;
             for (let i = 0,len = data.length ; i < len; i++) {

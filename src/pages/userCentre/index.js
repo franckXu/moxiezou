@@ -50,8 +50,13 @@ export default class Index extends wepy.page {
     onLoad() {}
 
     onShow() {
-        this.requestIng = true;
+        console.log('show in userCentre');
+        // 不要显示统一的加载页面
+        // this.requestIng = true;
         this.$apply();
+
+        // 清空用户绑定的数据，保证每次进入页面都是最新的
+        this.$parent.globalData.bindUserInfo = null;
 
         this.$parent.getUserInfo(({ userInfo }) => {
             this.$parent.getBindUserInfo(bindUserInfo => {

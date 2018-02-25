@@ -13,6 +13,8 @@ export default class Index extends wepy.page {
 
     data = {
         incomeTotal : null
+
+        ,windowHeight  : 300
     }
 
     computed = {
@@ -32,13 +34,10 @@ export default class Index extends wepy.page {
         }
     }
 
-    events = {}
-    onLoad() {}
-
-    onReady() {
-    }
-
     onShow(){
+        this.windowHeight = wepy.getSystemInfoSync().windowHeight;
+        this.$apply();
+
         wepy.showLoading();
         MXZ010004({
             startTime: '20180201',

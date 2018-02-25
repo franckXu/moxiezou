@@ -4,27 +4,27 @@
     height: 28px;
     line-height: 28px;
     padding: 8px;
-    border-bottom: 1px solid #ccc;
-    position: realtive;
-    &:after {
-        content: '>';
-        display: inline-block;
-        height: 28px;
-        line-height: 28px;
-        position: absolute;
-        right: 10px;
+    border-bottom: 1px solid @col-eee;
+    overflow: hidden;
+
+    .arrow{
+        .arrow-icon();
+        float: right;
         transition: all .1s;
+        margin-right:  8px;
+        margin-top: 8px;
     }
+
     &.open {
-        &:after {
+        .arrow{
             transform: rotate(90deg);
         }
     }
 }
 
 .content {
-    background-color: #eee;
-    border-bottom: 1px solid #ccc;
+    background-color:#efefef;
+    border-bottom: 1px solid @col-eee;
     font-size: 14px;
     max-height:0px;
     overflow: hidden;

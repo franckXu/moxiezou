@@ -1,7 +1,5 @@
 import wepy from 'wepy'
 
-import log from 'log'
-
 export default class Index extends wepy.page {
     config = {}
     components = {}
@@ -21,15 +19,5 @@ export default class Index extends wepy.page {
             }
         }
     }
-
-    events = {}
-    onLoad() {}
-
-    onReady() {
-    }
-
-    onShow(){
-    }
-
 
 }

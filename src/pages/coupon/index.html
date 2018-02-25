@@ -1,9 +1,9 @@
 <scroll-view class="list" style="height:{{windowHeight}}px" scroll-y @scrolltolower="scrolltolower()">
     <page :requestIng.sync="requestIng" :loadSucc.sync="loadSucc">
         <view slot="content">
-            <view wx:if="{{itemsForView !== null}}">
-                <view wx:if="{{itemsForView.length}}">
-                    <view wx:for="{{itemsForView}}"  wx:key="id"
+            <view wx:if="{{items !== null}}">
+                <view wx:if="{{items.length}}">
+                    <view wx:for="{{items}}"  wx:key="id"
                         class="item {{item.status === '0' ? '' : 'disabled' }}" @tap="clickCoupon({{item}})">
                         <view class="price">
                             <view>￥<text class="num">{{item.money}}</text></view>
@@ -12,14 +12,13 @@
                             <view>
                                 <view class="title">{{item.title}}</view>
                                 <view class="desc">{{item.remarks}}</view>
+                                <!-- <view class="time">有效期:2018.8.8-2019.9.9</view> -->
                                 <view class="time">有效期:{{item.expiry_date}}</view>
                                 <view class="range">可用时间段:{{item.expiry_time}}</view>
                             </view>
                         </view>
                         <view class="status-box">
-                            <view class="status">{{ item.status === '0' ? '可使用' : item.status === '1'
-                                ? '已使用' : '已过期' }}
-                            </view>
+                            <image src="/images/coupon-state-{{ item.status === '0' ? 'enable' : item.status === '1' ? 'disable' : 'timeout'}}.png" />
                         </view>
                     </view>
                 </view>

@@ -2,7 +2,7 @@
     <form>
         <view class="field">
             <label class="label">{{formData.telephone.label}}</label>
-            <input type="text" placeholder="请输入{{formData.telephone.label}}" value="{{formData.telephone.value}}"
+            <input type="number" placeholder="请输入{{formData.telephone.label}}" value="{{formData.telephone.value}}"
                 @input="inputHandler('telephone')" />
         </view>
 
@@ -13,6 +13,6 @@
             </view>
         </view>
 
-        <button class="submitBtn" @tap="submit()">提交</button>
+        <button class="submitBtn" disabled="{{notCanSubmit}}" @tap="submit()">提交</button>
     </form>
 </view>

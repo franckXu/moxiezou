@@ -22,9 +22,8 @@
 }
 
 .scanBtn,.chooseLocationBtn {
-    flex: none;
-    width: 24px;
-    height: 24px;
+    .flex(none);
+    .icon-coordinate();
 }
 
 .submitBtn{
@@ -67,3 +66,16 @@
     text-align: center;
     width:100px;
 }
+
+.address{
+    .flex-flow(column, nowrap);
+    > view {
+        .display(flex);
+        .flex-flow();
+        margin-top: 5px;
+        input{
+            .flex(1);
+        }
+    }
+}
+

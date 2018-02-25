@@ -43,6 +43,7 @@ export default class Index extends wepy.page {
         couponForConsume: null
 
         ,showPaySuccPopup : false
+        ,windowWidth : 300
     }
 
     computed = {
@@ -71,6 +72,10 @@ export default class Index extends wepy.page {
         clickProd(item) {
             this.$parent.getBindUserInfo(bindUserInfo=>{
                 if (bindUserInfo.telephone) {
+
+                    this.couponForConsume = null;
+                    this.useCoupon.checked = false;
+
                     this.selectedProd = item;
                     this.showPayTypeChoosePopup = true;
                     this.$apply();
@@ -126,6 +131,11 @@ export default class Index extends wepy.page {
     }
 
     onShow() {
+        console.log('show in consume showPaySuccPopup:',this.showPaySuccPopup);
+
+        this.windowWidth = wepy.getSystemInfoSync().windowWidth;
+        this.$apply();
+
         if (this.$parent.globalData.couponForConsume) {
             this.couponForConsume = this.$parent.globalData.couponForConsume;
             this.useCoupon.checked = true;
@@ -171,6 +181,7 @@ export default class Index extends wepy.page {
             "signType":  signType,
             "paySign":   paySign,
             "success":   function(res) {
+                console.log('wxpay success');
                 console.log(res);
                 this.showPaySuccPopup = true;
                 self.showPayTypeChoosePopup = false;

@@ -3,7 +3,7 @@ import wepy from 'wepy'
 import log from 'log'
 import {pageSize} from 'config';
 import serviceFactory from '@/utils/base.service'
-const MXZ070001 = serviceFactory({ funcId: 'MXZ070001' });
+const MXZ070003 = serviceFactory({ funcId: 'MXZ070003' });
 
 import Page from '@/components/page/index';
 import EmptyView from '@/components/emptyView/index';
@@ -29,14 +29,6 @@ export default class Index extends wepy.page {
     computed = {
         windowHeight(){
             return wepy.getSystemInfoSync().windowHeight;
-        },
-        itemsForView(){
-            if (Array.isArray(this.items)) {
-                return this.items.filter(item=> {
-                    return this.maxMoney ? item.money < this.maxMoney : true;
-                })
-            }
-            return null;
         }
     }
 
@@ -50,14 +42,14 @@ export default class Index extends wepy.page {
             }
         },
         scrolltolower(){
-            this.reqMXZ070001();
+            this.reqMXZ070003();
         }
     }
 
     events = {
         retry(from){
             if (from !== 'emptyView') {
-                this.reqMXZ070001();
+                this.reqMXZ070003();
             }
         }
     }
@@ -71,16 +63,17 @@ export default class Index extends wepy.page {
     onReady() {
         this.requestIng = true;
         this.$apply();
-        this.reqMXZ070001();
+        this.reqMXZ070003();
     }
 
-    reqMXZ070001(){
+    reqMXZ070003(){
         wepy.showLoading();
         const len = Array.isArray(this.items) ? this.items.length : 0;
-        MXZ070001({
+        MXZ070003(Object.assign({
             pageSize : ''+pageSize,
-            currentPage : '' + (parseInt((len / pageSize)) + 1),
-        }).then(({ data: { resultCode, resultMsg, data } }) => {
+            currentPage : '' + (parseInt((len / pageSize)) + 1)
+        },this.maxMoney ? { status : '0' ,money : this.maxMoney} : {}))
+            .then(({ data: { resultCode, resultMsg, data } }) => {
                 wepy.hideLoading();
                 this.requestIng = false;
                 if (resultCode === "0000") {

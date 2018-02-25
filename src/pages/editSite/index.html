@@ -12,10 +12,30 @@
                 @input="inputHandler('field_phone')" />
         </view>
 
-        <view class="field">
+        <!-- <view class="field"> -->
+            <!-- <label class="label">{{formData.field_address.label}}</label> -->
+            <!-- <input type="text" placeholder="请输入{{formData.field_address.label}}" value="{{formData.field_address.value}}" -->
+                <!-- @input="inputHandler('field_address')" /> -->
+        <!-- </view> -->
+
+        <view class="field address">
             <label class="label">{{formData.field_address.label}}</label>
-            <input type="text" placeholder="请输入{{formData.field_address.label}}" value="{{formData.field_address.value}}"
-                @input="inputHandler('field_address')" />
+            <view>
+                <input type="text" placeholder="请选择{{formData.field_address.label}}"  @input="inputHandler('field_address')" value="{{formData.field_address.value}}" style="font-size:12px;" />
+                <image src="/images/icon-coordinate.png" @tap="chooseLocation()" class="chooseLocationBtn" />
+            </view>
+        </view>
+
+        <view class="field">
+            <label class="label">{{formData.gpsX.label}}</label>
+            <input type="digit" placeholder="请输入{{formData.gpsX.label}}"  @input="inputHandler('gpsX')" value="{{formData.gpsX.value}}"
+            />
+        </view>
+
+        <view class="field">
+            <label class="label">{{formData.gpsY.label}}</label>
+            <input type="digit" placeholder="请输入{{formData.gpsY.label}}" @input="inputHandler('gpsY')" value="{{formData.gpsY.value}}"
+            />
         </view>
 
         <view class="field">

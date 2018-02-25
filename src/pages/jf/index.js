@@ -40,10 +40,13 @@ export default class Index extends wepy.page {
     events = {}
     onLoad() {}
 
-    onReady() {
+    onShow() {
         const self = this;
         self.$parent.getBindUserInfo(bindUserInfo=>{
-                self.bindUserInfo = bindUserInfo;
+                this.bindUserInfo = bindUserInfo;
+                this.jfRecord = null;
+                this.$apply();
+
                 this.reqJfRecord();
             },function(){
                 toast({title : '获取用户信息'})

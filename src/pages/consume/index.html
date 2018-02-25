@@ -1,7 +1,7 @@
 <page :requestIng.sync="requestIng">
     <view slot="content">
         <block wx:if="{{productInfo && productInfo.template && productInfo.template.templateDtl}}">
-            <image class="product-pic" src="{{productInfo.template.pic}}" />
+            <image class="product-pic" src="{{productInfo.template.logo}}" />
             <view class="consume-list">
                 <view wx:for="{{productInfo.template.templateDtl}}" wx:for-index="idx" wx:key="idx"
                     class="consume-item" @tap="clickProd({{item}})">
@@ -21,7 +21,7 @@
                 <text @tap="callCustomerService()">电话:{{serviceTel}}</text></view>
 
             <view class="popup pay-type-choose-popup {{showPayTypeChoosePopup ? 'show' : ''}}">
-                <view class="content">
+                <view class="content" style="min-width:{{windowWidth - 40}}px;">
                     <view class="title">{{selectedProd.title}}</view>
                     <view class="sub-title">{{selectedProd.money}}元/{{selectedProd.amounts}}分钟</view>
                     <view class="header"> 请选择支付方式 </view>
@@ -38,14 +38,15 @@
                                 <checkbox value="{{useCoupon.name}}" checked="{{useCoupon.checked}}" />使用优惠券
                             </label>
                         </checkbox-group>
-                        <block wx:if="{{useCoupon.checked}}">
-                        <text @tap="chooseCoupon()">{{ couponForConsume ? couponForConsume.money + '元' : '选择优惠券>'}}</text>
-                        </block>
+                        <view wx:if="{{useCoupon.checked}}">
+                            <text @tap="chooseCoupon()">{{ couponForConsume ? couponForConsume.money + '元' : '选择优惠券'}}</text>
+                            <image src="/images/arrow.png" class="arrow" />
+                        </view>
                     </view>
 
                     <view class="summary">
-                        <view>
-                            <text class="detail">总计￥<text >{{selectedProd.money}}</text>元</text>
+                        <view class="detail">
+                            <text>总计￥<text >{{selectedProd.money}}</text>元</text>
                             <text wx:if="{{couponForConsume}}">优惠￥<text >{{couponForConsume.money}}</text>元</text>
                         </view>
                         <view class="num">应付￥<text>{{money}}</text></view>
@@ -58,7 +59,7 @@
             </view>
 
             <view class="popup pay-success-popup {{ showPaySuccPopup ? 'show' : '' }}">
-                <view class="content">
+                <view class="content" style="min-width:{{windowWidth - 40}}px;">
                     <image src="/images/smile.png"></image>
                     <view class="title">支付成功!赶快体验吧</view>
                     <view class="sub-title">{{selectedProd.title}}</view>

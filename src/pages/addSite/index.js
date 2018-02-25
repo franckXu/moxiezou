@@ -89,14 +89,14 @@ export default class Index extends wepy.page {
 
     onShow(){
         if (
-            this.$parent.globalData.deviceForSite 
+            this.$parent.globalData.deviceForSite
             && !this.formData.equipIds.value.find(item=>item.id === this.$parent.globalData.deviceForSite.id)
         ){
                 this.formData.equipIds.value.push(this.$parent.globalData.deviceForSite);
                 this.$apply();
-                
+
                 this.$parent.globalData.deviceForSite = null;
-                
+
         }
         this.setChargeWay();
     }

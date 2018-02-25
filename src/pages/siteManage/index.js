@@ -37,7 +37,7 @@ export default class Index extends wepy.page {
         }
     }
 
-    onReady(){
+    onShow(){
         this.$broadcast('reqData',this.fieldName);
     }
 

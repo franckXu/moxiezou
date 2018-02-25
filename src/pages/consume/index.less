@@ -135,7 +135,10 @@
             .display(flex);
             .justify-content(space-between);
             .pay-type{
-                .flex(1)
+                .flex(1);
+                &:nth-child(even){
+                    text-align: right;
+                }
             }
         }
     }
@@ -147,6 +150,12 @@
         font-size: 16px;
         margin-top: 10px;
         color:@col-gray;
+
+        .arrow{
+            .arrow-icon();
+            margin-left: 10px;
+            .flex(none);
+        }
     }
     .summary{
         font-size: 16px;
@@ -155,6 +164,9 @@
         margin-top: 10px;
         .detail{
             color:@col-gray;
+            > text {
+                margin-right: 10px;
+            }
         }
         .num{
             color:@col-green;
