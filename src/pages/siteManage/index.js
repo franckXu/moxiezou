@@ -32,7 +32,7 @@ export default class Index extends wepy.page {
             console.log('siteManage',item);
             this.$parent.globalData.siteForSiteManage = item;
             wepy.navigateTo({
-                url : '/pages/editSite/index'
+                url : '/pages/editSite/index?from=siteManage'
             })
         }
     }

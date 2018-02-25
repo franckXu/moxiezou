@@ -16,14 +16,13 @@ const MXZ010002Service = serviceFactory({
 export default class extends wepy.app {
     config = {
         pages: [
-            'pages/userCentre/index',
             'pages/welcome/index',
+            'pages/siteManage/index',
+            'pages/userCentre/index',
             'pages/coupon/index',
             'pages/myDevice/index',
             'pages/rechargeProtocol/index',
-            'pages/addSite/index',
             'pages/editSite/index',
-            'pages/siteManage/index',
             'pages/siteList/index',
             'pages/consume/index',
             'pages/orderList/index',

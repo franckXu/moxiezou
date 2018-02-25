@@ -36,7 +36,7 @@
                 <image src="/images/arrow.png" class="arrow"
                 />
             </view>
-            <view @tap="toPage('addSite')" wx:if="{{ bindUserInfo.roleId === '9' }}"> <text>场地录入</text>
+            <view @tap="toPage('editSite')" wx:if="{{ bindUserInfo.roleId === '9' }}"> <text>场地录入</text>
                 <image src="/images/arrow.png" class="arrow" />
             </view>
             <view @tap="toPage('siteManage')" wx:if="{{ bindUserInfo.roleId === '9' }}"> <text>场地管理</text>

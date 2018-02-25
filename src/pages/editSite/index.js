@@ -85,7 +85,7 @@ export default class Index extends wepy.page {
                 fieldPhone:   this.formData.field_phone.value,
                 fieldAddress: this.formData.field_address.value,
                 chargeWay:    this.formData.charge_way.value,
-                chargeValue:  this.formData.charge_value.value,
+                chargeValue:  +this.formData.charge_value.value,
                 remark:       this.formData.remark.value,
                 equipIds:     this.formData.equipIds.value.map(item=>item.id).join(',')
             }).then(({ data: { data, resultMsg, resultCode } }) => {
@@ -106,18 +106,26 @@ export default class Index extends wepy.page {
         }
     }
 
-    onShow(){
-        let {siteForSiteManage} = this.$parent.globalData;
-        if (siteForSiteManage) {
-            for (let prop in this.formData){
-                if (siteForSiteManage[prop]) {
-                    this.formData[prop].value = siteForSiteManage[prop];
-                }
-            }
 
-            // this.formData.fieldId.value = siteForSiteManage.id;
-            this.formData.equipIds.value = siteForSiteManage.equipment;
-            this.$parent.globalData.siteForSiteManage = null;
+    urlQuery = null
+    onLoad(query){
+        this.urlQuery = query;
+    }
+    onShow(){
+
+        if (this.urlQuery && this.urlQuery.from === 'siteManage') {
+            let {siteForSiteManage} = this.$parent.globalData;
+            if (siteForSiteManage) {
+                for (let prop in this.formData){
+                    if (siteForSiteManage[prop]) {
+                        this.formData[prop].value = siteForSiteManage[prop];
+                    }
+                }
+
+                // this.formData.fieldId.value = siteForSiteManage.id;
+                this.formData.equipIds.value = siteForSiteManage.equipment;
+                this.$parent.globalData.siteForSiteManage = null;
+            }
         }
 
         if (

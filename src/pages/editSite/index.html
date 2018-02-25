@@ -8,15 +8,9 @@
 
         <view class="field">
             <label class="label">{{formData.field_phone.label}}</label>
-            <input type="number" placeholder="请输入{{formData.field_phone.label}}" value="{{formData.field_phone.value}}"
+            <input type="number" placeholder="请输入{{formData.field_phone.label}}" value="{{formData.field_phone.value}}" maxlength='11'
                 @input="inputHandler('field_phone')" />
         </view>
-
-        <!-- <view class="field"> -->
-            <!-- <label class="label">{{formData.field_address.label}}</label> -->
-            <!-- <input type="text" placeholder="请输入{{formData.field_address.label}}" value="{{formData.field_address.value}}" -->
-                <!-- @input="inputHandler('field_address')" /> -->
-        <!-- </view> -->
 
         <view class="field address">
             <label class="label">{{formData.field_address.label}}</label>
