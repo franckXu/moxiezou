@@ -57,6 +57,18 @@ export default class Index extends wepy.page {
                 scale:     28
             })
         }
+        ,tapBanner({url}){
+            if (url === '2') {
+                wepy.navigateTo({
+                    url : '/pages/getCoupon/index'
+                })
+            }else if(url !== '1'){
+                wepy.navigateTo({
+                    url : `/pages/webView/index?url=${url}`
+                })
+
+            }
+        }
     }
 
 

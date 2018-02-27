@@ -1106,7 +1106,6 @@ const MXZ010003 = {
         "order_no": "1516332528108136238"
     }]
 }
-
 const MXZ070003 = {
     "currentPage": 1,
     "data": [{
@@ -1139,6 +1138,28 @@ const MXZ070003 = {
     "totalCount": 0,
     "totalPage": 1
 }
+
+const MXZ070004 = {
+    "data": {
+        "id": 15,
+        "title": "平台推广2",
+        "usable_money": "",
+        "status": "0",
+        "expiry_time": "全天",
+        "usable_field": "",
+        "money": 2.00,
+        "remarks": "测试2",
+        "expiry_date": "2018-02-25至2018-03-01"
+    },
+    "exception": "",
+    "funcId": "MXZ070004",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
+}
 const data = {
     MXZ010001,
     MXZ030005,
@@ -1163,10 +1184,12 @@ const data = {
     MXZ010004,
     MXZ010005,
     MXZ010003,
-    MXZ070003
+    MXZ070003,
+    MXZ070004
 }
 
 export default function mockData(funcId) {
+    console.log(data[funcId]);
     return {
         data: data[funcId],
         statusCode : 200,

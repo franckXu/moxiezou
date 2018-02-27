@@ -17,12 +17,14 @@ export default class extends wepy.app {
     config = {
         pages: [
             'pages/welcome/index',
+            'pages/webView/index',
+            'pages/getCoupon/index',
+            'pages/editSite/index',
             'pages/siteManage/index',
             'pages/userCentre/index',
             'pages/coupon/index',
             'pages/myDevice/index',
             'pages/rechargeProtocol/index',
-            'pages/editSite/index',
             'pages/siteList/index',
             'pages/consume/index',
             'pages/orderList/index',

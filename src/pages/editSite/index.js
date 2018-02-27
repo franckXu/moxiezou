@@ -69,12 +69,23 @@ export default class Index extends wepy.page {
         },
         changeChargeWay(n,evt){
             this.formData.charge_way.value = evt.detail.value;
+            this.formData.charge_value.value = '';
             this.setChargeWay();
             this.$apply();
         },
         inputHandler(k, evt) {
             this.formData[k].value = evt.detail.value;
             this.$apply();
+        },
+        chargeValIpt(k,evt){
+            const value = evt.detail.value;
+            const prevValue = this.formData.charge_value.value;
+
+            this.methods.inputHandler.apply(this, arguments);
+            if ( this.formData.charge_way.value === '1' && +value > 100) {
+                this.formData.charge_value.value =  prevValue;
+                this.$apply();
+            }
         },
         submit() {
             wepy.showLoading({mask:true});
@@ -144,8 +155,8 @@ export default class Index extends wepy.page {
     }
 
     setChargeWay(){
-        const selectedCharge = this.chargeWays
-            .forEach(item=>{
+        const selectedCharge =
+            this.chargeWays.forEach(item=>{
                 item.checked = item.name === this.formData.charge_way.value;
             });
 

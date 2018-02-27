@@ -1,0 +1,23 @@
+<page :requestIng.sync="requestIng" :loadSucc.sync="loadSucc">
+    <view slot="content" class="page-content">
+        <view class="item">
+            <view class="price">
+                <view>￥<text class="num">{{item.money}}</text></view>
+            </view>
+            <view class="info">
+                <view>
+                    <view class="title">{{item.title}}</view>
+                    <view class="desc">{{item.remarks}}</view>
+                </view>
+            </view>
+        </view>
+
+        <view class="please-input-tel-txt"><text>输入手机号领取优惠券</text></view>
+
+        <input
+              class="tel-ipt" type="number" value="{{formatTel}}" @input="iptTel()"
+              maxlength="13" />
+        <button class="submit-btn" @tap="submit()">立即领取</button>
+
+    </view>
+</page>

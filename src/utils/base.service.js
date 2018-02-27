@@ -30,7 +30,6 @@ export default function serviceFactory(defaultParam) {
                     }
                 }))
             } else {
-                console.log(mockData(defaultParam.funcId))
                 setTimeout(function() {
                     res(mockData(defaultParam.funcId))
                 }.bind(this), 1000);

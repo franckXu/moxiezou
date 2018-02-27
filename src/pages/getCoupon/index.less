@@ -1,0 +1,87 @@
+@import "../../libs/flex-less/flex.less";
+@import "../../utils/common.less";
+@space:20px;
+.page-content{
+    background-color: @col-eee;
+    position:absolute;
+    top: 0;
+    left: 0;
+    bottom:0;
+    right:0;
+}
+.item {
+    .display(flex);
+    .flex-direction(row);
+    margin:@space;
+    background-color: #fff;
+    box-shadow:0px 2px 2px #ddd;
+    .price,.info{
+        .display(flex);
+        .justify-content(center);
+    }
+    .price {
+        .align-items(center);
+        color: @col-green;
+        border-right: 1px dashed @col-green;
+        width: 80px;
+        .num {
+            font-size: 42px;
+        }
+    }
+    .info {
+        .flex(1, 1, auto);
+        .display(flex);
+        .flex-direction(column);
+        color:@col-green;
+        margin: 10px 8px;
+        .title {
+            font-size: 26px;
+        }
+        .desc {
+            font-size: 14px;
+        }
+    }
+}
+
+.please-input-tel-txt{
+    @h:28px;
+    color:@col-gray;
+    position:relative;
+    height: @h;
+    &:before{
+        content: " ";
+        display:block;
+        position:absolute;
+        top:@h *.5;
+        height: 1px;
+        width: 100%;
+        background-color: @col-gray;
+        z-index: 1;
+    }
+    text{
+        position: absolute;
+        left:50%;
+        margin-left: -25%;
+        z-index: 2;
+        display:inline-block;
+        padding: 0px 10px;
+        background-color: @col-eee;
+        height: @h;
+        line-height: @h;
+    }
+}
+
+.tel-ipt{
+    background-color: #fff;
+    border:none;
+    border-radius:5px;
+    margin: @space;
+    padding: 10px 12px;
+}
+.submit-btn{
+    .green-gradient();
+    text-align: center;
+    height: 38px;
+    line-height: 38px;
+    margin: @space;
+}
