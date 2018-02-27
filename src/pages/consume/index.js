@@ -122,7 +122,13 @@ export default class Index extends wepy.page {
     events = {}
 
     onLoad(option) {
-        this.code = option.code;
+        if (option.code ) {
+            this.code = option.code;
+        }else if(option.q){
+            try{
+                this.code = decodeURIComponent(option.q).split('?')[1].split('=')[1]
+            }catch(err){console.warn(err)}
+        }
         this.$parent.globalData.couponForConsume = null;
     }
 
