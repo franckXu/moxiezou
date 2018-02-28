@@ -6,7 +6,7 @@ import { REQUEST_FAIL ,pageSize } from 'config'
 import EmptyView from '@/components/emptyView/index'
 
 import serviceFactory from '@/utils/base.service'
-const MXZ060003 = serviceFactory({ funcId: 'MXZ060003' });
+const MXZ100004 = serviceFactory({ funcId: 'MXZ100004' });
 
 import Page from  '../../components/page/index';
 
@@ -24,23 +24,15 @@ export default class Index extends wepy.page {
         requestIng: 0,
         listHeight: 350,
 
-        emptyTips: '您还没有摩豆记录',
+        emptyTips: '您还没有提现记录',
         emptyViewHeight: 'full'
-    }
-
-    computed = {
     }
 
     methods = {
         scrolltolower(){
-            this.requestRechargeRecord()
+            // 接口目前没有提供分页
+            // this.requestRechargeRecord()
         }
-    }
-
-    events = {}
-
-    onLoad() {
-
     }
 
     onReady() {
@@ -67,9 +59,8 @@ export default class Index extends wepy.page {
 
     requestRechargeRecord() {
         const len = this.recordList ? this.recordList.length : 0;
-        MXZ060003({
-            currentPage: '' + parseInt((len / pageSize) + 1),
-            pageSize: '' + pageSize,
+        MXZ100004({
+            // flag : ''// -1 '草稿' 0 '待审核' 1 '已转账' 2 '已拒绝'
         }).then(({ data: { data, resultMsg, resultCode } }) => {
             this.requestIng = 0;
             if (resultCode === '0000') {

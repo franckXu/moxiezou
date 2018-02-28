@@ -1,0 +1,21 @@
+<view class="field">
+    <label class="label">{{formData.bankName.label}}</label>
+    <input type="text" placeholder="请输入{{formData.bankName.label}}" value="{{formData.bankName.value}}"
+        @input="inputHandler('bankName')" />
+</view>
+<view class="field">
+    <label class="label">{{formData.bankSub.label}}</label>
+    <input type="text" placeholder="请输入{{formData.bankSub.label}}" value="{{formData.bankSub.value}}"
+        @input="inputHandler('bankSub')" />
+</view>
+<view class="field">
+    <label class="label">{{formData.accountName.label}}</label>
+    <input type="text" placeholder="请输入{{formData.accountName.label}}" value="{{formData.accountName.value}}"
+        @input="inputHandler('accountName')" />
+</view>
+<view class="field">
+    <label class="label">{{formData.cardNo.label}}</label>
+    <input type="number" placeholder="请输入{{formData.cardNo.label}}" value="{{formData.cardNo.value}}"
+        @input="inputHandler('cardNo')" />
+</view>
+<button disabled="{{submitBtnDisState}}" class="submitBtn" @tap="submit()">提交</button>

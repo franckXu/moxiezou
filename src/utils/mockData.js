@@ -1160,6 +1160,62 @@ const MXZ070004 = {
     "totalCount": 0,
     "totalPage": 1
 }
+
+const MXZ100002 = {
+    "currentPage": 1,
+    "data": [{
+        "bn": "1",
+        "cn": "1",
+        "an": "3",
+        "cardid": 10,
+        "account_name": "3 1 1"
+    }],
+    "exception": "",
+    "funcId": "MXZ100002",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
+}
+
+const MXZ100004 = {
+    "currentPage": 1,
+    "data": [{
+        "bank_subbranch": "bankSub",
+        "apply_person_id": 56,
+        "id": 20,
+        "apply_time": "2018-02-27",
+        "flag": "待审核",
+        "deposit_money": 100.00,
+        "account": "accountName",
+        "remarks": "remarks",
+        "c_date": "2018-02-27 23:47:49",
+        "account_no": "10",
+        "apply_person_name": "cyl"
+    },{
+        "bank_subbranch": "bankSub",
+        "apply_person_id": 56,
+        "id": 21,
+        "apply_time": "2018-02-27",
+        "flag": "已转账",
+        "deposit_money": 100.00,
+        "account": "accountName",
+        "remarks": "remarks",
+        "c_date": "2018-02-27 23:47:49",
+        "account_no": "10",
+        "apply_person_name": "cyl"
+    }],
+    "exception": "",
+    "funcId": "MXZ100004",
+    "homedir": "",
+    "pageSize": 10,
+    "resultCode": "0000",
+    "resultMsg": "操作成功",
+    "totalCount": 0,
+    "totalPage": 1
+}
 const data = {
     MXZ010001,
     MXZ030005,
@@ -1185,7 +1241,9 @@ const data = {
     MXZ010005,
     MXZ010003,
     MXZ070003,
-    MXZ070004
+    MXZ070004,
+    MXZ100002,
+    MXZ100004
 }
 
 export default function mockData(funcId) {

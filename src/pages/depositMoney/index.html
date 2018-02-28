@@ -1,0 +1,14 @@
+<view class="field">
+    <label class="label">{{formData.depositMoney.label}}</label>
+    <input type="digit" placeholder="请输入{{formData.depositMoney.label}}" value="{{formData.depositMoney.value}}"
+        @input="inputHandler('depositMoney')" />
+</view>
+<view class="field picker-field">
+    <label class="label">{{formData.card.label}}</label>
+    <picker @change="bindPickerChange" value="{{selectedBankCardIndex}}" range="{{bankCardList}}" range-key="account_name">
+        <view class="picker">
+            {{bankCardList[selectedBankCardIndex].account_name}}
+        </view>
+    </picker>
+</view>
+<button disabled="{{submitBtnDisState}}" class="submitBtn" @tap="submit()">提交</button>

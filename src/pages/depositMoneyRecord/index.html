@@ -1,0 +1,20 @@
+<page :requestIng.sync="requestIng">
+    <view slot="content">
+        <view wx:if="{{recordList !== null}}">
+            <view wx:if="{{recordList.length}}">
+                <scroll-view class="" scroll-y style="height: {{listHeight}}px;" @scrolltolower="scrolltolower()">
+                    <view class="record-item" wx:for="{{recordList}}" wx:for-index="id" wx:key="id">
+                        <view class="left">
+                            <view>{{item.account}}提现{{item.deposit_money}}元</view>
+                            <view class="c-date">{{item.c_date}}</view>
+                        </view>
+                        <view class="flag">{{item.flag}}</view>
+                    </view>
+                </scroll-view>
+            </view>
+            <view wx:else>
+                <emptyView :title="emptyTips" :height.sync="emptyViewHeight"></emptyView>
+            </view>
+        </view>
+    </view>
+</page>
