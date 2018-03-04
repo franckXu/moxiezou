@@ -122,9 +122,11 @@ export default class Index extends wepy.page {
     events = {}
 
     onLoad(option) {
+        // 从附近点击‘扫码享椅’按钮直接
         if (option.code ) {
             this.code = option.code;
         }else if(option.q){
+            // 直接扫描二维码进入
             try{
                 this.code = decodeURIComponent(option.q).split('?')[1].split('=')[1]
             }catch(err){console.warn(err)}
@@ -138,6 +140,10 @@ export default class Index extends wepy.page {
 
     onShow() {
         console.log('show in consume showPaySuccPopup:',this.showPaySuccPopup);
+        console.log('scene',wepy.getStorageSync('scene'));
+        if (wepy.getStorageSync('scene') == 1034) {
+            this.showPaySuccPopup = true;
+        }
 
         this.windowWidth = wepy.getSystemInfoSync().windowWidth;
         this.$apply();
@@ -189,17 +195,13 @@ export default class Index extends wepy.page {
             "success":   function(res) {
                 console.log('wxpay success');
                 console.log(res);
-                this.showPaySuccPopup = true;
+                self.showPaySuccPopup = true;
                 self.showPayTypeChoosePopup = false;
                 self.$apply();
             },
             "fail": function({ errMsg }) {
                 toast({ title: errMsg })
-                console.log(errMsg)
-            },
-            // 6.5.2 及之前版本中，用户取消支付不会触发 fail 回调，只会触发 complete 回调，回调 errMsg 为 'requestPayment:cancel'
-            "complete": function() {
-                console.log('complete')
+                console.warn(errMsg)
             }
         })
     }

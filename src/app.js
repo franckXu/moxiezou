@@ -16,6 +16,7 @@ const MXZ010002Service = serviceFactory({
 export default class extends wepy.app {
     config = {
         pages: [
+            'pages/userCentre/index',
             'pages/welcome/index',
             'pages/iAmProxy/index',
             'pages/depositMoneyRecord/index',
@@ -25,7 +26,6 @@ export default class extends wepy.app {
             'pages/getCoupon/index',
             'pages/editSite/index',
             'pages/siteManage/index',
-            'pages/userCentre/index',
             'pages/coupon/index',
             'pages/myDevice/index',
             'pages/rechargeProtocol/index',
@@ -99,6 +99,18 @@ export default class extends wepy.app {
         super()
         this.use('requestfix')
     }
+
+    /* onShow(options){
+        console.log('app onshow options:',options);
+        wepy.setStorage({
+            key: "scene",
+            data: options && options.scene ? options.scene : null,
+            fail() {
+                console.warn('set scene Storage fail', arguments);
+            }
+        })
+        console.log('scene:', options.scene);
+    } */
 
     getUserInfo(cb,failFn) {
         const that = this

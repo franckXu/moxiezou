@@ -55,12 +55,21 @@ export default class Index extends wepy.page {
         }
     }
 
-    events = {}
-    onLoad() {}
-
-    onReady() {}
-
-    onShow() {}
-
+    onShow() {
+        const self = this;
+        this.$parent.getUserInfo(({ userInfo }) => {
+            this.$parent.getBindUserInfo(bindUserInfo => {
+                this.formData.telephone.value = bindUserInfo.telephone;
+                this.$apply();
+            },function(){
+                toast({ title: '获取用户信息' })
+                console.warn(arguments);
+            })
+        },err=>{
+            this.requestIng = false;
+            this.loadSucc = false;
+            this.$apply();
+        })
+    }
 
 }
