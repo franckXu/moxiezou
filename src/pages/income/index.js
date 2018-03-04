@@ -81,8 +81,8 @@ export default class Index extends wepy.page {
                 endTime = moment().isoWeekday("Sunday").format('YYYYMMDD');
                 break;
             case 3:
-                startTime = moment().add('month',0).format('YYYYMM[01]');
-                endTime = moment().add('month',1).date(0).format('YYYYMMDD');
+                startTime = moment().add(0,'month').format('YYYYMM[01]');
+                endTime = moment().add(1,'month').date(0).format('YYYYMMDD');
                 break;
         }
 

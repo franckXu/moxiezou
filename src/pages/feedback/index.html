@@ -9,7 +9,7 @@
         <view class="field row-2">
             <label class="label">{{formData.content.label}}</label>
             <view>
-            <textarea auto-focus="{true}" class="input" placeholder="请选择{{formData.content.label}}"  @input="inputHandler('content')" value="{{formData.content.value}}" />
+            <textarea auto-height="{{ true }}" focus="{{ true }}" class="input" placeholder="请选择{{formData.content.label}}"  @input="inputHandler('content')" value="{{formData.content.value}}" />
             </view>
         </view>
 
