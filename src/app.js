@@ -17,6 +17,7 @@ export default class extends wepy.app {
     config = {
         pages: [
             'pages/welcome/index',
+            'pages/getCoupon/index',
             'pages/orderList/index',
             'pages/join/index',
             'pages/editSite/index',
@@ -28,7 +29,6 @@ export default class extends wepy.app {
             'pages/depositMoney/index',
             'pages/bindBankCard/index',
             'pages/webView/index',
-            'pages/getCoupon/index',
             'pages/siteManage/index',
             'pages/coupon/index',
             'pages/myDevice/index',

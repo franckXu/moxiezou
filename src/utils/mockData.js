@@ -746,14 +746,14 @@ const MXZ050001 = {
 const MXZ070001 = {
     "currentPage": 1,
     "data": [{
-        "usable_money": 10.00,
-        "usable_field": null,
-        "money": 2.00,
-        "expiry_date": "2018-01-13至2018-01-31",
         "id": 1,
-        "title": "新用户按摩椅代金券",
-        "expiry_time": "全天",
-        "remarks": "适用于所以门店按摩椅"
+		"title": "新用户按摩椅代金券",
+		"usable_money": 10.00,
+		"expiry_time": "全天",
+		"usable_field": null,
+		"money": 2.00,
+		"remarks": "适用于所以门店按摩椅",
+		"expiry_date": "2018-01-13至2018-01-31"
     }],
     "exception": "",
     "funcId": "MXZ070001",

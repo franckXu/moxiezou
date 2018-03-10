@@ -3,7 +3,8 @@ import wepy from 'wepy'
 import Page from '@/components/page/index';
 
 import serviceFactory from '@/utils/base.service';
-const MXZ070004 = serviceFactory({'funcId' : 'MXZ070004'})
+const MXZ070001 = serviceFactory({'funcId' : 'MXZ070001'})
+const MXZ070003 = serviceFactory({'funcId' : 'MXZ070003'})
 
 import { toast } from '@/utils/index';
 import {REQUEST_FAIL } from 'config';
@@ -17,10 +18,12 @@ export default class Index extends wepy.page {
     }
 
     data = {
-        item : null
-        ,tel : '13412342234'
-        ,requestIng : false
-        ,loadSucc : true
+        list : null,
+        selectedItemId : null,
+        tel : '',
+        requestIng : false,
+        loadSucc : true,
+        submitIng  : false
     }
 
     computed = {
@@ -29,16 +32,51 @@ export default class Index extends wepy.page {
             const t2 = this.tel.substr(3,4);
             const t3 = this.tel.substr(7,4);
             return `${t1}${t2 ? '-' + t2 : ''}${t3? '-'+t3 : ''}`
+        },
+        submitBtnDisState(){
+            return !/^1(\d){10}$/.test(this.tel)
         }
     }
 
     methods = {
+        tapItem(item){
+            this.selectedItemId = item.id;
+            this.$apply();
+        },
         iptTel(n,evt){
             this.tel = evt.detail.value.replace(/-/g,'');
             this.$apply();
-        }
-        ,submit(){
-            console.log('tel:',this.tel,',id:',this.item.id);
+        },
+        submit() {
+            this.submitIng = true;
+            this.$apply();
+            wepy.showLoading({
+                title: '处理中',
+                mask : true
+            })
+            MXZ070003({
+                couponId: this.selectedItemId,
+                phoneNum: this.tel
+            }).then(({ data: { data, resultMsg, resultCode } }) => {
+                wepy.hideLoading();
+                if (resultCode === '0000') {
+                    toast({ title: '领取成功' })
+                    setTimeout(function() {
+                        wepy.navigateBack();
+                    }, 1000);
+                } else {
+                    this.submitIng = false;
+                    toast({ title: resultMsg })
+                }
+                this.$apply();
+            }, err => {
+                wepy.hideLoading();
+                this.submitIng = false;
+                this.$apply();
+                wepy.showToast({
+                    title: '加载失败',
+                })
+            })
         }
     }
 
@@ -58,14 +96,15 @@ export default class Index extends wepy.page {
         this.$parent.getBindUserInfo(bindUserInfo => {
             this.tel = bindUserInfo.telephone;
             this.$apply();
-            MXZ070004({ })
+            MXZ070001({ })
                 .then(({data:{data,resultMsg,resultCode}})=>{
                     this.requestIng = false;
                     if (resultCode === '0000') {
-                        this.item = data;
+                        this.list = data;
+                        this.selectedItemId = this.list[0].id;
                         this.loadSucc = true;
                     }else{
-                        this.item = null;
+                        this.list = null;
                         this.loadSucc = false;
                         toast({title:resultMsg})
                     }
