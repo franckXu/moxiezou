@@ -11,7 +11,9 @@ import EmptyView from '@/components/emptyView/index';
 
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '收入明细'
+    }
     components = {
         emptyView : EmptyView
     }

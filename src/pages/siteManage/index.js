@@ -4,7 +4,8 @@ import List from '@/components/siteList/index';
 
 export default class Index extends wepy.page {
     config = {
-        enablePullDownRefresh: true
+        enablePullDownRefresh: true,
+        navigationBarTitleText : '场地管理'
     }
 
     data = {

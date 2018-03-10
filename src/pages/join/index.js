@@ -9,7 +9,9 @@ const MXZ040003Service = serviceFactory({
 })
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '代理商加盟'
+    }
     components = {}
 
     data = {

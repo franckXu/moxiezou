@@ -11,7 +11,9 @@ import Page from '@/components/page/index';
 import EmptyView from '@/components/emptyView/index';
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        'navigationBarTitleText': '消费记录'
+    };
     components = {
         page : Page,
         emptyView:EmptyView
@@ -44,8 +46,6 @@ export default class Index extends wepy.page {
             }
         }
     }
-    onLoad() {}
-
     onReady() {
         this.requestIng = true;
         this.$apply();
@@ -65,6 +65,11 @@ export default class Index extends wepy.page {
                 this.requestIng = false;
                 if (resultCode === '0000') {
                     this.list = curData.concat(data);
+
+                    this.list.forEach(item=>{
+                        item.pay_date_formatted = item.pay_date.split(' ');
+                    });
+
                     this.loadSucc = true;
                 } else {
                     this.list = null;

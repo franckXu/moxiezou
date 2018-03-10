@@ -3,7 +3,9 @@ import wepy from 'wepy'
 import log from 'log'
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '充值协议'
+    }
     components = {}
 
     data = {
@@ -14,18 +16,5 @@ export default class Index extends wepy.page {
             return wepy.getSystemInfoSync().windowHeight - 45;
         }
     }
-
-    methods = {
-    }
-
-    events = {}
-    onLoad() {}
-
-    onReady() {
-    }
-
-    onShow(){
-    }
-
 
 }

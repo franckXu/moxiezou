@@ -2,13 +2,18 @@
 @import "../../utils/common.less";
 
 .item{
-    padding: 8px;
-    border-bottom:1px solid @col-eee;
-    &:nth-child(even){
-        background-color: @col-eee;
-    }
+    padding: 14px 8px;
+    border-top:1px solid @col-eee;
     .top{
         .display(flex);
         .justify-content(space-between);
+        font-size: 16px;
+        .time{
+            color:@col-gray;
+        }
+    }
+    .address{
+        font-size: 12px;
+        margin-top: 5px;
     }
 }

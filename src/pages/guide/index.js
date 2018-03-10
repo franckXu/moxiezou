@@ -1,7 +1,9 @@
 import wepy from 'wepy'
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '用户指南'
+    }
     components = {}
 
     data = {

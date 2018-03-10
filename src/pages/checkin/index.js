@@ -13,7 +13,9 @@ const MXZ090002 = serviceFactory({
 import Page from '@/components/page/index';
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '签到'
+    }
     components = {
         page: Page
     }

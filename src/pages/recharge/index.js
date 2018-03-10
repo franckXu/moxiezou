@@ -10,7 +10,9 @@ const MXZ060001 = serviceFactory({ funcId: 'MXZ060001' });
 const MXZ050001 = serviceFactory({ funcId: 'MXZ050001' });
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '充值'
+    }
     components = {
         emptyView:EmptyView
     }

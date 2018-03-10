@@ -8,6 +8,7 @@ const MXZ090001 = serviceFactory({ funcId: 'MXZ090001' });
 
 export default class Index extends wepy.page {
     config = {
+        navigationBarTitleText : '积分'
     }
 
     components = {}

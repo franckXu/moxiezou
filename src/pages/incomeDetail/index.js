@@ -8,7 +8,9 @@ const MXZ010006 = serviceFactory({
 });
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '收入明细'
+    }
     components = {}
 
     data = {

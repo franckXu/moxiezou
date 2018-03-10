@@ -6,7 +6,9 @@ import serviceFactory from '@/utils/base.service';
 const MXZ030002Service = serviceFactory({'funcId' : 'MXZ030002'})
 
 export default class Main extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '附近'
+    }
     components = {}
 
     data = {

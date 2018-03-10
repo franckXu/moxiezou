@@ -9,7 +9,9 @@ const MXZ030001Service = serviceFactory({
 });
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '添加设备'
+    }
     components = {}
     data = {
         formData: {

@@ -12,7 +12,9 @@ import { toast } from '@/utils/index';
 const PLEASE_INPUT_TEL = '请输入手机号'
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '用户绑定'
+    }
     components = {}
 
     data = {

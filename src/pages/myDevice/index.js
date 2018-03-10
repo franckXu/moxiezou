@@ -14,7 +14,8 @@ import EmptyView from '@/components/emptyView/index';
 
 export default class Index extends wepy.page {
     config = {
-        enablePullDownRefresh: true
+        enablePullDownRefresh: true,
+        navigationBarTitleText : '我的设备'
     }
 
     components = {

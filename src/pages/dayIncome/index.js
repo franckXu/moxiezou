@@ -21,7 +21,9 @@ const payTypeTextEnum = {
 }
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '收入明细'
+    }
     components = {}
 
     data = {

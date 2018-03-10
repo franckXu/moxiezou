@@ -8,6 +8,9 @@ const MXZ100002 = serviceFactory({ 'funcId' : 'MXZ100002' });
 const MXZ100003 = serviceFactory({ 'funcId' : 'MXZ100003' });
 
 export default class Index extends wepy.page {
+    config = {
+        navigationBarTitleText : '提现'
+    }
     data = {
         formData: {
             'card': {'label':'银行卡'},

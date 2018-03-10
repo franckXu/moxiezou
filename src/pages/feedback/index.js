@@ -9,7 +9,9 @@ const MXZ040001Service = serviceFactory({
 })
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '意见反馈'
+    }
     components = {}
 
     data = {

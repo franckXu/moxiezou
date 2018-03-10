@@ -14,7 +14,9 @@ import EmptyView from '@/components/emptyView/index';
 
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '模板列表'
+    }
     components = {
         page : Page,
         emptyView : EmptyView

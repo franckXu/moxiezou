@@ -9,7 +9,9 @@ const MXZ080001 = serviceFactory({
 })
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '编辑场地'
+    }
     components = {}
     data = {
         formData: {

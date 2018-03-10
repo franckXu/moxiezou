@@ -7,7 +7,8 @@ const MXZ010004 = serviceFactory({ funcId: 'MXZ010004' });
 
 export default class Index extends wepy.page {
     config = {
-        backgroundColor:"#cccccc"
+        backgroundColor:"#cccccc",
+        navigationBarTitleText : '我是代理商'
     }
     components = {}
 

@@ -9,6 +9,9 @@ const MXZ100001 = serviceFactory({
 })
 
 export default class Index extends wepy.page {
+    config = {
+        navigationBarTitleText : '绑定银行卡'
+    }
     data = {
         formData: {
             "bankName":    {'label':'开户行'}

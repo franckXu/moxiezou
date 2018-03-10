@@ -6,7 +6,9 @@ import Page from '@/components/page/index' // alias example
 
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '用户中心'
+    }
     components = {
         page: Page
     }

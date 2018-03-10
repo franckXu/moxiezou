@@ -17,6 +17,7 @@ export default class extends wepy.app {
     config = {
         pages: [
             'pages/welcome/index',
+            'pages/orderList/index',
             'pages/join/index',
             'pages/editSite/index',
             'pages/feedback/index',
@@ -34,7 +35,6 @@ export default class extends wepy.app {
             'pages/rechargeProtocol/index',
             'pages/siteList/index',
             'pages/consume/index',
-            'pages/orderList/index',
             'pages/checkin/index',
             'pages/rechargeRecord/index',
             'pages/income/index',

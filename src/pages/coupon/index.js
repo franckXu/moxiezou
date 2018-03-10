@@ -9,7 +9,9 @@ import Page from '@/components/page/index';
 import EmptyView from '@/components/emptyView/index';
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '优惠券'
+    }
     components = {
         page : Page,
         emptyView:EmptyView

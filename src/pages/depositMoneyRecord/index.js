@@ -12,7 +12,8 @@ import Page from  '../../components/page/index';
 
 export default class Index extends wepy.page {
     config = {
-        enablePullDownRefresh: true
+        enablePullDownRefresh: true,
+        navigationBarTitleText : '提现记录'
     }
     components = {
         page : Page,

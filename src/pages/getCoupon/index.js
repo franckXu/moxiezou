@@ -9,7 +9,9 @@ import { toast } from '@/utils/index';
 import {REQUEST_FAIL } from 'config';
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '领取优惠券'
+    }
     components = {
         page : Page
     }

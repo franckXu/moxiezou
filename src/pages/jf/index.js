@@ -10,7 +10,9 @@ const MXZ090003 = serviceFactory({ funcId: 'MXZ090003' });
 import EmptyView from '@/components/emptyView/index';
 
 export default class Index extends wepy.page {
-    config = {}
+    config = {
+        navigationBarTitleText : '积分'
+    }
     components = {
         emptyView:EmptyView
     }
