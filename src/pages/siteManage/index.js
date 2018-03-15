@@ -35,6 +35,9 @@ export default class Index extends wepy.page {
             wepy.navigateTo({
                 url : '/pages/editSite/index?from=siteManage'
             })
+        },
+        onReqDataComplete(){
+            wepy.stopPullDownRefresh()
         }
     }
 
@@ -44,7 +47,6 @@ export default class Index extends wepy.page {
 
     onPullDownRefresh(){
         this.$broadcast('reqData',this.fieldName ? {fieldName:this.fieldName} : {} )
-        wepy.stopPullDownRefresh()
     }
 
 }

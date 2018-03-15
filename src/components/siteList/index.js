@@ -63,7 +63,7 @@ export default class Index extends wepy.component {
     }
 
     reqData(){
-        wepy.showLoading({mask:true});
+        // wepy.showLoading({mask:true});
         const items = Array.isArray(this.templateList) ? this.templateList : [];
 
         MXZ080002(
@@ -72,7 +72,7 @@ export default class Index extends wepy.component {
                 currentPage : '' + (parseInt(items.length / this._pageSize) + 1)
             },this.externalParam)
         ).then(({data:{data,resultMsg,resultCode}})=>{
-                wepy.hideLoading();
+                // wepy.hideLoading();
                 this.requestIng = false;
                 if (resultCode === '0000') {
                     if(items.length < 1){
@@ -81,7 +81,7 @@ export default class Index extends wepy.component {
                     this._hasNextPage = data.length >= this._pageSize;
                     this.templateList = items.concat(data)
                     console.log(this.templateList);
-                    this.$apply();
+                    // this.$apply();
                 }else{
                     if(items.length < 1){
                         this.loadSucc = false;
@@ -90,8 +90,9 @@ export default class Index extends wepy.component {
                     toast({title:resultMsg || REQUEST_FAIL});
                 }
                 this.$apply();
+                this.$emit('onReqDataComplete')
             },err=>{
-                wepy.hideLoading();
+                // wepy.hideLoading();
                 this.requestIng = false;
                 toast({title:REQUEST_FAIL})
                 if(items.length < 1){
@@ -99,6 +100,7 @@ export default class Index extends wepy.component {
                     this.loadSucc = false;
                 }
                 this.$apply();
+                this.$emit('onReqDataComplete')
             })
     }
 

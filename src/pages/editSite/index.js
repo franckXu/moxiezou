@@ -97,6 +97,8 @@ export default class Index extends wepy.page {
                 fieldId:      this.formData.id.value,
                 fieldPhone:   this.formData.field_phone.value,
                 fieldAddress: this.formData.field_address.value,
+                gpsX:         this.formData.gpsX.value + '',
+                gpsY:         this.formData.gpsY.value + '',
                 chargeWay:    this.formData.charge_way.value,
                 chargeValue:  +this.formData.charge_value.value,
                 remark:       this.formData.remark.value,
@@ -131,12 +133,15 @@ export default class Index extends wepy.page {
             if (siteForSiteManage) {
                 for (let prop in this.formData){
                     if (siteForSiteManage[prop]) {
-                        this.formData[prop].value = siteForSiteManage[prop];
+                        this.formData[prop].value = '' + siteForSiteManage[prop];
                     }
                 }
 
                 // this.formData.fieldId.value = siteForSiteManage.id;
                 this.formData.equipIds.value = siteForSiteManage.equipment;
+                this.formData.gpsX.value = siteForSiteManage.gps_x;
+                this.formData.gpsY.value = siteForSiteManage.gps_y;
+                this.formData.remark.value = siteForSiteManage.remarks;
                 this.$parent.globalData.siteForSiteManage = null;
             }
         }

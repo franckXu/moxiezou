@@ -1,6 +1,6 @@
 <view class="container">
     <view class="ad-wrap">
-        <swiper indicator-dots="true" autoplay="true" indicator-active-color="#34C9A0">
+        <swiper indicator-dots="{{bannerList.length > 1}}" autoplay="true" indicator-active-color="#34C9A0">
             <block wx:for="{{bannerList}}" wx:key="{{id}}">
                 <swiper-item>
                     <image @tap="tapBanner({{item}})" src="{{item.pic}}" class="slide-image" />

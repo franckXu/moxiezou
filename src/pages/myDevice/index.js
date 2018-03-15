@@ -65,14 +65,14 @@ export default class Index extends wepy.page {
     }
 
     reqDevice(){
-        wepy.showLoading();
+        // wepy.showLoading();
         const items = Array.isArray(this.deviceList) ? this.deviceList : [];
         MXZ030003Service({
             pageSize : '' + pageSize,
             currentPage : parseInt((items.length / pageSize )) + 1 + ''
         })
         .then(({data:{data,resultMsg,resultCode}})=>{
-            wepy.hideLoading();
+            // wepy.hideLoading();
             this.requestIng = false;
             if (resultCode === '0000') {
                 this.deviceList = items.concat(data);
@@ -82,19 +82,20 @@ export default class Index extends wepy.page {
                 this.loadSucc = false;
                 toast({title:resultMsg || REQUEST_FAIL});
             }
+            wepy.stopPullDownRefresh()
         },err=>{
-            wepy.hideLoading();
+            // wepy.hideLoading();
             this.requestIng = false;
             this.loadSucc = false;
             toast({title:REQUEST_FAIL});
             console.warn(err);
+            wepy.stopPullDownRefresh()
         })
     }
 
     onPullDownRefresh(){
         this.deviceList = null;
         this.reqDevice();
-        wepy.stopPullDownRefresh()
     }
     onReachBottom(){
         this.reqDevice();

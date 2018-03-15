@@ -4,7 +4,7 @@ import Page from '@/components/page/index';
 
 import serviceFactory from '@/utils/base.service';
 const MXZ070001 = serviceFactory({'funcId' : 'MXZ070001'})
-const MXZ070003 = serviceFactory({'funcId' : 'MXZ070003'})
+const MXZ070002 = serviceFactory({'funcId' : 'MXZ070002'})
 
 import { toast } from '@/utils/index';
 import {REQUEST_FAIL } from 'config';
@@ -54,7 +54,7 @@ export default class Index extends wepy.page {
                 title: '处理中',
                 mask : true
             })
-            MXZ070003({
+            MXZ070002({
                 couponId: this.selectedItemId,
                 phoneNum: this.tel
             }).then(({ data: { data, resultMsg, resultCode } }) => {
