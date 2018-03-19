@@ -36,6 +36,9 @@
                 <image src="/images/arrow.png" class="arrow"
                 />
             </view>
+            <view @tap="toPage('income')" wx:if="{{ bindUserInfo.roleId === '9' }}"> <text>我的收入</text>
+                <image src="/images/arrow.png" class="arrow" />
+            </view>
             <view @tap="toPage('editSite')" wx:if="{{ bindUserInfo.roleId === '9' }}"> <text>场地录入</text>
                 <image src="/images/arrow.png" class="arrow" />
             </view>

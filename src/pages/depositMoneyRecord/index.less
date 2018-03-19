@@ -24,10 +24,13 @@
     .display(flex);
     .justify-content(space-between);
     .align-items(center);
-    &:nth-child(even){
-        background:#eeeeee;
-    }
     .c-date{
         color:@col-gray;
+    }
+    &.pending .flag{
+        color:#D0021B;
+    }
+    &.done .flag{
+        color:@col-green;
     }
 }

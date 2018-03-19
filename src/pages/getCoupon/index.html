@@ -1,23 +1,32 @@
 <page :requestIng.sync="requestIng" :loadSucc.sync="loadSucc">
-    <view slot="content" class="page-content">
-    <view class="item {{selectedItemId === item.id ? 'cur' : ''}}" wx:for="{{list}}" wx:key="id" @tap="tapItem({{item}})" >
-            <view class="price">
-                <view>￥<text class="num">{{item.money}}</text></view>
-            </view>
-            <view class="info">
-                <view>
-                    <view class="title">{{item.title}}</view>
-                    <view class="desc">{{item.remarks}}</view>
+    <view slot="content" >
+        <block wx:if="{{list.length}}" >
+            <view class="page-content">
+                <view class="item {{selectedItemId === item.id ? 'cur' : ''}}" wx:for="{{list}}" wx:key="id" @tap="tapItem({{item}})" >
+                    <view class="price">
+                        <view>￥<text class="num">{{item.money}}</text></view>
+                    </view>
+                    <view class="info">
+                        <view>
+                            <view class="title">{{item.title}}</view>
+                            <view class="desc">{{item.remarks}}</view>
+                        </view>
+                    </view>
                 </view>
+
+                <view class="please-input-tel-txt"><text>输入手机号领取优惠券</text></view>
+
+                <input
+                    class="tel-ipt" type="text" value="{{formatTel}}" @input="iptTel()"
+                    maxlength="13" />
+                <button class="submit-btn" disabled="{{submitBtnDisState || submitIng}}" @tap="submit()">{{ submitIng ? '提交中' : '立即领取' }}</button>
             </view>
-        </view>
-
-        <view class="please-input-tel-txt"><text>输入手机号领取优惠券</text></view>
-
-        <input
-              class="tel-ipt" type="text" value="{{formatTel}}" @input="iptTel()"
-              maxlength="13" />
-        <button class="submit-btn" disabled="{{submitBtnDisState || submitIng}}" @tap="submit()">{{ submitIng ? '提交中' : '立即领取' }}</button>
-
+        </block>
+        <block wx:else>
+            <view class="notHasCouponTips">
+                <view>您的优惠卷已经领取完毕</view>
+                <view class="back-tips">{{downcount}}秒后会返回上一页</view>
+            </view>
+        </block>
     </view>
 </page>

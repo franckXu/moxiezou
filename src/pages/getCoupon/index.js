@@ -23,7 +23,8 @@ export default class Index extends wepy.page {
         tel : '',
         requestIng : false,
         loadSucc : true,
-        submitIng  : false
+        submitIng  : false,
+        downcount : 3
     }
 
     computed = {
@@ -100,9 +101,20 @@ export default class Index extends wepy.page {
                 .then(({data:{data,resultMsg,resultCode}})=>{
                     this.requestIng = false;
                     if (resultCode === '0000') {
-                        this.list = data;
-                        this.selectedItemId = this.list[0].id;
                         this.loadSucc = true;
+                        if (data.length) {
+                            this.list = data;
+                            this.selectedItemId = this.list[0].id;
+                        }else{
+                            setInterval(()=>{
+                                if (this.downcount > 1) {
+                                    this.downcount--;
+                                    this.$apply();
+                                }else{
+                                    return wepy.navigateBack();
+                                }
+                            }, 1000);
+                        }
                     }else{
                         this.list = null;
                         this.loadSucc = false;

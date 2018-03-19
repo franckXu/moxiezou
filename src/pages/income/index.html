@@ -14,7 +14,7 @@
                 </view>
                 <view wx:else>
                     <view wx:for="{{subList}}" wx:key="idx" class="item" @tap="toDayIncome({{item}})">
-                        <view>{{item.pay_date}}</view>
+                        <view>{{item.pay_date_format}}</view>
                         <view>{{item.money}}元 > </view>
                     </view>
                 </view>

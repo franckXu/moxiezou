@@ -25,10 +25,12 @@
         </view>
 
         <view class="field address">
-            <label class="label">{{formData.address.label}}</label>
-            <view>
-                <input type="text" placeholder="请选择{{formData.address.label}}"  @input="inputHandler('address')" value="{{formData.address.value}}" style="font-size:12px;" />
+            <view class="top">
+                <label class="label">{{formData.address.label}}</label>
                 <image src="/images/icon-coordinate.png" @tap="chooseLocation()" class="chooseLocationBtn" />
+            </view>
+            <view>
+                <textarea placeholder="请选择{{formData.address.label}}" auto-height="true" @input="inputHandler('address')" value="{{formData.address.value}}" />
             </view>
         </view>
         <view class="field">

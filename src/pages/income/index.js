@@ -90,7 +90,16 @@ export default class Index extends wepy.page {
 
         MXZ010004({ startTime, endTime })
             .then(({data:respData,statusCode})=>{
+
                 if (statusCode >= 200 && statusCode < 300) {
+                    if( respData.data && respData.data.incomeList){
+                        respData.data.incomeList.forEach(item=>{
+                            const y = item.pay_date.substring(0,4);
+                            const m = item.pay_date.substring(4,2);
+                            const d = item.pay_date.substring(6,8);
+                            item.pay_date_format = `${y}-${m}-${d}`
+                        })
+                    }
                     this.list[this.curTab] = respData.data.incomeList;
                     this.incomeTotal = respData.data.incomeTotal;
                     this.$apply();

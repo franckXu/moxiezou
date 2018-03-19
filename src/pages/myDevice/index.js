@@ -4,7 +4,7 @@ import { toast } from '@/utils/index';
 import {pageSize,REQUEST_FAIL} from 'config';
 
 import serviceFactory from '@/utils/base.service'
-const MXZ030003Service = serviceFactory({
+const MXZ030003= serviceFactory({
     funcId: 'MXZ030003'
 });
 
@@ -67,7 +67,7 @@ export default class Index extends wepy.page {
     reqDevice(){
         // wepy.showLoading();
         const items = Array.isArray(this.deviceList) ? this.deviceList : [];
-        MXZ030003Service({
+        MXZ030003({
             pageSize : '' + pageSize,
             currentPage : parseInt((items.length / pageSize )) + 1 + ''
         })

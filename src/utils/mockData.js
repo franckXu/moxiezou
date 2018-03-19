@@ -1022,6 +1022,8 @@ const MXZ010004 = {
     "totalPage": 1
 }
 
+console.log(MXZ010004);
+
 const MXZ010005 = {
     "currentPage": 1,
     "data": (function() {

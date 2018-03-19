@@ -10,7 +10,7 @@ const MXZ080001 = serviceFactory({
 
 export default class Index extends wepy.page {
     config = {
-        navigationBarTitleText : '编辑场地'
+        navigationBarTitleText : '场地录入'
     }
     components = {}
     data = {
@@ -125,9 +125,14 @@ export default class Index extends wepy.page {
     urlQuery = null
     onLoad(query){
         this.urlQuery = query;
+        if (this.urlQuery && this.urlQuery.from === 'siteManage') {
+            wepy.setNavigationBarTitle({
+                title: '编辑场地'
+            })
+        }
+
     }
     onShow(){
-
         if (this.urlQuery && this.urlQuery.from === 'siteManage') {
             let {siteForSiteManage} = this.$parent.globalData;
             if (siteForSiteManage) {

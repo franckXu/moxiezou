@@ -64,6 +64,31 @@ export default class Index extends wepy.page {
             // flag : ''// -1 '草稿' 0 '待审核' 1 '已转账' 2 '已拒绝'
         }).then(({ data: { data, resultMsg, resultCode } }) => {
             this.requestIng = 0;
+            data = [{
+        "bank_subbranch": "bankSub",
+        "apply_person_id": 56,
+        "id": 20,
+        "apply_time": "2018-02-27",
+        "flag": "待审核",
+        "deposit_money": 100.00,
+        "account": "accountName",
+        "remarks": "remarks",
+        "c_date": "2018-02-27 23:47:49",
+        "account_no": "10",
+        "apply_person_name": "cyl"
+    },{
+        "bank_subbranch": "bankSub",
+        "apply_person_id": 56,
+        "id": 21,
+        "apply_time": "2018-02-27",
+        "flag": "已转账",
+        "deposit_money": 100.00,
+        "account": "accountName",
+        "remarks": "remarks",
+        "c_date": "2018-02-27 23:47:49",
+        "account_no": "10",
+        "apply_person_name": "cyl"
+    }]
             if (resultCode === '0000') {
                 this.recordList =
                    Array.isArray(this.recordList)

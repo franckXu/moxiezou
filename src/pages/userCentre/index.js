@@ -48,9 +48,6 @@ export default class Index extends wepy.page {
         }
     }
 
-    events = {}
-    onLoad() {}
-
     onShow() {
         const self = this;
         console.log('show in userCentre');
