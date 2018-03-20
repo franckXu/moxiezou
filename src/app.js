@@ -17,9 +17,9 @@ export default class extends wepy.app {
     config = {
         pages: [
             'pages/welcome/index',
+            'pages/iAmProxy/index',
             'pages/income/index',
             'pages/depositMoneyRecord/index',
-            'pages/iAmProxy/index',
             'pages/editSite/index', // 此处为 场地录入
             'pages/addDevice/index',
             'pages/siteManage/index',

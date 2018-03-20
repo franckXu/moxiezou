@@ -90,6 +90,11 @@ export default class Index extends wepy.page {
         this.reqData();
     }
 
+    onUnload(){
+        clearInterval(this.timerId)
+    }
+
+    timerId  = null;
     reqData() {
         this.requestIng = true;
         this.$apply();
@@ -106,11 +111,12 @@ export default class Index extends wepy.page {
                             this.list = data;
                             this.selectedItemId = this.list[0].id;
                         }else{
-                            setInterval(()=>{
+                            this.timerId = setInterval(()=>{
                                 if (this.downcount > 1) {
                                     this.downcount--;
                                     this.$apply();
                                 }else{
+                                    clearInterval(this.timerId);
                                     return wepy.navigateBack();
                                 }
                             }, 1000);

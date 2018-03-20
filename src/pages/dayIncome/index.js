@@ -17,7 +17,7 @@ const payTypeTextEnum = {
     '$1':'支付宝',
     '$2':'微信',
     '$3':'银联',
-    '$4':'余额魔豆'
+    '$4':'余额摩豆'
 }
 
 export default class Index extends wepy.page {
