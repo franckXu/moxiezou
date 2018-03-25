@@ -7,7 +7,9 @@ import serviceFactory from '@/utils/base.service'
 const MXZ030003= serviceFactory({
     funcId: 'MXZ030003'
 });
-
+const MXZ030006= serviceFactory({
+    funcId: 'MXZ030006'
+});
 import Page from '@/components/page/index';
 
 import EmptyView from '@/components/emptyView/index';
@@ -67,11 +69,18 @@ export default class Index extends wepy.page {
     reqDevice(){
         // wepy.showLoading();
         const items = Array.isArray(this.deviceList) ? this.deviceList : [];
-        MXZ030003({
+
+        let reqMethod = MXZ030003;
+        let param = {
             pageSize : '' + pageSize,
             currentPage : parseInt((items.length / pageSize )) + 1 + ''
-        })
-        .then(({data:{data,resultMsg,resultCode}})=>{
+        };
+        if (this.options.from) {
+            reqMethod = MXZ030006;
+            param.bindFlag = 0;
+        }
+
+        reqMethod(param).then(({data:{data,resultMsg,resultCode}})=>{
             // wepy.hideLoading();
             this.requestIng = false;
             if (resultCode === '0000') {

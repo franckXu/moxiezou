@@ -151,6 +151,12 @@ export default class Index extends wepy.page {
 
             this.formData['gpsX'].value = editDevice.gps_x;
             this.formData['gpsY'].value = editDevice.gps_y;
+
+            this.formData['site'].value = {
+                id :editDevice.field_id,
+                field_name : editDevice.field_name
+            }
+
             this.$parent.globalData.editDevice = null;
         }
 

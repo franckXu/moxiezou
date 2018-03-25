@@ -60,390 +60,48 @@ const MXZ030003 = {
     "resultMsg": "成功",
     "funcId": " MXZ020001",
     "data": [{
-        "code": "J2132",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "type": 0,
-        "online": 1,
         "template": {
-            "code": "0001",
-            "logo": "xx.png",
-            "name": "正佳广场模板",
+            "id": 61,
+            "logo": "http:\/\/127.0.0.1:8080\\\/upfile\/img\/icon\/a2f4bf77-b34f-449a-9bd7-8a2ed2142954.png",
+            "name": "摩羯座001",
             "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }]
-        }
-    }, {
-        "code": "J8313",
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
-        "type": 0,
-        "online": 1,
-        "template": {
-            "code": "0001",
-            "logo": "xx.png",
-            "name": "中华广场模板",
-            "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
+                "id": 153,
+                "unit": "分钟",
+                "title": "身体放松坐1",
+                "amounts": 5,
+                "describe": "身体放松坐",
+                "money": "5"
             }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }]
-        }
-    }, {
-        "code": "J8313",
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
-        "type": 0,
-        "online": 1,
-        "template": {
-            "code": "0001",
-            "logo": "xx.png",
-            "name": "中华广场模板",
-            "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
+                "id": 154,
+                "unit": "分钟",
+                "title": "身体恢复坐",
+                "amounts": 10,
+                "describe": "身体恢复坐11",
+                "money": "8"
             }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
+                "id": 155,
+                "unit": "分钟",
+                "title": "身体缓解坐",
+                "amounts": 15,
+                "describe": "身体缓解坐",
+                "money": "10"
             }]
-        }
-    }, {
-        "code": "J8313",
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
+        },
+        "field_name": "ymSite2ym",
+        "provider_id": 55,
+        "m_date": "2018-03-18 18:26:30",
+        "template_id": "61",
+        "code": "MXZ001",
+        "c_date": "2018-02-14 00:44:47",
         "type": 0,
-        "online": 1,
-        "template": {
-            "code": "0001",
-            "logo": "xx.png",
-            "name": "中华广场模板",
-            "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }]
-        }
-    }, {
-        "code": "J8313",
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
-        "type": 0,
-        "online": 1,
-        "template": {
-            "code": "0001",
-            "logo": "xx.png",
-            "name": "中华广场模板",
-            "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }]
-        }
-    }, {
-        "code": "J8313",
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
-        "type": 0,
-        "online": 1,
-        "template": {
-            "code": "0001",
-            "logo": "xx.png",
-            "name": "中华广场模板",
-            "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }]
-        }
-    }, {
-        "code": "J8313",
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
-        "type": 0,
-        "online": 1,
-        "template": {
-            "code": "0001",
-            "logo": "xx.png",
-            "name": "中华广场模板",
-            "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }]
-        }
-    }, {
-        "code": "J8313",
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
-        "type": 0,
-        "online": 1,
-        "template": {
-            "code": "0001",
-            "logo": "xx.png",
-            "name": "中华广场模板",
-            "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }]
-        }
-    }, {
-        "code": "J8313",
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
-        "type": 0,
-        "online": 1,
-        "template": {
-            "code": "0001",
-            "logo": "xx.png",
-            "name": "中华广场模板",
-            "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }]
-        }
-    }, {
-        "code": "J8313",
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
-        "type": 0,
-        "online": 1,
-        "template": {
-            "code": "0001",
-            "logo": "xx.png",
-            "name": "中华广场模板",
-            "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }]
-        }
-    }, {
-        "code": "J8313",
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
-        "type": 0,
-        "online": 1,
-        "template": {
-            "code": "0001",
-            "logo": "xx.png",
-            "name": "中华广场模板",
-            "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }]
-        }
-    }, {
-        "code": "J8313",
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
-        "type": 0,
-        "online": 1,
-        "template": {
-            "code": "0001",
-            "logo": "xx.png",
-            "name": "中华广场模板",
-            "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }]
-        }
-    }, {
-        "code": "J8313",
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
-        "type": 0,
-        "online": 1,
-        "template": {
-            "code": "0001",
-            "logo": "xx.png",
-            "name": "中华广场模板",
-            "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }]
-        }
-    }, {
-        "code": "J8313",
-        "gpsX": "112.93",
-        "gpsY": "28.23",
-        "address": "长沙岳麓区",
-        "name": "MXZ001",
-        "type": 0,
-        "online": 1,
-        "template": {
-            "code": "0001",
-            "logo": "xx.png",
-            "name": "中华广场模板",
-            "templateDtl": [{
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }, {
-                "code": "000111",
-                "title": "身体放松坐",
-                "describe": "xxx",
-                "money": "5",
-                "amounts": "10",
-                "unit": "分钟"
-            }]
-        }
+        "field_id": 31,
+        "online": 0,
+        "id": 30,
+        "mch_id": "11",
+        "gps_x": "113.22026",
+        "gps_y": "23.40391",
+        "address": "广东省广州市花都区迎宾大道89号",
+        "name": "ymd"
     }]
 }
 

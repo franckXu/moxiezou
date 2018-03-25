@@ -69,7 +69,7 @@ export default class Index extends wepy.page {
         }).then(({ data: { data, resultMsg, resultCode } }) => {
                 wepy.hideLoading();
                 if (resultCode === '0000') {
-                    this.bankCardList = data;
+                    this.bankCardList = [data[0]];
                     this.selectedBankCardIndex = 0;
                 }else{
                     toast({

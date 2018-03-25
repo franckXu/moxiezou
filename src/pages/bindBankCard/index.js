@@ -7,7 +7,9 @@ import serviceFactory from '@/utils/base.service';
 const MXZ100001 = serviceFactory({
     'funcId' : 'MXZ100001'
 })
-
+const MXZ100002 = serviceFactory({
+    'funcId' : 'MXZ100002'
+})
 export default class Index extends wepy.page {
     config = {
         navigationBarTitleText : '绑定银行卡'
@@ -59,6 +61,33 @@ export default class Index extends wepy.page {
                     })
                 })
         }
+    }
+
+    onShow(){
+        wepy.showLoading();
+
+        MXZ100002({
+        }).then(({ data: { data, resultMsg, resultCode } }) => {
+                wepy.hideLoading();
+                if (resultCode === '0000') {
+                    data = data[0];
+                    this.formData.bankName.value = data.bn;
+                    // this.formData.bankSub.value = data.,
+                    this.formData.accountName.value = data.an;
+                    this.formData.cardNo.value = data.cn;
+                }else{
+                    toast({
+                        title: '获取银行卡失败'
+                    })
+                }
+                this.$apply();
+            }, err => {
+                wepy.hideLoading();
+                toast({
+                    title: '获取银行卡失败'
+                })
+            })
+
     }
 
 }

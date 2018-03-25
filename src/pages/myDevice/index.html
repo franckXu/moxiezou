@@ -2,7 +2,7 @@
     <view slot="content">
         <view wx:if="{{deviceList !== null}}">
             <view wx:if="{{deviceList.length}}">
-                <view class="item" wx:for="{{deviceList}}" wx:key="code" @tap="editDevice({{item}})">
+            <view class="item" wx:for="{{deviceList}}" wx:key="code" @tap="editDevice({{item}})">
                     <view class="box">
                         <view>{{item.name}}</view>
                         <view>{{item.code}}</view>
