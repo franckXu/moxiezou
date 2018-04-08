@@ -17,7 +17,7 @@ export default class Index extends wepy.page {
     data = {
         formData: {
             "bankName":    {'label':'开户行'}
-            ,"bankSub":     {'label':'开会支行'}
+            ,"bankSub":     {'label':'开户支行'}
             ,"accountName": {'label':'户名'}
             ,"cardNo":      {'label':'卡号'}
         }
@@ -70,7 +70,7 @@ export default class Index extends wepy.page {
         }).then(({ data: { data, resultMsg, resultCode } }) => {
                 wepy.hideLoading();
                 if (resultCode === '0000') {
-                    data = data[0];
+                    data = data[data.length -1];
                     this.formData.bankName.value = data.bn;
                     // this.formData.bankSub.value = data.,
                     this.formData.accountName.value = data.an;

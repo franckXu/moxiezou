@@ -128,7 +128,7 @@ export default class extends wepy.app {
         })
     }
 
-    login(succFn=()=>{}, failFn=()=>{}) {
+    login(succFn=()=>{}, failFn=()=>{},allowUnBindUser) {
         const self = this;
         wepy.checkSession({
             success() {
@@ -136,9 +136,13 @@ export default class extends wepy.app {
                 console.log('token valid')
                 // self.doLogin(succFn,failFn);
                 if (wepy.getStorageSync('sessionId')) {
-                    self.getBindUserInfoForServer(succFn, failFn)
+                    if (allowUnBindUser) {
+                        succFn();
+                    }else{
+                        self.getBindUserInfoForServer(succFn, failFn)
+                    }
                 } else {
-                    self.doLogin(succFn,failFn);
+                    self.doLogin(succFn,failFn,allowUnBindUser);
                 }
 
             },
@@ -151,7 +155,7 @@ export default class extends wepy.app {
         })
     }
 
-    doLogin(succFn,failFn){
+    doLogin(succFn,failFn,allowUnBindUser){
         const self = this;
         wepy.login({
             success({ code }) {
@@ -166,7 +170,11 @@ export default class extends wepy.app {
                                         key: "sessionId",
                                         data: data && data.sessionId ? data.sessionId : '',
                                         success() {
-                                            self.getBindUserInfoForServer(succFn, failFn)
+                                            if (allowUnBindUser) {
+                                                succFn();
+                                            }else{
+                                                self.getBindUserInfoForServer(succFn, failFn)
+                                            }
                                         },
                                         fail() {
                                             failFn(arguments);
@@ -219,11 +227,11 @@ export default class extends wepy.app {
 
     }
 
-    getBindUserInfo(succFn, failFn) {
+    getBindUserInfo(succFn, failFn,allowUnBindUser=false) {
         if (this.globalData.bindUserInfo) {
             succFn(this.globalData.bindUserInfo);
         } else {
-            this.login(succFn,failFn);
+            this.login(succFn,failFn,allowUnBindUser);
 
         }
     }
